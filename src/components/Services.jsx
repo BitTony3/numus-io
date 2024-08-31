@@ -1,95 +1,136 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers } from 'lucide-react';
+import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers, BarChart, Briefcase, Users, DollarSign } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Services = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
 
-  const services = [
-    { 
-      title: "Corporate Troubleshooting", 
-      description: "Rapid problem-solving for complex corporate challenges. We employ data-driven analysis, strategic planning, and agile implementation to resolve issues efficiently.",
-      icon: <AlertTriangle className="h-12 w-12 mb-4" />,
-      color: "from-red-400 to-orange-500",
-      details: "Our process includes AI-powered diagnostics, root cause analysis, and predictive modeling to anticipate and mitigate future challenges. We utilize advanced project management tools for real-time progress tracking and stakeholder communication."
-    },
-    { 
-      title: "Accelerated Action", 
-      description: "Rapid prototyping and development services focused on delivering tangible results within weeks. We use agile methodologies and cutting-edge tools to accelerate project timelines.",
-      icon: <Gauge className="h-12 w-12 mb-4" />,
-      color: "from-blue-400 to-indigo-500",
-      details: "Our accelerated action framework incorporates CI/CD pipelines, automated testing suites, and parallel development workflows. We leverage containerization and microservices architecture to enable rapid iteration and deployment."
-    },
-    { 
-      title: "Advanced Tech Stack", 
-      description: "Access to a comprehensive, modern tech stack tailored for each project's unique requirements. We integrate cutting-edge technologies including quantum computing, blockchain, and AI/ML frameworks.",
-      icon: <Rocket className="h-12 w-12 mb-4" />,
-      color: "from-green-400 to-teal-500",
-      details: "Our tech stack features post-quantum cryptography algorithms, edge computing frameworks, and AI-assisted development tools. We continuously evaluate and integrate emerging technologies to maintain a state-of-the-art development environment."
-    },
-    { 
-      title: "Architecture Design", 
-      description: "Expert system architecture design services focusing on scalability, resilience, and future-proofing. We create comprehensive blueprints for robust digital infrastructures.",
+  const serviceCategories = [
+    {
+      title: "Technical Services",
       icon: <Cpu className="h-12 w-12 mb-4" />,
-      color: "from-purple-400 to-pink-500",
-      details: "We employ advanced modeling tools and AI-driven simulations to optimize architectures pre-implementation. Our designs incorporate microservices, event-driven architectures, and self-healing systems to ensure long-term adaptability and performance."
+      color: "from-blue-400 to-indigo-500",
+      services: [
+        {
+          title: "Advanced Tech Stack",
+          description: "Integration of quantum computing, blockchain, and AI/ML frameworks.",
+          icon: <Rocket className="h-8 w-8" />,
+          details: "Implementation of post-quantum cryptography, edge computing, and AI-assisted development tools."
+        },
+        {
+          title: "Architecture Design",
+          description: "Scalable and resilient system architecture design.",
+          icon: <Cpu className="h-8 w-8" />,
+          details: "Utilization of microservices, event-driven architectures, and self-healing systems."
+        },
+        {
+          title: "Code Optimization",
+          description: "Performance enhancement and code refactoring services.",
+          icon: <Code className="h-8 w-8" />,
+          details: "Application of static analysis, AI-assisted code review, and automated refactoring techniques."
+        },
+        {
+          title: "Cloud Solutions",
+          description: "Cloud integration, migration, and management services.",
+          icon: <Cloud className="h-8 w-8" />,
+          details: "Implementation of multi-cloud orchestration and serverless architectures."
+        }
+      ]
     },
-    { 
-      title: "Startup Incubation", 
-      description: "Comprehensive support system for rapid startup development and market entry. We provide mentorship, resources, and networking opportunities to accelerate growth and innovation.",
-      icon: <Zap className="h-12 w-12 mb-4" />,
-      color: "from-yellow-400 to-orange-500",
-      details: "Our incubation program offers access to industry experts, potential investors, and strategic partners. We conduct specialized workshops on emerging technologies, market analysis techniques, and growth hacking strategies tailored to each startup's needs."
+    {
+      title: "Business Development",
+      icon: <Briefcase className="h-12 w-12 mb-4" />,
+      color: "from-green-400 to-teal-500",
+      services: [
+        {
+          title: "Partnership Architecture",
+          description: "Strategic partnership development and management.",
+          icon: <Users className="h-8 w-8" />,
+          details: "Identification of synergistic opportunities and creation of mutually beneficial partnership structures."
+        },
+        {
+          title: "Business Model Refinement",
+          description: "Optimization of business models for market fit and scalability.",
+          icon: <BarChart className="h-8 w-8" />,
+          details: "Analysis of market trends, competitive landscape, and revenue optimization strategies."
+        },
+        {
+          title: "Startup Incubation",
+          description: "Comprehensive support for startup development and market entry.",
+          icon: <Zap className="h-8 w-8" />,
+          details: "Provision of mentorship, resources, and networking opportunities for accelerated growth."
+        },
+        {
+          title: "Market Entry Strategy",
+          description: "Development of strategies for new market penetration.",
+          icon: <Gauge className="h-8 w-8" />,
+          details: "Analysis of market dynamics, regulatory environments, and localization requirements."
+        }
+      ]
     },
-    { 
-      title: "Advanced Security", 
-      description: "State-of-the-art security measures incorporating quantum-resistant encryption, advanced threat detection, and proactive defense systems to protect digital assets and data.",
-      icon: <Shield className="h-12 w-12 mb-4" />,
-      color: "from-indigo-400 to-purple-500",
-      details: "Our security solutions include quantum key distribution protocols, AI-powered threat intelligence systems, and blockchain-based audit trails. We perform regular penetration testing and offer 24/7 security monitoring and incident response services."
-    },
-    { 
-      title: "Code Optimization", 
-      description: "Comprehensive code refactoring and optimization services to enhance software performance, efficiency, and scalability across diverse computing environments.",
-      icon: <Code className="h-12 w-12 mb-4" />,
-      color: "from-green-400 to-blue-500",
-      details: "We utilize advanced static analysis tools, AI-assisted code review processes, and automated refactoring techniques. Our optimization methodology includes performance profiling, memory management enhancements, and algorithm refinement for maximum efficiency."
-    },
-    { 
-      title: "Data Management", 
-      description: "Robust data management solutions designed to handle large-scale, complex datasets. We implement advanced database systems and data pipelines optimized for performance and scalability.",
+    {
+      title: "Blockchain & Tokenomics",
       icon: <Database className="h-12 w-12 mb-4" />,
-      color: "from-red-400 to-pink-500",
-      details: "Our data management solutions incorporate distributed ledger technologies, real-time edge computing processing, and AI-driven data governance frameworks. We ensure compliance with global data protection regulations and implement sophisticated data anonymization techniques."
+      color: "from-purple-400 to-pink-500",
+      services: [
+        {
+          title: "Tokenomics Architecture",
+          description: "Design and implementation of token economic models.",
+          icon: <DollarSign className="h-8 w-8" />,
+          details: "Development of sustainable token ecosystems, including supply mechanisms and utility modeling."
+        },
+        {
+          title: "Smart Contract Development",
+          description: "Creation and auditing of blockchain-based smart contracts.",
+          icon: <Code className="h-8 w-8" />,
+          details: "Implementation of secure, efficient, and scalable smart contracts on various blockchain platforms."
+        },
+        {
+          title: "Blockchain Integration",
+          description: "Incorporation of blockchain technology into existing systems.",
+          icon: <GitBranch className="h-8 w-8" />,
+          details: "Seamless integration of blockchain solutions for enhanced transparency and security."
+        },
+        {
+          title: "Decentralized Finance (DeFi) Solutions",
+          description: "Development of DeFi platforms and protocols.",
+          icon: <Briefcase className="h-8 w-8" />,
+          details: "Creation of decentralized exchanges, lending platforms, and yield farming protocols."
+        }
+      ]
     },
-    { 
-      title: "Cloud Solutions", 
-      description: "Comprehensive cloud integration, migration, and management services. We design and implement flexible, scalable cloud infrastructures tailored to specific business needs.",
-      icon: <Cloud className="h-12 w-12 mb-4" />,
-      color: "from-blue-400 to-cyan-500",
-      details: "Our cloud solutions feature multi-cloud orchestration, serverless architecture implementations, and AI-powered resource optimization. We deploy advanced cost management tools and provide continuous cloud monitoring and support services."
-    },
-    { 
-      title: "Version Control", 
-      description: "Advanced version control system implementation and management. We set up and maintain sophisticated branching strategies and collaborative workflows to streamline development processes.",
-      icon: <GitBranch className="h-12 w-12 mb-4" />,
-      color: "from-purple-400 to-indigo-500",
-      details: "Our version control solutions include AI-assisted merge conflict resolution, automated code review processes, and blockchain-based audit trails for comprehensive change tracking. We design customized workflow systems optimized for each team's specific requirements."
-    },
-    { 
-      title: "API Integration", 
-      description: "Comprehensive API design, development, and integration services. We create robust, scalable APIs that enable seamless communication between diverse platforms and services.",
-      icon: <Wifi className="h-12 w-12 mb-4" />,
-      color: "from-yellow-400 to-green-500",
-      details: "Our API services include GraphQL implementation, real-time WebSocket integrations, and AI-powered API analytics. We ensure high availability, scalability, and security for all API endpoints, with comprehensive documentation and developer support."
-    },
-    { 
-      title: "UX/UI Design", 
-      description: "Advanced user experience and interface design services. We create intuitive, visually appealing interfaces optimized for user engagement and satisfaction across multiple platforms and devices.",
-      icon: <Layers className="h-12 w-12 mb-4" />,
-      color: "from-orange-400 to-red-500",
-      details: "We utilize VR and AR technologies for immersive prototyping, AI-driven user behavior analysis, and evidence-based design principles. Our design process includes cross-platform testing and optimization to ensure consistent, high-quality user experiences."
+    {
+      title: "Security & Compliance",
+      icon: <Shield className="h-12 w-12 mb-4" />,
+      color: "from-red-400 to-orange-500",
+      services: [
+        {
+          title: "Advanced Security Measures",
+          description: "Implementation of quantum-resistant encryption and threat detection systems.",
+          icon: <Shield className="h-8 w-8" />,
+          details: "Deployment of AI-powered threat intelligence and blockchain-based audit trails."
+        },
+        {
+          title: "Regulatory Compliance",
+          description: "Ensuring adherence to global financial and data protection regulations.",
+          icon: <AlertTriangle className="h-8 w-8" />,
+          details: "Implementation of KYC/AML procedures and data privacy compliance measures."
+        },
+        {
+          title: "Security Audits",
+          description: "Comprehensive security assessments and penetration testing.",
+          icon: <Wifi className="h-8 w-8" />,
+          details: "Identification and mitigation of vulnerabilities in systems and smart contracts."
+        },
+        {
+          title: "Disaster Recovery Planning",
+          description: "Development of robust disaster recovery and business continuity strategies.",
+          icon: <Layers className="h-8 w-8" />,
+          details: "Creation of resilient systems with failover mechanisms and data redundancy."
+        }
+      ]
     }
   ];
 
@@ -128,8 +169,8 @@ const Services = () => {
         >
           Embark on an interstellar journey of innovation with our comprehensive suite of services. From rapid problem-solving to cutting-edge tech implementation, we're your cosmic partners in digital transformation.
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {serviceCategories.map((category, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -138,28 +179,74 @@ const Services = () => {
             >
               <Card 
                 className="bg-gray-800 border-gray-700 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 h-full cursor-pointer"
-                onClick={() => setSelectedService(service)}
+                onClick={() => setSelectedCategory(category)}
               >
                 <CardHeader>
                   <CardTitle className="flex flex-col items-center">
                     <motion.div
-                      className={`p-3 rounded-full bg-gradient-to-br ${service.color}`}
+                      className={`p-3 rounded-full bg-gradient-to-br ${category.color}`}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      {React.cloneElement(service.icon, { className: "h-8 w-8 text-white" })}
+                      {React.cloneElement(category.icon, { className: "h-8 w-8 text-white" })}
                     </motion.div>
-                    <span className="mt-4 text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">{service.title}</span>
+                    <span className="mt-4 text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">{category.title}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-center text-gray-300">{service.description}</p>
+                  <p className="text-center text-gray-300">Click to explore our {category.title.toLowerCase()} offerings.</p>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
       </div>
+      <AnimatePresence>
+        {selectedCategory && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCategory(null)}
+          >
+            <motion.div
+              className="bg-gray-800 p-8 rounded-lg max-w-4xl w-full"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">{selectedCategory.title}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {selectedCategory.services.map((service, index) => (
+                  <Card 
+                    key={index}
+                    className="bg-gray-700 border-gray-600 hover:shadow-md hover:shadow-blue-500/10 transition-all duration-300 cursor-pointer"
+                    onClick={() => setSelectedService(service)}
+                  >
+                    <CardHeader>
+                      <CardTitle className="flex items-center">
+                        {React.cloneElement(service.icon, { className: "h-6 w-6 mr-2 text-blue-400" })}
+                        <span>{service.title}</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-300">{service.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <button
+                className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                onClick={() => setSelectedCategory(null)}
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {selectedService && (
           <motion.div
