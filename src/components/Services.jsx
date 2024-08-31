@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedService, setSelectedService] = useState(null);
 
   const serviceCategories = [
     {
@@ -71,8 +70,8 @@ const Services = () => {
       ]
     },
     {
-      title: "Blockchain & Tokenomics",
-      icon: <Database className="h-12 w-12 mb-4" />,
+      title: "Financial",
+      icon: <DollarSign className="h-12 w-12 mb-4" />,
       color: "from-purple-400 to-pink-500",
       services: [
         {
