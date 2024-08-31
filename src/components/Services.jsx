@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);
 
   const serviceCategories = [
     {
