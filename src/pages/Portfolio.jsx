@@ -12,7 +12,7 @@ const PortfolioPage = () => {
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold text-center mb-8">Our Portfolio</h1>
             <p className="text-xl text-center mb-12 max-w-3xl mx-auto">
-              Explore the innovative startups and groundbreaking projects we've helped launch and grow. Our diverse portfolio spans various industries and technologies, showcasing the transformative power of our venture studio approach.
+              Discover the cutting-edge projects and innovative solutions we've nurtured and developed. Our diverse portfolio showcases the power of our global tech stack and expert consulting services across various industries and technologies.
             </p>
           </div>
         </div>

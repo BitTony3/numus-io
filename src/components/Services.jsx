@@ -1,38 +1,38 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Rocket, Lightbulb, TrendingUp, Users, ChartBar, Shield } from 'lucide-react';
+import { Rocket, Layers, Cpu, Search, Code, Server } from 'lucide-react';
 
 const Services = () => {
   const services = [
     { 
-      title: "Ideation & Discovery", 
-      description: "We source innovative ideas through hackathons and pitch events, refining concepts with market research and expert feedback.",
-      icon: <Lightbulb className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Global Tech Stack", 
+      description: "Access our comprehensive global tech stack, tailored to meet the unique needs of each project across various technologies and platforms.",
+      icon: <Layers className="h-8 w-8 mb-4 text-blue-600" />
     },
     { 
-      title: "Incubation", 
-      description: "Access CeDeFiAi's tech stack and infrastructure, with mentorship to guide product development and market fit.",
+      title: "Architecture Consulting", 
+      description: "Expert guidance on system architecture, ensuring scalable, efficient, and robust solutions for your project's specific requirements.",
+      icon: <Cpu className="h-8 w-8 mb-4 text-blue-600" />
+    },
+    { 
+      title: "Incubation & Acceleration", 
+      description: "Full-cycle support from ideation to market entry, with mentorship, resources, and strategic planning tailored to each stage of development.",
       icon: <Rocket className="h-8 w-8 mb-4 text-blue-600" />
     },
     { 
-      title: "Acceleration", 
-      description: "Develop go-to-market strategies, enhance projects with CeDeFiAi features, and prepare for investor pitches.",
-      icon: <TrendingUp className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Technical Due Diligence", 
+      description: "Comprehensive assessment of projects' technical aspects, identifying strengths, weaknesses, and opportunities for optimization.",
+      icon: <Search className="h-8 w-8 mb-4 text-blue-600" />
     },
     { 
-      title: "Integration & Spin-Off", 
-      description: "Seamlessly integrate projects with CeDeFiAi platforms or support spinning off as independent entities.",
-      icon: <Users className="h-8 w-8 mb-4 text-blue-600" />
-    },
-    { 
-      title: "Investment Process", 
-      description: "Two-step approach: optimize project structure and reduce burn costs, then actively engage in development and scaling.",
-      icon: <ChartBar className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Custom Development", 
+      description: "Tailored software development services to bring your unique ideas to life, leveraging cutting-edge technologies and best practices.",
+      icon: <Code className="h-8 w-8 mb-4 text-blue-600" />
     },
     { 
       title: "Tech Infrastructure", 
-      description: "Leverage CeDeFiAi's robust tech stack, including APIs, SDKs, and scalable cloud services for project development.",
-      icon: <Shield className="h-8 w-8 mb-4 text-blue-600" />
+      description: "Scalable cloud services, APIs, and development tools to support robust and efficient project development and deployment.",
+      icon: <Server className="h-8 w-8 mb-4 text-blue-600" />
     }
   ];
 

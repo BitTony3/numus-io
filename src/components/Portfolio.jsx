@@ -5,40 +5,40 @@ import { Badge } from "@/components/ui/badge";
 const Portfolio = () => {
   const projects = [
     { 
-      title: "DeFiYield", 
-      description: "Automated yield farming and liquidity management platform leveraging CeDeFiAi's advanced features.",
-      tags: ["DeFi", "Yield Farming", "CeDeFiAi"],
+      title: "TechStack", 
+      description: "A comprehensive platform offering customizable tech stacks for diverse project needs.",
+      tags: ["SaaS", "Developer Tools", "Cloud Infrastructure"],
+      status: "Launched"
+    },
+    { 
+      title: "ArchitectAI", 
+      description: "AI-powered architecture consulting tool for optimizing system designs and scalability.",
+      tags: ["AI", "Software Architecture", "Consulting"],
+      status: "Beta"
+    },
+    { 
+      title: "SecureChain", 
+      description: "Advanced blockchain solution with enhanced security features for enterprise applications.",
+      tags: ["Blockchain", "Enterprise", "Cybersecurity"],
       status: "Acceleration"
     },
     { 
-      title: "BlockChainOfCustody", 
-      description: "Blockchain-based chain of custody solution for legal and supply chain applications.",
-      tags: ["Blockchain", "Supply Chain", "Legal Tech"],
+      title: "CloudNative", 
+      description: "Suite of cloud-native development tools and services for modern application architectures.",
+      tags: ["Cloud Computing", "DevOps", "Microservices"],
+      status: "Scaling"
+    },
+    { 
+      title: "DataFlow", 
+      description: "Real-time data processing and analytics platform for big data applications.",
+      tags: ["Big Data", "Analytics", "Stream Processing"],
       status: "Incubation"
     },
     { 
-      title: "AIGovernance", 
-      description: "AI-powered DAO governance platform for decentralized decision-making in organizations.",
-      tags: ["AI", "DAO", "Governance"],
-      status: "Integration"
-    },
-    { 
-      title: "CryptoInsure", 
-      description: "Decentralized insurance protocol for crypto assets and DeFi investments.",
-      tags: ["InsurTech", "DeFi", "Risk Management"],
-      status: "Acceleration"
-    },
-    { 
-      title: "EcoToken", 
-      description: "Tokenized carbon credits and sustainability incentives built on CeDeFiAi infrastructure.",
-      tags: ["Green Tech", "Tokenization", "Sustainability"],
-      status: "Incubation"
-    },
-    { 
-      title: "QuantumLedger", 
-      description: "Quantum-resistant blockchain solution for future-proof data security and transactions.",
-      tags: ["Quantum Computing", "Blockchain", "Cybersecurity"],
-      status: "Discovery"
+      title: "APIForge", 
+      description: "Comprehensive API development and management platform for seamless integrations.",
+      tags: ["API", "Integration", "Developer Tools"],
+      status: "Growth"
     }
   ];
 

@@ -12,7 +12,7 @@ const ServicesPage = () => {
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold text-center mb-8">Our Services</h1>
             <p className="text-xl text-center mb-12 max-w-3xl mx-auto">
-              At VentureHaven, we offer a comprehensive suite of services designed to support startups at every stage of their journey. From ideation to market entry and beyond, our expert team is here to guide you towards success.
+              At Numus, we provide a comprehensive suite of technical services designed to empower startups and established companies alike. From our global tech stack to expert architecture consulting, we're here to drive your project's success at every stage of development.
             </p>
           </div>
         </div>
