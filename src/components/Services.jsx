@@ -197,14 +197,14 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-900 text-white overflow-hidden">
+    <section className="py-20 bg-green-900 text-white overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.div
           className="absolute inset-0 opacity-10"
           animate={{
             backgroundImage: [
-              'radial-gradient(circle, #00A86B 1px, transparent 1px)',
-              'radial-gradient(circle, #0EA5E9 1px, transparent 1px)',
+              'radial-gradient(circle, #00FF9D 1px, transparent 1px)',
+              'radial-gradient(circle, #00D67F 1px, transparent 1px)',
               'radial-gradient(circle, #00A86B 1px, transparent 1px)',
             ],
             backgroundSize: ['20px 20px', '30px 30px', '20px 20px'],
@@ -216,20 +216,20 @@ const Services = () => {
           }}
         />
         <motion.h2 
-          className="text-5xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500"
+          className="text-5xl font-bold text-center mb-4 text-green-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Our Cosmic Services
+          Our Eco-Tech Services
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-12 max-w-3xl mx-auto text-gray-300"
+          className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-100"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Embark on an interstellar journey of innovation with our comprehensive suite of services. From rapid problem-solving to cutting-edge tech implementation, we're your cosmic partners in digital transformation.
+          Cultivate innovation and grow your digital presence with our comprehensive suite of eco-friendly tech services. From sustainable solutions to green tech implementation, we're your partners in creating a greener digital future.
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceCategories.map((category, index) => (

@@ -6,61 +6,61 @@ import { motion } from 'framer-motion';
 const Portfolio = () => {
   const projects = [
     { 
-      title: "Nebula Stack", 
-      description: "A cosmic platform offering customizable tech stacks for diverse intergalactic project needs.",
-      tags: ["SaaS", "Quantum Computing", "Stellar Infrastructure"],
+      title: "EcoStack", 
+      description: "A sustainable platform offering customizable green tech stacks for diverse eco-friendly project needs.",
+      tags: ["SaaS", "Green Computing", "Sustainable Infrastructure"],
       status: "Launched"
     },
     { 
-      title: "GalaxyMind AI", 
-      description: "AI-powered architecture consulting tool for optimizing system designs across the universe.",
-      tags: ["AI", "Cosmic Architecture", "Consulting"],
+      title: "GreenMind AI", 
+      description: "AI-powered sustainability consulting tool for optimizing eco-friendly system designs.",
+      tags: ["AI", "Green Architecture", "Consulting"],
       status: "Beta"
     },
     { 
-      title: "AstroChain", 
-      description: "Advanced blockchain solution with enhanced security features for interplanetary enterprise applications.",
-      tags: ["Blockchain", "Enterprise", "Cosmic Cybersecurity"],
+      title: "EcoChain", 
+      description: "Energy-efficient blockchain solution with enhanced security features for sustainable enterprise applications.",
+      tags: ["Blockchain", "Enterprise", "Green Cybersecurity"],
       status: "Acceleration"
     },
     { 
-      title: "StarNative", 
-      description: "Suite of star-native development tools and services for modern space-age application architectures.",
-      tags: ["Nebula Computing", "AstroOps", "Microservices"],
+      title: "EcoNative", 
+      description: "Suite of eco-friendly development tools and services for modern green application architectures.",
+      tags: ["Green Computing", "EcoOps", "Microservices"],
       status: "Scaling"
     },
     { 
-      title: "CosmicFlow", 
-      description: "Real-time data processing and analytics platform for big bang data applications.",
-      tags: ["Galactic Data", "Stellar Analytics", "Wormhole Processing"],
+      title: "GreenFlow", 
+      description: "Energy-efficient real-time data processing and analytics platform for big data applications.",
+      tags: ["Green Data", "Eco Analytics", "Efficient Processing"],
       status: "Incubation"
     },
     { 
-      title: "QuasarForge", 
-      description: "Comprehensive API development and management platform for seamless intergalactic integrations.",
-      tags: ["Quantum API", "Integration", "Cosmic Developer Tools"],
+      title: "EcoForge", 
+      description: "Comprehensive API development and management platform for seamless green tech integrations.",
+      tags: ["Green API", "Integration", "Eco Developer Tools"],
       status: "Growth"
     }
   ];
 
   return (
-    <section className="py-20 bg-gray-900 text-white">
+    <section className="py-20 bg-green-900 text-white">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-4"
+          className="text-4xl font-bold text-center mb-4 text-green-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Our Cosmic Portfolio
+          Our Green Tech Portfolio
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-12 max-w-2xl mx-auto"
+          className="text-xl text-center mb-12 max-w-2xl mx-auto text-green-100"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Explore the innovative projects powered by Numus technology across the galaxy
+          Explore the innovative eco-friendly projects powered by Numus technology
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -70,18 +70,18 @@ const Portfolio = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="bg-gray-800 border-gray-700 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
+              <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300">
                 <CardHeader>
                   <CardTitle className="flex justify-between items-center">
-                    <span>{project.title}</span>
-                    <Badge variant="secondary" className="bg-blue-600">{project.status}</Badge>
+                    <span className="text-green-300">{project.title}</span>
+                    <Badge variant="secondary" className="bg-green-600">{project.status}</Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4 text-gray-300">{project.description}</p>
+                  <p className="mb-4 text-green-100">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="border-purple-500 text-purple-300">{tag}</Badge>
+                      <Badge key={tagIndex} variant="outline" className="border-green-500 text-green-300">{tag}</Badge>
                     ))}
                   </div>
                 </CardContent>
