@@ -200,7 +200,7 @@ const Services = () => {
         >
           Embark on an interstellar journey of innovation with our comprehensive suite of services. From rapid problem-solving to cutting-edge tech implementation, we're your cosmic partners in digital transformation.
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceCategories.map((category, index) => (
             <motion.div
               key={index}
