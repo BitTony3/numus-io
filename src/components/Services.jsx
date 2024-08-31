@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers, BarChart, Briefcase, Users, DollarSign, HomeIcon, Phone, TrendingUp, Target, Megaphone, LineChart } from 'lucide-react';
+import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers, BarChart, Briefcase, Users, DollarSign, HomeIcon, Phone, TrendingUp, Target, Megaphone, LineChart, BarChart2, PieChart, Database as DatabaseIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
-
-  import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers, BarChart, Briefcase, Users, DollarSign, HomeIcon, Phone, TrendingUp, Target, Megaphone, LineChart, BarChart2, PieChart, TrendingUp, Database as DatabaseIcon } from 'lucide-react';
 
   const serviceCategories = [
     {
