@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const Header = () => {
   return (
     <motion.header
-      className="bg-gray-900 text-white shadow-lg"
+      className="bg-green-900 text-white shadow-lg"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -14,7 +14,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <motion.div
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, rotate: 360 }}
             whileTap={{ scale: 0.9 }}
           >
             <motion.img
@@ -24,6 +24,7 @@ const Header = () => {
               animate={{
                 rotate: [0, 360],
                 scale: [1, 1.2, 1],
+                filter: ['hue-rotate(0deg)', 'hue-rotate(360deg)'],
               }}
               transition={{
                 duration: 10,
@@ -33,7 +34,7 @@ const Header = () => {
             />
           </motion.div>
           <motion.span
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500"
+            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-green-500"
             animate={{
               backgroundPosition: ["0%", "100%"],
             }}
@@ -62,13 +63,13 @@ const Header = () => {
                 <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>
                   <Button
                     variant="ghost"
-                    className="text-white hover:text-green-400 relative overflow-hidden group"
+                    className="text-green-300 hover:text-green-100 relative overflow-hidden group rounded-full px-4 py-2"
                   >
                     <span className="relative z-10">{item}</span>
                     <motion.div
-                      className="absolute inset-0 bg-green-400 opacity-0 group-hover:opacity-20"
-                      initial={{ scale: 0 }}
-                      whileHover={{ scale: 1 }}
+                      className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100"
+                      initial={{ scale: 0, borderRadius: '100%' }}
+                      whileHover={{ scale: 1, borderRadius: '16px' }}
                       transition={{ duration: 0.3 }}
                     />
                   </Button>
