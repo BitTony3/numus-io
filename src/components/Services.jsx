@@ -7,6 +7,8 @@ const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
 
+  import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers, BarChart, Briefcase, Users, DollarSign, HomeIcon, Phone, TrendingUp, Target, Megaphone, LineChart, BarChart2, PieChart, TrendingUp, Database as DatabaseIcon } from 'lucide-react';
+
   const serviceCategories = [
     {
       title: "Technical Services",
@@ -160,6 +162,37 @@ const Services = () => {
           description: "Create and evolve brand identities for maximum market impact.",
           icon: <Briefcase className="h-8 w-8" />,
           details: "Develop comprehensive brand guidelines, messaging frameworks, and visual identities."
+        }
+      ]
+    },
+    {
+      title: "Data & Analytics",
+      icon: <BarChart2 className="h-12 w-12 mb-4" />,
+      color: "from-cyan-400 to-blue-500",
+      services: [
+        {
+          title: "Big Data Architecture",
+          description: "Design and implement scalable big data solutions.",
+          icon: <DatabaseIcon className="h-8 w-8" />,
+          details: "Create data lakes, implement data warehousing, and set up real-time data processing pipelines."
+        },
+        {
+          title: "Advanced Analytics",
+          description: "Leverage AI and machine learning for predictive insights.",
+          icon: <PieChart className="h-8 w-8" />,
+          details: "Develop custom machine learning models, implement natural language processing, and create predictive analytics solutions."
+        },
+        {
+          title: "Data Visualization",
+          description: "Create interactive dashboards and data storytelling tools.",
+          icon: <BarChart className="h-8 w-8" />,
+          details: "Design intuitive data visualizations, build real-time dashboards, and develop data-driven decision support systems."
+        },
+        {
+          title: "Data Governance & Compliance",
+          description: "Establish robust data management and compliance frameworks.",
+          icon: <Shield className="h-8 w-8" />,
+          details: "Implement data quality processes, ensure GDPR and CCPA compliance, and establish data governance policies."
         }
       ]
     }
