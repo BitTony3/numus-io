@@ -7,6 +7,8 @@ const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
 
+  import { HomeIcon, Briefcase, Users, Phone, Cpu, Rocket, Code, Cloud, BarChart, Zap, Gauge, Database, DollarSign, GitBranch, Shield, AlertTriangle, Wifi, Layers, TrendingUp, Target, Megaphone, LineChart } from 'lucide-react';
+
   const serviceCategories = [
     {
       title: "Technical Services",
@@ -14,28 +16,28 @@ const Services = () => {
       color: "from-blue-400 to-indigo-500",
       services: [
         {
-          title: "Advanced Tech Stack",
-          description: "Integration of quantum computing, blockchain, and AI/ML frameworks.",
+          title: "Advanced Tech Stack Integration",
+          description: "Implement quantum computing, blockchain, and AI/ML frameworks.",
           icon: <Rocket className="h-8 w-8" />,
-          details: "Implementation of post-quantum cryptography, edge computing, and AI-assisted development tools."
+          details: "Deploy post-quantum cryptography, edge computing, and AI-assisted development tools."
         },
         {
-          title: "Architecture Design",
-          description: "Scalable and resilient system architecture design.",
+          title: "Scalable Architecture Design",
+          description: "Design resilient and scalable system architectures.",
           icon: <Cpu className="h-8 w-8" />,
-          details: "Utilization of microservices, event-driven architectures, and self-healing systems."
+          details: "Implement microservices, event-driven architectures, and self-healing systems."
         },
         {
-          title: "Code Optimization",
-          description: "Performance enhancement and code refactoring services.",
+          title: "Performance Optimization",
+          description: "Enhance code performance and conduct refactoring.",
           icon: <Code className="h-8 w-8" />,
-          details: "Application of static analysis, AI-assisted code review, and automated refactoring techniques."
+          details: "Apply static analysis, AI-assisted code review, and automated refactoring techniques."
         },
         {
-          title: "Cloud Solutions",
-          description: "Cloud integration, migration, and management services.",
+          title: "Cloud Infrastructure Solutions",
+          description: "Manage cloud integration, migration, and operations.",
           icon: <Cloud className="h-8 w-8" />,
-          details: "Implementation of multi-cloud orchestration and serverless architectures."
+          details: "Orchestrate multi-cloud environments and implement serverless architectures."
         }
       ]
     },
@@ -45,28 +47,28 @@ const Services = () => {
       color: "from-green-400 to-teal-500",
       services: [
         {
-          title: "Partnership Architecture",
-          description: "Strategic partnership development and management.",
+          title: "Strategic Partnership Development",
+          description: "Architect and manage strategic partnerships.",
           icon: <Users className="h-8 w-8" />,
-          details: "Identification of synergistic opportunities and creation of mutually beneficial partnership structures."
+          details: "Identify synergistic opportunities and create mutually beneficial partnership structures."
         },
         {
-          title: "Business Model Refinement",
-          description: "Optimization of business models for market fit and scalability.",
+          title: "Business Model Optimization",
+          description: "Refine business models for market fit and scalability.",
           icon: <BarChart className="h-8 w-8" />,
-          details: "Analysis of market trends, competitive landscape, and revenue optimization strategies."
+          details: "Analyze market trends, competitive landscape, and optimize revenue strategies."
         },
         {
-          title: "Startup Incubation",
-          description: "Comprehensive support for startup development and market entry.",
+          title: "Startup Acceleration",
+          description: "Provide comprehensive support for startup growth.",
           icon: <Zap className="h-8 w-8" />,
-          details: "Provision of mentorship, resources, and networking opportunities for accelerated growth."
+          details: "Offer mentorship, resources, and networking for accelerated market entry and expansion."
         },
         {
           title: "Market Entry Strategy",
-          description: "Development of strategies for new market penetration.",
+          description: "Develop strategies for new market penetration.",
           icon: <Gauge className="h-8 w-8" />,
-          details: "Analysis of market dynamics, regulatory environments, and localization requirements."
+          details: "Analyze market dynamics, regulatory environments, and localization requirements."
         }
       ]
     },
@@ -77,27 +79,27 @@ const Services = () => {
       services: [
         {
           title: "Tokenomics Architecture",
-          description: "Design and implementation of token economic models.",
+          description: "Design and implement token economic models.",
           icon: <DollarSign className="h-8 w-8" />,
-          details: "Development of sustainable token ecosystems, including supply mechanisms and utility modeling."
+          details: "Develop sustainable token ecosystems, including supply mechanisms and utility modeling."
         },
         {
           title: "Smart Contract Development",
-          description: "Creation and auditing of blockchain-based smart contracts.",
+          description: "Create and audit blockchain-based smart contracts.",
           icon: <Code className="h-8 w-8" />,
-          details: "Implementation of secure, efficient, and scalable smart contracts on various blockchain platforms."
+          details: "Implement secure, efficient, and scalable smart contracts on various blockchain platforms."
         },
         {
           title: "Blockchain Integration",
-          description: "Incorporation of blockchain technology into existing systems.",
+          description: "Incorporate blockchain technology into existing systems.",
           icon: <GitBranch className="h-8 w-8" />,
-          details: "Seamless integration of blockchain solutions for enhanced transparency and security."
+          details: "Seamlessly integrate blockchain solutions for enhanced transparency and security."
         },
         {
-          title: "Decentralized Finance (DeFi) Solutions",
-          description: "Development of DeFi platforms and protocols.",
+          title: "DeFi Platform Development",
+          description: "Develop decentralized finance platforms and protocols.",
           icon: <Briefcase className="h-8 w-8" />,
-          details: "Creation of decentralized exchanges, lending platforms, and yield farming protocols."
+          details: "Create decentralized exchanges, lending platforms, and yield farming protocols."
         }
       ]
     },
@@ -107,28 +109,59 @@ const Services = () => {
       color: "from-red-400 to-orange-500",
       services: [
         {
-          title: "Advanced Security Measures",
-          description: "Implementation of quantum-resistant encryption and threat detection systems.",
+          title: "Advanced Security Implementation",
+          description: "Deploy quantum-resistant encryption and threat detection.",
           icon: <Shield className="h-8 w-8" />,
-          details: "Deployment of AI-powered threat intelligence and blockchain-based audit trails."
+          details: "Implement AI-powered threat intelligence and blockchain-based audit trails."
         },
         {
-          title: "Regulatory Compliance",
-          description: "Ensuring adherence to global financial and data protection regulations.",
+          title: "Regulatory Compliance Management",
+          description: "Ensure adherence to global financial and data protection regulations.",
           icon: <AlertTriangle className="h-8 w-8" />,
-          details: "Implementation of KYC/AML procedures and data privacy compliance measures."
+          details: "Implement KYC/AML procedures and data privacy compliance measures."
         },
         {
-          title: "Security Audits",
-          description: "Comprehensive security assessments and penetration testing.",
+          title: "Comprehensive Security Audits",
+          description: "Conduct security assessments and penetration testing.",
           icon: <Wifi className="h-8 w-8" />,
-          details: "Identification and mitigation of vulnerabilities in systems and smart contracts."
+          details: "Identify and mitigate vulnerabilities in systems and smart contracts."
         },
         {
-          title: "Disaster Recovery Planning",
-          description: "Development of robust disaster recovery and business continuity strategies.",
+          title: "Disaster Recovery Strategy",
+          description: "Develop robust disaster recovery and business continuity plans.",
           icon: <Layers className="h-8 w-8" />,
-          details: "Creation of resilient systems with failover mechanisms and data redundancy."
+          details: "Create resilient systems with failover mechanisms and data redundancy."
+        }
+      ]
+    },
+    {
+      title: "Marketing & Production",
+      icon: <TrendingUp className="h-12 w-12 mb-4" />,
+      color: "from-yellow-400 to-orange-500",
+      services: [
+        {
+          title: "Direct Traffic Activation",
+          description: "Implement strategies to drive targeted traffic and engagement.",
+          icon: <Target className="h-8 w-8" />,
+          details: "Utilize data-driven approaches to optimize user acquisition and retention."
+        },
+        {
+          title: "Content Strategy & Production",
+          description: "Develop and execute comprehensive content marketing strategies.",
+          icon: <Megaphone className="h-8 w-8" />,
+          details: "Create multi-channel content plans aligned with business objectives and audience preferences."
+        },
+        {
+          title: "Performance Marketing",
+          description: "Design and manage performance-based marketing campaigns.",
+          icon: <LineChart className="h-8 w-8" />,
+          details: "Implement and optimize PPC, social media advertising, and conversion rate optimization techniques."
+        },
+        {
+          title: "Brand Development",
+          description: "Create and evolve brand identities for maximum market impact.",
+          icon: <Briefcase className="h-8 w-8" />,
+          details: "Develop comprehensive brand guidelines, messaging frameworks, and visual identities."
         }
       ]
     }
