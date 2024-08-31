@@ -1,74 +1,81 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Rocket, Layers, Cpu, Search, Code, Server, Users, Database, BarChart, Zap, AlertTriangle, Gauge } from 'lucide-react';
+import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Services = () => {
   const services = [
     { 
-      title: "Corporate Troubleshooting", 
-      description: "Expert-level problem-solving for complex corporate challenges, delivering rapid solutions to keep your business running smoothly.",
-      icon: <AlertTriangle className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Cosmic Troubleshooting", 
+      description: "Our elite team of problem-solvers tackles your most complex corporate challenges with the precision of a space mission, delivering rapid solutions to keep your business on trajectory.",
+      icon: <AlertTriangle className="h-8 w-8 mb-4 text-purple-600" />
     },
     { 
-      title: "Rapid Action Program", 
-      description: "Our accelerated process aims to deliver tangible results within the first weeks, jumpstarting your project's success.",
+      title: "Warp Speed Action", 
+      description: "Launch your projects into hyperdrive with our accelerated process, delivering tangible results within the first weeks and propelling your success to new galaxies.",
       icon: <Gauge className="h-8 w-8 mb-4 text-blue-600" />
     },
     { 
-      title: "Global Tech Stack", 
-      description: "Access our comprehensive global tech stack, tailored to meet the unique needs of each project across various technologies and platforms.",
-      icon: <Layers className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Quantum Tech Stack", 
+      description: "Access our cutting-edge global tech stack, a constellation of technologies tailored to meet the unique gravitational pull of each project across various platforms.",
+      icon: <Rocket className="h-8 w-8 mb-4 text-green-600" />
     },
     { 
-      title: "Architecture Consulting", 
-      description: "Swift, expert guidance on system architecture, ensuring scalable, efficient, and robust solutions for your project's specific requirements.",
-      icon: <Cpu className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Nebula Architecture", 
+      description: "Our expert architects provide swift guidance on system design, ensuring your digital infrastructure is as vast and interconnected as the cosmos itself.",
+      icon: <Cpu className="h-8 w-8 mb-4 text-red-600" />
     },
     { 
-      title: "Accelerated Incubation", 
-      description: "Intensive, fast-tracked support from ideation to market entry, with mentorship and resources designed for rapid development and deployment.",
-      icon: <Rocket className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Supernova Incubation", 
+      description: "Experience an intensive, fast-tracked support system from idea ignition to market entry, with mentorship and resources designed to fuel rapid development and deployment.",
+      icon: <Zap className="h-8 w-8 mb-4 text-yellow-600" />
     },
     { 
-      title: "Agile Traffic Acquisition", 
-      description: "Quickly leverage our advanced systems to source and direct high-quality traffic to your project, ensuring rapid user acquisition and growth.",
-      icon: <Users className="h-8 w-8 mb-4 text-blue-600" />
-    },
-    { 
-      title: "Real-Time Data Optimization", 
-      description: "Immediate project performance enhancement through sophisticated data analysis and tuning, extracting maximum value from user interactions.",
-      icon: <Database className="h-8 w-8 mb-4 text-blue-600" />
-    },
-    { 
-      title: "Instant User Insights", 
-      description: "Implement advanced user tracking systems for immediate insights across multiple data layers, providing rapid understanding of user behavior.",
-      icon: <BarChart className="h-8 w-8 mb-4 text-blue-600" />
-    },
-    { 
-      title: "Dynamic Marketing Alignment", 
-      description: "Swiftly develop and align marketing strategies with your project goals, leveraging real-time data for highly effective campaigns.",
-      icon: <Zap className="h-8 w-8 mb-4 text-blue-600" />
+      title: "Galactic Shield", 
+      description: "Protect your cosmic ventures with our advanced security measures, ensuring your projects are safeguarded against threats from across the digital universe.",
+      icon: <Shield className="h-8 w-8 mb-4 text-indigo-600" />
     }
   ];
 
   return (
-    <section className="py-20 bg-gray-100">
+    <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4">Our Services</h2>
-        <p className="text-xl text-center mb-12 max-w-2xl mx-auto">Swift, comprehensive technical and strategic support for corporate-level challenges, delivering results from day one</p>
+        <motion.h2 
+          className="text-4xl font-bold text-center mb-4"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          Our Interstellar Services
+        </motion.h2>
+        <motion.p 
+          className="text-xl text-center mb-12 max-w-2xl mx-auto"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Swift, comprehensive technical and strategic support for corporate-level challenges, delivering results at light speed
+        </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="flex flex-col items-center">
-                  {service.icon}
-                  <span>{service.title}</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-center">{service.description}</p>
-              </CardContent>
-            </Card>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card className="bg-gray-800 border-gray-700 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="flex flex-col items-center">
+                    {service.icon}
+                    <span>{service.title}</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-center text-gray-300">{service.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
