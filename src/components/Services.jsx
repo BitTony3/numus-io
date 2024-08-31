@@ -1,39 +1,81 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu } from 'lucide-react';
+import { AlertTriangle, Gauge, Rocket, Zap, Shield, Cpu, Code, Database, Cloud, GitBranch, Wifi, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Services = () => {
   const services = [
     { 
-      title: "Corporate Troubleshooting", 
-      description: "Our elite team swiftly tackles your most complex corporate challenges, delivering rapid solutions to keep your business on an upward trajectory.",
-      icon: <AlertTriangle className="h-8 w-8 mb-4 text-green-500" />
+      title: "Cosmic Corporate Troubleshooting", 
+      description: "Our elite team of interstellar problem-solvers swiftly tackles your most complex corporate challenges. We analyze, strategize, and implement solutions at light speed, ensuring your business maintains its upward trajectory in the corporate cosmos.",
+      icon: <AlertTriangle className="h-12 w-12 mb-4" />,
+      color: "from-red-400 to-orange-500"
     },
     { 
-      title: "Accelerated Action", 
-      description: "We launch your projects into hyperdrive, delivering tangible results within the first weeks and propelling your success to new heights.",
-      icon: <Gauge className="h-8 w-8 mb-4 text-green-500" />
+      title: "Hyperdrive Accelerated Action", 
+      description: "We launch your projects into hyperdrive, delivering tangible results within the first weeks. Our rapid prototyping and agile methodologies propel your success to new heights, breaking through the atmosphere of conventional timelines.",
+      icon: <Gauge className="h-12 w-12 mb-4" />,
+      color: "from-blue-400 to-indigo-500"
     },
     { 
-      title: "Global Tech Stack", 
-      description: "Access our cutting-edge global tech stack, a constellation of technologies tailored to meet the unique needs of each project across various platforms.",
-      icon: <Rocket className="h-8 w-8 mb-4 text-green-500" />
+      title: "Galactic Tech Stack", 
+      description: "Access our cutting-edge galactic tech stack, a constellation of technologies tailored to meet the unique needs of each project. From quantum computing to blockchain and AI, we provide the tools to build solutions that are light-years ahead.",
+      icon: <Rocket className="h-12 w-12 mb-4" />,
+      color: "from-green-400 to-teal-500"
     },
     { 
-      title: "Expert Architecture", 
-      description: "Our seasoned architects provide swift guidance on system design, ensuring your digital infrastructure is robust, scalable, and future-proof.",
-      icon: <Cpu className="h-8 w-8 mb-4 text-green-500" />
+      title: "Nebula Architecture Design", 
+      description: "Our seasoned cosmic architects provide swift guidance on system design, ensuring your digital infrastructure is as vast and interconnected as a nebula. We create scalable, future-proof architectures that can expand with the universe of your business.",
+      icon: <Cpu className="h-12 w-12 mb-4" />,
+      color: "from-purple-400 to-pink-500"
     },
     { 
-      title: "Rapid Incubation", 
-      description: "Experience an intensive, fast-tracked support system from idea to market entry, with mentorship and resources designed for rapid development and deployment.",
-      icon: <Zap className="h-8 w-8 mb-4 text-green-500" />
+      title: "Supernova Incubation", 
+      description: "Experience an intensive, fast-tracked support system from idea to market entry. Our supernova incubation process provides mentorship, resources, and networking opportunities designed for rapid development and explosive growth.",
+      icon: <Zap className="h-12 w-12 mb-4" />,
+      color: "from-yellow-400 to-orange-500"
     },
     { 
-      title: "Advanced Security", 
-      description: "Protect your ventures with our state-of-the-art security measures, safeguarding your projects against threats in the digital landscape.",
-      icon: <Shield className="h-8 w-8 mb-4 text-green-500" />
+      title: "Quantum Security Shield", 
+      description: "Protect your ventures with our state-of-the-art quantum security measures. We implement advanced encryption, threat detection, and response systems to create an impenetrable shield around your digital assets and data.",
+      icon: <Shield className="h-12 w-12 mb-4" />,
+      color: "from-indigo-400 to-purple-500"
+    },
+    { 
+      title: "Interstellar Code Optimization", 
+      description: "Our code wizards optimize your software for peak performance across the digital universe. We refactor, streamline, and enhance your codebase to achieve maximum efficiency and scalability.",
+      icon: <Code className="h-12 w-12 mb-4" />,
+      color: "from-green-400 to-blue-500"
+    },
+    { 
+      title: "Black Hole Data Management", 
+      description: "Harness the power of data with our black hole management systems. We design and implement robust databases and data pipelines that can handle the gravitational pull of big data with ease.",
+      icon: <Database className="h-12 w-12 mb-4" />,
+      color: "from-red-400 to-pink-500"
+    },
+    { 
+      title: "Nebula Cloud Solutions", 
+      description: "Float your infrastructure in our nebula cloud. We provide seamless cloud integration, migration, and management services to ensure your systems are as flexible and expansive as the cosmos itself.",
+      icon: <Cloud className="h-12 w-12 mb-4" />,
+      color: "from-blue-400 to-cyan-500"
+    },
+    { 
+      title: "Quantum Version Control", 
+      description: "Keep your project timelines in perfect quantum harmony with our advanced version control systems. We implement and manage sophisticated branching strategies and collaborative workflows.",
+      icon: <GitBranch className="h-12 w-12 mb-4" />,
+      color: "from-purple-400 to-indigo-500"
+    },
+    { 
+      title: "Intergalactic API Integration", 
+      description: "Connect your systems across the digital galaxy with our intergalactic API integration services. We design, develop, and maintain robust APIs that enable seamless communication between diverse platforms and services.",
+      icon: <Wifi className="h-12 w-12 mb-4" />,
+      color: "from-yellow-400 to-green-500"
+    },
+    { 
+      title: "Multidimensional UX/UI Design", 
+      description: "Create user experiences that transcend dimensions. Our design team crafts intuitive, visually stunning interfaces that guide users through your digital universe with the grace of a comet.",
+      icon: <Layers className="h-12 w-12 mb-4" />,
+      color: "from-orange-400 to-red-500"
     }
   ];
 
@@ -41,20 +83,20 @@ const Services = () => {
     <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-4 text-green-500"
+          className="text-5xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Our Innovative Services
+          Our Cosmic Services
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-12 max-w-2xl mx-auto"
+          className="text-xl text-center mb-12 max-w-3xl mx-auto text-gray-300"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Swift, comprehensive technical and strategic support for corporate-level challenges, delivering results at unprecedented speed
+          Embark on an interstellar journey of innovation with our comprehensive suite of services. From rapid problem-solving to cutting-edge tech implementation, we're your cosmic partners in digital transformation.
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
@@ -64,11 +106,17 @@ const Services = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="bg-gray-800 border-gray-700 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300">
+              <Card className="bg-gray-800 border-gray-700 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 h-full">
                 <CardHeader>
-                  <CardTitle className="flex flex-col items-center text-green-500">
-                    {service.icon}
-                    <span>{service.title}</span>
+                  <CardTitle className="flex flex-col items-center">
+                    <motion.div
+                      className={`p-3 rounded-full bg-gradient-to-br ${service.color}`}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {React.cloneElement(service.icon, { className: "h-8 w-8 text-white" })}
+                    </motion.div>
+                    <span className="mt-4 text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">{service.title}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

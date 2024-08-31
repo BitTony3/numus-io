@@ -8,21 +8,52 @@ const Header = () => {
     <header className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
-          <motion.img
-            src="/logo.svg"
-            alt="Numus Logo"
-            className="w-10 h-10"
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          />
-          <span className="text-2xl font-bold text-green-500">Numus</span>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <motion.img
+              src="/logo.svg"
+              alt="Numus Logo"
+              className="w-12 h-12"
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          </motion.div>
+          <motion.span
+            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500"
+            animate={{
+              backgroundPosition: ["0%", "100%"],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          >
+            Numus
+          </motion.span>
         </Link>
         <nav>
           <ul className="flex space-x-4">
-            <li><Link to="/"><Button variant="ghost" className="text-white hover:text-green-500">Home</Button></Link></li>
-            <li><Link to="/services"><Button variant="ghost" className="text-white hover:text-green-500">Services</Button></Link></li>
-            <li><Link to="/portfolio"><Button variant="ghost" className="text-white hover:text-green-500">Portfolio</Button></Link></li>
-            <li><Link to="/contact"><Button variant="ghost" className="text-white hover:text-green-500">Contact</Button></Link></li>
+            {['Home', 'Services', 'Portfolio', 'Contact'].map((item) => (
+              <li key={item}>
+                <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>
+                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <Button variant="ghost" className="text-white hover:text-green-400">
+                      {item}
+                    </Button>
+                  </motion.div>
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
