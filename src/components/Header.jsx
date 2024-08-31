@@ -17,20 +17,10 @@ const Header = () => {
             whileHover={{ scale: 1.1, rotate: 360 }}
             whileTap={{ scale: 0.9 }}
           >
-            <motion.img
+            <img
               src="/logo.svg"
               alt="Numus Logo"
               className="w-12 h-12"
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-                filter: ['hue-rotate(0deg)', 'hue-rotate(360deg)'],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
             />
           </motion.div>
           <motion.span
