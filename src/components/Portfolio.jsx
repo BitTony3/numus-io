@@ -5,40 +5,40 @@ import { Badge } from "@/components/ui/badge";
 const Portfolio = () => {
   const projects = [
     { 
-      title: "TechInnovate", 
-      description: "AI-powered productivity platform revolutionizing task management and team collaboration.",
-      tags: ["AI", "SaaS", "Productivity"],
-      status: "Series A"
+      title: "DeFiYield", 
+      description: "Automated yield farming and liquidity management platform leveraging CeDeFiAi's advanced features.",
+      tags: ["DeFi", "Yield Farming", "CeDeFiAi"],
+      status: "Acceleration"
     },
     { 
-      title: "GreenEnergy", 
-      description: "Innovative renewable energy solutions for sustainable urban development.",
-      tags: ["CleanTech", "IoT", "Sustainability"],
-      status: "Seed"
+      title: "BlockChainOfCustody", 
+      description: "Blockchain-based chain of custody solution for legal and supply chain applications.",
+      tags: ["Blockchain", "Supply Chain", "Legal Tech"],
+      status: "Incubation"
     },
     { 
-      title: "HealthTech", 
-      description: "Cutting-edge telemedicine and health monitoring platform for remote patient care.",
-      tags: ["HealthTech", "AI", "Mobile"],
-      status: "Series B"
+      title: "AIGovernance", 
+      description: "AI-powered DAO governance platform for decentralized decision-making in organizations.",
+      tags: ["AI", "DAO", "Governance"],
+      status: "Integration"
     },
     { 
-      title: "FinTech Revolution", 
-      description: "Blockchain-based financial services democratizing access to banking and investments.",
-      tags: ["FinTech", "Blockchain", "DeFi"],
-      status: "Seed"
+      title: "CryptoInsure", 
+      description: "Decentralized insurance protocol for crypto assets and DeFi investments.",
+      tags: ["InsurTech", "DeFi", "Risk Management"],
+      status: "Acceleration"
     },
     { 
-      title: "EduConnect", 
-      description: "Adaptive learning platform personalizing education through AI and data analytics.",
-      tags: ["EdTech", "AI", "SaaS"],
-      status: "Series A"
+      title: "EcoToken", 
+      description: "Tokenized carbon credits and sustainability incentives built on CeDeFiAi infrastructure.",
+      tags: ["Green Tech", "Tokenization", "Sustainability"],
+      status: "Incubation"
     },
     { 
-      title: "SmartLogistics", 
-      description: "AI-driven supply chain optimization solution for global logistics networks.",
-      tags: ["Logistics", "AI", "IoT"],
-      status: "Pre-seed"
+      title: "QuantumLedger", 
+      description: "Quantum-resistant blockchain solution for future-proof data security and transactions.",
+      tags: ["Quantum Computing", "Blockchain", "Cybersecurity"],
+      status: "Discovery"
     }
   ];
 
@@ -46,7 +46,7 @@ const Portfolio = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-4">Our Portfolio</h2>
-        <p className="text-xl text-center mb-12 max-w-2xl mx-auto">Discover the innovative startups we've helped launch and grow</p>
+        <p className="text-xl text-center mb-12 max-w-2xl mx-auto">Discover the innovative projects powered by Numus and CeDeFiAi technology</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow duration-300">

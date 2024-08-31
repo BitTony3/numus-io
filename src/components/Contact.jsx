@@ -9,16 +9,16 @@ const Contact = () => {
   return (
     <section className="py-20 bg-gray-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4">Contact Us</h2>
-        <p className="text-xl text-center mb-12 max-w-2xl mx-auto">Get in touch with our team to explore how we can help bring your startup vision to life</p>
+        <h2 className="text-4xl font-bold text-center mb-4">Contact Numus</h2>
+        <p className="text-xl text-center mb-12 max-w-2xl mx-auto">Get in touch with our team to explore how Numus and CeDeFiAi can accelerate your project or investment strategy</p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <form className="space-y-6">
               <Input type="text" placeholder="Your Name" required />
               <Input type="email" placeholder="Your Email" required />
-              <Input type="text" placeholder="Subject" required />
-              <Textarea placeholder="Your Message" rows={6} required />
-              <Button type="submit" className="w-full">Send Message</Button>
+              <Input type="text" placeholder="Project/Company Name" required />
+              <Textarea placeholder="Tell us about your project or investment interests" rows={6} required />
+              <Button type="submit" className="w-full">Submit Inquiry</Button>
             </form>
           </div>
           <div className="space-y-6">
@@ -29,7 +29,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>123 Innovation Street, Tech City, TC 12345</p>
+                <p>789 Blockchain Boulevard, CryptoCity, CC 67890</p>
               </CardContent>
             </Card>
             <Card>
@@ -39,7 +39,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>+1 (555) 123-4567</p>
+                <p>+1 (888) 555-NUMUS</p>
               </CardContent>
             </Card>
             <Card>
@@ -49,7 +49,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>info@venturehaven.com</p>
+                <p>info@numus.io</p>
               </CardContent>
             </Card>
           </div>
