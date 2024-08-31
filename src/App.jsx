@@ -8,23 +8,25 @@ import { motion } from 'framer-motion';
 const queryClient = new QueryClient();
 
 const StarryBackground = () => (
-  <div className="fixed inset-0 z-[-1] bg-black">
+  <div className="fixed inset-0 z-[-1] bg-gray-900">
     {[...Array(100)].map((_, i) => (
       <motion.div
         key={i}
-        className="absolute bg-white rounded-full"
+        className="absolute rounded-full"
         style={{
-          width: Math.random() * 2 + 1,
-          height: Math.random() * 2 + 1,
+          width: Math.random() * 3 + 1,
+          height: Math.random() * 3 + 1,
           top: `${Math.random() * 100}%`,
           left: `${Math.random() * 100}%`,
+          background: i % 5 === 0 ? '#00A86B' : '#FFFFFF',
         }}
         animate={{
-          scale: [1, 1.2, 1],
+          scale: [1, 1.5, 1],
           opacity: [0.7, 1, 0.7],
+          rotate: 360,
         }}
         transition={{
-          duration: Math.random() * 3 + 2,
+          duration: Math.random() * 5 + 3,
           repeat: Infinity,
           ease: "easeInOut",
         }}

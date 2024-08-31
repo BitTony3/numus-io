@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="bg-[url('/space-background.jpg')] bg-cover bg-center text-white py-32 relative overflow-hidden">
+    <section className="bg-gray-900 text-white py-32 relative overflow-hidden">
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
@@ -15,16 +15,18 @@ const Hero = () => {
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute bg-white rounded-full"
+            className="absolute rounded-full"
             style={{
-              width: Math.random() * 3 + 1,
-              height: Math.random() * 3 + 1,
+              width: Math.random() * 4 + 1,
+              height: Math.random() * 4 + 1,
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
+              background: i % 5 === 0 ? '#00A86B' : '#FFFFFF',
             }}
             animate={{
               y: [0, -10, 0],
               opacity: [0.7, 1, 0.7],
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: Math.random() * 3 + 2,
@@ -35,8 +37,16 @@ const Hero = () => {
         ))}
       </motion.div>
       <div className="container mx-auto px-4 text-center relative z-10">
+        <motion.img
+          src="/logo.svg"
+          alt="Numus Logo"
+          className="w-24 h-24 mx-auto mb-8"
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ duration: 1, type: "spring" }}
+        />
         <motion.h2
-          className="text-5xl font-bold mb-6"
+          className="text-5xl font-bold mb-6 text-green-500"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -57,8 +67,8 @@ const Hero = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Link to="/services"><Button size="lg" variant="secondary" className="bg-blue-500 hover:bg-blue-600">Explore Services</Button></Link>
-          <Link to="/portfolio"><Button size="lg" className="bg-purple-600 hover:bg-purple-700">View Constellation</Button></Link>
+          <Link to="/services"><Button size="lg" variant="secondary" className="bg-green-500 hover:bg-green-600 text-white">Explore Services</Button></Link>
+          <Link to="/portfolio"><Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">View Constellation</Button></Link>
         </motion.div>
       </div>
     </section>
