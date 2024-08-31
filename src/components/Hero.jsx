@@ -45,7 +45,7 @@ const Hero = () => {
           <motion.img
             src="/logo.svg"
             alt="Numus Logo"
-            className="w-32 h-32 mx-auto mb-8"
+            className="w-40 h-40 mx-auto mb-8"
             animate={{
               rotate: [0, 360],
               scale: [1, 1.2, 1],
@@ -81,15 +81,27 @@ const Hero = () => {
         >
           <Link to="/services">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white">
-                Explore Galactic Services
+              <Button size="lg" className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white relative overflow-hidden group">
+                <span className="relative z-10">Explore Galactic Services</span>
+                <motion.div
+                  className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20"
+                  initial={{ scale: 0 }}
+                  whileHover={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
               </Button>
             </motion.div>
           </Link>
           <Link to="/portfolio">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" className="bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white">
-                View Cosmic Constellation
+              <Button size="lg" className="bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white relative overflow-hidden group">
+                <span className="relative z-10">View Cosmic Constellation</span>
+                <motion.div
+                  className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20"
+                  initial={{ scale: 0 }}
+                  whileHover={{ scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
               </Button>
             </motion.div>
           </Link>

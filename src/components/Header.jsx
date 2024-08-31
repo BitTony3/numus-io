@@ -5,7 +5,12 @@ import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <header className="bg-gray-900 text-white shadow-lg">
+    <motion.header
+      className="bg-gray-900 text-white shadow-lg"
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <motion.div
@@ -21,7 +26,7 @@ const Header = () => {
                 scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 5,
+                duration: 10,
                 repeat: Infinity,
                 repeatType: "reverse",
               }}
@@ -42,22 +47,38 @@ const Header = () => {
           </motion.span>
         </Link>
         <nav>
-          <ul className="flex space-x-4">
+          <motion.ul
+            className="flex space-x-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
+          >
             {['Home', 'Services', 'Portfolio', 'Contact'].map((item) => (
-              <li key={item}>
+              <motion.li
+                key={item}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>
-                  <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                    <Button variant="ghost" className="text-white hover:text-green-400">
-                      {item}
-                    </Button>
-                  </motion.div>
+                  <Button
+                    variant="ghost"
+                    className="text-white hover:text-green-400 relative overflow-hidden group"
+                  >
+                    <span className="relative z-10">{item}</span>
+                    <motion.div
+                      className="absolute inset-0 bg-green-400 opacity-0 group-hover:opacity-20"
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Button>
                 </Link>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 };
 
