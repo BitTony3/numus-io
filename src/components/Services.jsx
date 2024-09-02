@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { Code, BarChart, Briefcase, Zap, Shield, Cpu, GitBranch, Users, DollarSign, TrendingUp, Target, Megaphone, LineChart, PieChart, Network } from 'lucide-react';
+import { Code, BarChart, Briefcase, Zap, Shield, Cpu, GitBranch, Users, DollarSign, TrendingUp, Target, Megaphone, LineChart, PieChart, Network, Handshake } from 'lucide-react';
 
 const ServiceCard = ({ category, index }) => {
   const controls = useAnimation();
