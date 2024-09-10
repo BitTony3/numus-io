@@ -6,40 +6,22 @@ import { motion } from 'framer-motion';
 const Portfolio = () => {
   const projects = [
     { 
-      title: "EcoStack", 
-      description: "A sustainable platform offering customizable green tech stacks for diverse eco-friendly project needs.",
-      tags: ["SaaS", "Green Computing", "Sustainable Infrastructure"],
-      status: "Launched"
+      title: "CeDeFiAi", 
+      description: "An all-in-one non-custodial asset management platform for CeFi and DeFi. Connect all your sources and never miss opportunities.",
+      tags: ["Asset Management", "CeFi", "DeFi", "AI"],
+      status: "Onboarding 10M+ users"
     },
     { 
-      title: "GreenMind AI", 
-      description: "AI-powered sustainability consulting tool for optimizing eco-friendly system designs.",
-      tags: ["AI", "Green Architecture", "Consulting"],
-      status: "Beta"
+      title: "Claimr", 
+      description: "A SocialFi project providing scalable, flexible infrastructure for user engagement and activation.",
+      tags: ["SocialFi", "User Engagement", "Scalable Infrastructure"],
+      status: "4M+ unique users engaged"
     },
     { 
-      title: "EcoChain", 
-      description: "Energy-efficient blockchain solution with enhanced security features for sustainable enterprise applications.",
-      tags: ["Blockchain", "Enterprise", "Green Cybersecurity"],
-      status: "Acceleration"
-    },
-    { 
-      title: "EcoNative", 
-      description: "Suite of eco-friendly development tools and services for modern green application architectures.",
-      tags: ["Green Computing", "EcoOps", "Microservices"],
-      status: "Scaling"
-    },
-    { 
-      title: "GreenFlow", 
-      description: "Energy-efficient real-time data processing and analytics platform for big data applications.",
-      tags: ["Green Data", "Eco Analytics", "Efficient Processing"],
-      status: "Incubation"
-    },
-    { 
-      title: "EcoForge", 
-      description: "Comprehensive API development and management platform for seamless green tech integrations.",
-      tags: ["Green API", "Integration", "Eco Developer Tools"],
-      status: "Growth"
+      title: "ZombieTrain", 
+      description: "An app store game converting to a Telegram mini-app, focusing on user retention and engagement.",
+      tags: ["Gaming", "Telegram Mini-App", "User Retention"],
+      status: "20k DAU"
     }
   ];
 
@@ -52,7 +34,7 @@ const Portfolio = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Our Green Tech Portfolio
+          Projects in Progress
         </motion.h2>
         <motion.p 
           className="text-xl text-center mb-12 max-w-2xl mx-auto text-green-100"
@@ -60,7 +42,7 @@ const Portfolio = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Explore the innovative eco-friendly projects powered by Numus technology
+          Explore our current development projects that showcase our expertise in various tech domains
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
