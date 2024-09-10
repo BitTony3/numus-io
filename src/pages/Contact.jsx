@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
@@ -22,26 +22,28 @@ const ContactPage = () => {
 
   const PartnerForm = () => (
     <form className="space-y-4">
-      <Input type="text" placeholder="Your Name" required />
-      <Input type="email" placeholder="Your Email" required />
-      <Input type="text" placeholder="Company Name" required />
-      <Textarea placeholder="Tell us about your proposal" rows={4} required />
-      <Input type="url" placeholder="Calendly or Google Meet link" required />
-      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">Submit Proposal</Button>
+      <p className="text-green-200 mb-4">For potential partners: Please provide details about your proposal and schedule a call with us.</p>
+      <Input type="text" placeholder="Your Full Name" required />
+      <Input type="email" placeholder="Your Business Email" required />
+      <Input type="text" placeholder="Your Company Name" required />
+      <Textarea placeholder="Describe your partnership proposal (e.g., collaboration ideas, mutual benefits)" rows={4} required />
+      <Input type="url" placeholder="Your Calendly or Google Meet link for scheduling" required />
+      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">Submit Partnership Proposal</Button>
     </form>
   );
 
   const ProjectForm = () => (
     <form className="space-y-4">
+      <p className="text-green-200 mb-4">For project submissions: Please provide key details about your project for our initial review.</p>
       <Input type="text" placeholder="Project Name" required />
-      <Input type="email" placeholder="Contact Email" required />
-      <Input type="text" placeholder="Team Size" required />
-      <Textarea placeholder="Project Description" rows={3} required />
-      <Input type="url" placeholder="Project Website or GitHub" />
-      <Textarea placeholder="Current Traction / Metrics" rows={3} required />
-      <Input type="text" placeholder="Funding Stage" required />
-      <Textarea placeholder="How can Numus help?" rows={3} required />
-      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">Submit Project</Button>
+      <Input type="email" placeholder="Primary Contact Email" required />
+      <Input type="text" placeholder="Team Size (e.g., 5-10 members)" required />
+      <Textarea placeholder="Brief Project Description (main features, target audience, unique selling points)" rows={3} required />
+      <Input type="url" placeholder="Project Website or GitHub Repository URL (if available)" />
+      <Textarea placeholder="Current Traction / Metrics (e.g., user base, growth rate, revenue)" rows={3} required />
+      <Input type="text" placeholder="Current Funding Stage (e.g., Pre-seed, Seed, Series A)" required />
+      <Textarea placeholder="How can Numus help? (e.g., funding, mentorship, technical expertise)" rows={3} required />
+      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">Submit Project for Review</Button>
     </form>
   );
 
@@ -65,8 +67,8 @@ const ContactPage = () => {
                 <CardContent className="p-6">
                   <Tabs defaultValue="partner" className="w-full">
                     <TabsList className="grid w-full grid-cols-2 mb-6">
-                      <TabsTrigger value="partner">Partner Contact</TabsTrigger>
-                      <TabsTrigger value="project">Project Submission</TabsTrigger>
+                      <TabsTrigger value="partner" className="text-green-200 data-[state=active]:bg-green-700">Partner Contact</TabsTrigger>
+                      <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700">Project Submission</TabsTrigger>
                     </TabsList>
                     <TabsContent value="partner">
                       <PartnerForm />
@@ -86,8 +88,8 @@ const ContactPage = () => {
                 rel="noopener noreferrer"
                 className="absolute text-green-300 hover:text-green-100 z-20"
                 style={{
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 80 + 10}%`,
+                  left: `${Math.random() * 80 + 10}%`,
                 }}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ 
@@ -103,7 +105,7 @@ const ContactPage = () => {
                 }}
                 whileHover={{ scale: 1.2, rotate: 360 }}
               >
-                <item.Icon size={64} />
+                <item.Icon size={80} />
                 <span className="sr-only">{item.name}</span>
               </motion.a>
             ))}
