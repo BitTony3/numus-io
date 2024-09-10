@@ -1,34 +1,23 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Code, BarChart, Briefcase, Zap, Shield, Cpu, GitBranch, Users, DollarSign, TrendingUp, Target, Megaphone, LineChart, PieChart, Network, Handshake } from 'lucide-react';
 
 const ServiceCard = ({ category, index }) => {
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={controls}
+      animate="visible"
       variants={{
-        visible: { opacity: 1, rotateY: 0, transition: { duration: 0.5, delay: index * 0.1 } },
-        hidden: { opacity: 0, rotateY: -90 }
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } }
       }}
     >
-      <Card className="bg-green-900 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden">
-        <CardHeader className="bg-green-800">
-          <CardTitle className="flex flex-col items-center text-green-300">
-            <div className="p-3 rounded-full bg-green-700">
-              {React.cloneElement(category.icon, { className: "h-8 w-8 text-green-300" })}
+      <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden">
+        <CardHeader className="bg-green-700">
+          <CardTitle className="flex flex-col items-center text-green-100">
+            <div className="p-3 rounded-full bg-green-600">
+              {React.cloneElement(category.icon, { className: "h-8 w-8 text-green-200" })}
             </div>
             <span className="mt-4 text-xl font-bold">{category.title}</span>
           </CardTitle>
@@ -36,7 +25,7 @@ const ServiceCard = ({ category, index }) => {
         <CardContent className="mt-4">
           <ul className="space-y-2">
             {category.services.map((service, idx) => (
-              <li key={idx} className="flex items-center text-green-300">
+              <li key={idx} className="flex items-center text-green-200">
                 <span className="mr-2">{React.cloneElement(service.icon, { className: "h-4 w-4" })}</span>
                 {service.title}
               </li>

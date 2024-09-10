@@ -1,53 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import AnimatedBackground from './AnimatedBackground';
 
 const Hero = () => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const symbols = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const columns = canvas.width / 20;
-    const drops = [];
-
-    for (let i = 0; i < columns; i++) {
-      drops[i] = 1;
-    }
-
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 40, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#00FF41';
-      ctx.font = '15px monospace';
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = symbols[Math.floor(Math.random() * symbols.length)];
-        ctx.fillText(text, i * 20, drops[i] * 20);
-
-        if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-
-        drops[i]++;
-      }
-    }
-
-    const interval = setInterval(draw, 33);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section className="relative overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 z-0" />
-      <div className="relative z-10 bg-gradient-to-b from-green-900 via-green-700 to-green-500 text-white py-32">
+    <AnimatedBackground>
+      <section className="relative z-10 bg-gradient-to-b from-green-900 via-green-700 to-green-500 text-white py-32">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ scale: 0 }}
@@ -107,8 +67,8 @@ const Hero = () => {
             </Link>
           </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+    </AnimatedBackground>
   );
 };
 
