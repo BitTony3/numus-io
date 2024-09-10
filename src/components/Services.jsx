@@ -9,8 +9,17 @@ const ServiceCard = ({ category, index }) => {
       initial="hidden"
       animate="visible"
       variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } }
+        hidden: { opacity: 0, rotateY: 180 },
+        visible: { 
+          opacity: 1, 
+          rotateY: 0, 
+          transition: { 
+            duration: 0.8, 
+            delay: index * 0.2,
+            type: "spring",
+            stiffness: 100
+          } 
+        }
       }}
     >
       <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group">
