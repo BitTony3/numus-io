@@ -30,7 +30,7 @@ const Hero = () => {
             />
           </motion.div>
           <motion.h2
-            className="text-7xl font-bold mb-6 text-green-100"
+            className="text-7xl font-bold mb-6 text-green-100 futuristic-text"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -53,15 +53,15 @@ const Hero = () => {
           >
             <Link to="/services">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg">
-                  <span className="relative z-10">Explore Our Tech Stack</span>
+                <Button size="lg" className="futuristic-button">
+                  Explore Our Tech Stack
                 </Button>
               </motion.div>
             </Link>
             <Link to="/portfolio">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg">
-                  <span className="relative z-10">View Our Innovations</span>
+                <Button size="lg" className="futuristic-button">
+                  View Our Innovations
                 </Button>
               </motion.div>
             </Link>

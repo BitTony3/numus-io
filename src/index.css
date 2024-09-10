@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -72,5 +74,41 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Orbitron', sans-serif;
   }
+}
+
+.futuristic-text {
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+.futuristic-border {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  background-image: linear-gradient(to right, #00ff00, #00ffff);
+  animation: border-glow 2s infinite alternate;
+}
+
+@keyframes border-glow {
+  from {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  }
+}
+
+.futuristic-button {
+  background: linear-gradient(45deg, #00ff00, #00ffff);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.futuristic-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
 }
