@@ -1,6 +1,6 @@
 import { HomeIcon, Briefcase, Users, Phone } from "lucide-react";
 import Home from "./pages/Home.jsx";
-import Services from "./pages/Services.jsx";
+import AboutUs from "./pages/Services.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
 import Contact from "./pages/Contact.jsx";
 
@@ -15,10 +15,10 @@ export const navItems = [
     page: <Home />,
   },
   {
-    title: "Services",
-    to: "/services",
+    title: "About Us",
+    to: "/about",
     icon: <Briefcase className="h-4 w-4" />,
-    page: <Services />,
+    page: <AboutUs />,
   },
   {
     title: "Portfolio",

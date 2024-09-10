@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../components/Header';
-import Services from '../components/Services';
+import AboutUs from '../components/Services';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
 
-const ServicesPage = () => {
+const AboutUsPage = () => {
   return (
     <div className="min-h-screen bg-black">
       <AnimatedBackground>
@@ -18,10 +18,10 @@ const ServicesPage = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="container mx-auto px-4 relative z-10">
-              {/* Removed the "Our Services" title and description */}
+              {/* Content is now in the AboutUs component */}
             </div>
           </motion.div>
-          <Services />
+          <AboutUs />
         </main>
         <Footer />
       </AnimatedBackground>
@@ -29,4 +29,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default AboutUsPage;
