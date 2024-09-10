@@ -1,8 +1,10 @@
 import { HomeIcon, Briefcase, Users, Phone } from "lucide-react";
-import Home from "./pages/Home.jsx";
-import AboutUs from "./pages/Services.jsx";
-import Portfolio from "./pages/Portfolio.jsx";
-import Contact from "./pages/Contact.jsx";
+import { lazy } from 'react';
+
+const Home = lazy(() => import("./pages/Home.jsx"));
+const AboutUs = lazy(() => import("./pages/Services.jsx"));
+const Portfolio = lazy(() => import("./pages/Portfolio.jsx"));
+const Contact = lazy(() => import("./pages/Contact.jsx"));
 
 /**
  * Central place for defining the navigation items. Used for navigation components and routing.
