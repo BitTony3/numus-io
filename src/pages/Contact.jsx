@@ -14,7 +14,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 const socialIcons = [
   { Icon: Facebook, link: "https://facebook.com/numusio" },
-  { Icon: Twitter, link: "https://twitter.com/numusio" },
+  { Icon: Twitter, link: "https://twitter.com/NumusApp" },
   { Icon: Linkedin, link: "https://linkedin.com/company/numusio" },
   { Icon: Instagram, link: "https://instagram.com/numusio" },
   { Icon: Youtube, link: "https://youtube.com/@numusIo" },
