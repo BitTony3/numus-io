@@ -20,11 +20,11 @@ const ContactPage = () => {
     { Icon: Mail, link: "mailto:contact@numus.io", name: "Email" },
   ];
 
-  const inputClass = "text-gray-400 placeholder-gray-500";
+  const inputClass = "text-gray-700 placeholder-gray-500";
 
   const PartnerForm = () => (
     <form className="space-y-4">
-      <p className="text-green-200 mb-4">For potential partners: Please provide details about your proposal and schedule a call with us.</p>
+      <p className="text-green-100 mb-4">For potential partners: Please provide details about your proposal and schedule a call with us.</p>
       <Input type="text" placeholder="Your full name (e.g., John Doe)" required className={inputClass} />
       <Input type="email" placeholder="Your business email (e.g., john@company.com)" required className={inputClass} />
       <Input type="text" placeholder="Your company name (e.g., Tech Innovations Inc.)" required className={inputClass} />
@@ -36,7 +36,7 @@ const ContactPage = () => {
 
   const ProjectForm = () => (
     <form className="space-y-4">
-      <p className="text-green-200 mb-4">For project submissions: Please provide key details about your project for our initial review.</p>
+      <p className="text-green-100 mb-4">For project submissions: Please provide key details about your project for our initial review.</p>
       <Input type="text" placeholder="Project name (e.g., EcoTech AI)" required className={inputClass} />
       <Input type="email" placeholder="Primary contact email (e.g., project-lead@ecotech.com)" required className={inputClass} />
       <Input type="text" placeholder="Team size (e.g., 5-10 members, 20+ developers)" required className={inputClass} />
@@ -52,7 +52,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-green-900">
       <Header />
-      <main>
+      <main className="relative">
         <AnimatedBackground>
           <motion.div
             className="py-20 relative overflow-hidden"
@@ -82,37 +82,56 @@ const ContactPage = () => {
                 </CardContent>
               </Card>
             </div>
-            {socialIcons.map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute text-green-300 hover:text-green-100 z-20"
-                style={{
-                  top: `${Math.random() * 80 + 10}%`,
-                  left: `${Math.random() * 80 + 10}%`,
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1,
-                  x: Math.random() * 200 - 100,
-                  y: Math.random() * 200 - 100,
-                }}
-                transition={{ 
-                  duration: 20, 
-                  repeat: Infinity, 
-                  repeatType: "reverse" 
-                }}
-                whileHover={{ scale: 1.2, rotate: 360 }}
-              >
-                <item.Icon size={80} />
-                <span className="sr-only">{item.name}</span>
-              </motion.a>
-            ))}
           </motion.div>
         </AnimatedBackground>
+        <div className="absolute inset-y-0 left-0 w-24 pointer-events-none">
+          {socialIcons.slice(0, 3).map((item, index) => (
+            <motion.div
+              key={index}
+              className="absolute text-green-300 hover:text-green-100"
+              style={{
+                top: `${(index + 1) * 25}%`,
+                left: '10px',
+              }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0,
+              }}
+              transition={{ 
+                duration: 1,
+                delay: index * 0.2,
+              }}
+            >
+              <item.Icon size={40} />
+              <span className="sr-only">{item.name}</span>
+            </motion.div>
+          ))}
+        </div>
+        <div className="absolute inset-y-0 right-0 w-24 pointer-events-none">
+          {socialIcons.slice(3).map((item, index) => (
+            <motion.div
+              key={index + 3}
+              className="absolute text-green-300 hover:text-green-100"
+              style={{
+                top: `${(index + 1) * 25}%`,
+                right: '10px',
+              }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0,
+              }}
+              transition={{ 
+                duration: 1,
+                delay: (index + 3) * 0.2,
+              }}
+            >
+              <item.Icon size={40} />
+              <span className="sr-only">{item.name}</span>
+            </motion.div>
+          ))}
+        </div>
       </main>
       <Footer />
     </div>
