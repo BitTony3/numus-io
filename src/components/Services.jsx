@@ -133,7 +133,6 @@ const serviceCategories = [
 const partners = [
   { name: "Line Messenger", logo: "/logos/line-messenger-logo.svg", description: "Popular messaging app planning to launch mini apps, expanding their ecosystem for developers and businesses." },
   { name: "Supra Oracles", logo: "/logos/supra-oracles-logo.svg", description: "Decentralized oracle network providing real-time data for blockchain applications." },
-  { name: "Coming Soon", logo: "/logos/coming-soon-logo.svg" },
 ];
 
 const AboutUs = () => {
@@ -172,20 +171,18 @@ const AboutUs = () => {
         >
           Our Partners
         </motion.h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {partners.map((partner, index) => (
             <motion.div
               key={index}
-              className="bg-green-800 p-6 rounded-lg shadow-lg flex flex-col items-center justify-center"
+              className="bg-black p-6 rounded-lg shadow-lg flex flex-col items-center justify-center"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <img src={partner.logo} alt={partner.name} className="w-32 h-32 object-contain mb-4" />
               <p className="text-center text-green-200 font-semibold">{partner.name}</p>
-              {partner.description && (
-                <p className="mt-2 text-sm text-center text-green-300">{partner.description}</p>
-              )}
+              <p className="mt-2 text-sm text-center text-green-300">{partner.description}</p>
             </motion.div>
           ))}
         </div>
