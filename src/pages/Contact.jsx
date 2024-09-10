@@ -13,17 +13,17 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 
 const socialIcons = [
-  { Icon: Facebook, link: "https://facebook.com/numusio", name: "Facebook" },
-  { Icon: Twitter, link: "https://twitter.com/numusio", name: "Twitter" },
-  { Icon: Linkedin, link: "https://linkedin.com/company/numusio", name: "LinkedIn" },
-  { Icon: Instagram, link: "https://instagram.com/numusio", name: "Instagram" },
-  { Icon: Youtube, link: "https://youtube.com/@numusIo", name: "YouTube" },
-  { Icon: Mail, link: "mailto:contact@numus.io", name: "Email" },
+  { Icon: Facebook, link: "https://facebook.com/numusio" },
+  { Icon: Twitter, link: "https://twitter.com/numusio" },
+  { Icon: Linkedin, link: "https://linkedin.com/company/numusio" },
+  { Icon: Instagram, link: "https://instagram.com/numusio" },
+  { Icon: Youtube, link: "https://youtube.com/@numusIo" },
+  { Icon: Mail, link: "mailto:contact@numus.io" },
 ];
 
 const inputClass = "bg-green-700 text-green-100 placeholder-green-300 border-green-500 focus:border-green-400 focus:ring-green-400";
 
-const FormField = ({ label, name, type = "text", placeholder, required = true, description, value, onChange }) => (
+const FormField = ({ label, name, type = "text", placeholder, required = true, value, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
     <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
     <Input
@@ -36,11 +36,10 @@ const FormField = ({ label, name, type = "text", placeholder, required = true, d
       value={value}
       onChange={onChange}
     />
-    {description && <p className="mt-1 text-sm text-green-300">{description}</p>}
   </motion.div>
 );
 
-const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, description, value, onChange }) => (
+const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, value, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
     <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
     <Textarea
@@ -53,7 +52,6 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, de
       value={value}
       onChange={onChange}
     />
-    {description && <p className="mt-1 text-sm text-green-300">{description}</p>}
   </motion.div>
 );
 
@@ -72,7 +70,6 @@ const SocialIcons = ({ icons, position }) => (
         whileHover={{ scale: 1.2, rotate: 360 }}
       >
         <item.Icon size={32} />
-        <span className="sr-only">{item.name}</span>
       </motion.a>
     ))}
   </div>
@@ -100,49 +97,38 @@ const ContactForm = ({ type, onSubmit }) => {
       transition={{ duration: 0.5 }}
       onSubmit={handleSubmit}
     >
-      <p className="text-green-100 mb-6">
-        {isPartner
-          ? "For potential partners: Please provide details about your proposal and we'll get back to you to schedule a call."
-          : "For project submissions: Please provide key details about your project for our initial review."}
-      </p>
       <FormField
         label={isPartner ? "Full Name" : "Project Name"}
         name="name"
-        placeholder={isPartner ? "e.g., John Doe" : "e.g., EcoTech AI"}
-        description={isPartner ? "Enter your full name as it appears on official documents." : "Enter a concise name that describes your project."}
+        placeholder={isPartner ? "John Doe" : "EcoTech AI"}
         value={formData.name}
         onChange={handleChange}
       />
       <FormField
-        label={isPartner ? "Business Email" : "Primary Contact Email"}
+        label="Email"
         name="email"
         type="email"
-        placeholder={isPartner ? "e.g., john@company.com" : "e.g., project-lead@ecotech.com"}
-        description="We'll use this email for all communications regarding your submission."
+        placeholder="email@example.com"
         value={formData.email}
         onChange={handleChange}
       />
       <FormField
-        label={isPartner ? "Company Name" : "Team Size"}
+        label={isPartner ? "Company" : "Team Size"}
         name="company"
-        placeholder={isPartner ? "e.g., Tech Innovations Inc." : "e.g., 5-10 members, 20+ developers"}
-        description={isPartner ? "The official name of your company or organization." : "Provide an estimate of your current team size."}
+        placeholder={isPartner ? "Tech Innovations Inc." : "5-10 members"}
         value={formData.company}
         onChange={handleChange}
       />
       <TextAreaField
         label={isPartner ? "Partnership Proposal" : "Project Description"}
         name="message"
-        placeholder={isPartner
-          ? "Describe your partnership proposal (e.g., joint venture for AI development, co-marketing opportunity for fintech solutions)"
-          : "Brief description of your project (e.g., AI-powered solution for optimizing renewable energy distribution)"}
-        description="Provide a clear and concise overview of your proposal or project."
+        placeholder={isPartner ? "Describe your partnership proposal" : "Brief description of your project"}
         value={formData.message}
         onChange={handleChange}
       />
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button type="submit" className="w-full futuristic-button">
-          {isPartner ? "Submit Partnership Proposal" : "Submit Project for Review"}
+          {isPartner ? "Submit Proposal" : "Submit Project"}
         </Button>
       </motion.div>
     </motion.form>
@@ -173,15 +159,12 @@ const ContactPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Contact Us</h1>
-            <p className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200">
-              Ready to revolutionize your project with data-driven insights and cutting-edge technology? Connect with our team of experts at Numus.
-            </p>
             <Card className="max-w-2xl mx-auto futuristic-card">
               <CardContent className="p-6">
                 <Tabs defaultValue="partner" className="w-full">
                   <TabsList className="grid w-full grid-cols-2 mb-6">
-                    <TabsTrigger value="partner" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Partner Contact</TabsTrigger>
-                    <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Project Submission</TabsTrigger>
+                    <TabsTrigger value="partner" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Partner</TabsTrigger>
+                    <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Project</TabsTrigger>
                   </TabsList>
                   <TabsContent value="partner">
                     <ContactForm type="partner" onSubmit={handleSubmit} />
