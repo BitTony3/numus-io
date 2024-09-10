@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import { motion } from 'framer-motion';
-import React, { Suspense } from 'react';
+import React, { Suspense, lazy } from 'react';
 
 const queryClient = new QueryClient();
 
@@ -42,6 +42,11 @@ const LoadingFallback = () => (
   </div>
 );
 
+const Home = lazy(() => import("./pages/Home"));
+const Services = lazy(() => import("./pages/Services"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Contact = lazy(() => import("./pages/Contact"));
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -50,9 +55,10 @@ const App = () => (
       <BrowserRouter>
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
-            {navItems.map(({ to, page: PageComponent }) => (
-              <Route key={to} path={to} element={<PageComponent />} />
-            ))}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
