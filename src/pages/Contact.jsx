@@ -78,39 +78,17 @@ const SocialIcons = ({ icons, position }) => (
   </div>
 );
 
-const ContactForm = ({ type }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  });
-  const { toast } = useToast();
+const ContactForm = ({ type, onSubmit }) => {
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
+    setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    toast({
-      title: "Form Submitted",
-      description: "Thank you for your submission. We'll get back to you soon!",
-      duration: 5000,
-    });
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      message: ''
-    });
+    onSubmit(formData);
   };
 
   const isPartner = type === 'partner';
@@ -162,10 +140,7 @@ const ContactForm = ({ type }) => {
         value={formData.message}
         onChange={handleChange}
       />
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button type="submit" className="w-full futuristic-button">
           {isPartner ? "Submit Partnership Proposal" : "Submit Project for Review"}
         </Button>
@@ -175,6 +150,17 @@ const ContactForm = ({ type }) => {
 };
 
 const ContactPage = () => {
+  const { toast } = useToast();
+
+  const handleSubmit = (formData) => {
+    console.log('Form submitted:', formData);
+    toast({
+      title: "Form Submitted",
+      description: "Thank you for your submission. We'll get back to you soon!",
+      duration: 5000,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-green-900">
       <AnimatedBackground>
@@ -198,10 +184,10 @@ const ContactPage = () => {
                     <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Project Submission</TabsTrigger>
                   </TabsList>
                   <TabsContent value="partner">
-                    <ContactForm type="partner" />
+                    <ContactForm type="partner" onSubmit={handleSubmit} />
                   </TabsContent>
                   <TabsContent value="project">
-                    <ContactForm type="project" />
+                    <ContactForm type="project" onSubmit={handleSubmit} />
                   </TabsContent>
                 </Tabs>
               </CardContent>
