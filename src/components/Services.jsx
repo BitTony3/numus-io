@@ -70,7 +70,7 @@ const ServiceDialog = ({ isOpen, onClose, service }) => (
 const serviceCategories = [
   {
     title: "Full-Cycle Development",
-    icon: <Code className="h-12 w-12 mb-4" />,
+    icon: <Code />,
     services: [
       { title: "Tech Stack Integration", icon: <Cpu />, description: "Seamlessly integrate diverse technologies to create powerful, scalable solutions." },
       { title: "Scalable Architecture", icon: <Network />, description: "Design robust architectures that grow with your business needs." },
@@ -80,7 +80,7 @@ const serviceCategories = [
   },
   {
     title: "Business Strategy",
-    icon: <Briefcase className="h-12 w-12 mb-4" />,
+    icon: <Briefcase />,
     services: [
       { title: "Business Model Design", icon: <PieChart />, description: "Craft innovative business models tailored to your market and goals." },
       { title: "Use Case Development", icon: <Target />, description: "Identify and develop compelling use cases for your technology." },
@@ -90,7 +90,7 @@ const serviceCategories = [
   },
   {
     title: "Rapid Scaling",
-    icon: <TrendingUp className="h-12 w-12 mb-4" />,
+    icon: <TrendingUp />,
     services: [
       { title: "Growth Hacking", icon: <Zap />, description: "Implement cutting-edge strategies for rapid user acquisition and retention." },
       { title: "Market Expansion", icon: <BarChart />, description: "Strategically enter new markets and expand your global footprint." },
@@ -100,7 +100,7 @@ const serviceCategories = [
   },
   {
     title: "Crisis Management",
-    icon: <Shield className="h-12 w-12 mb-4" />,
+    icon: <Shield />,
     services: [
       { title: "Emergency Response", icon: <Zap />, description: "Rapid, effective responses to critical situations to minimize impact." },
       { title: "Risk Mitigation", icon: <Shield />, description: "Identify and mitigate potential risks before they become crises." },
@@ -110,7 +110,7 @@ const serviceCategories = [
   },
   {
     title: "Marketing & BD",
-    icon: <Megaphone className="h-12 w-12 mb-4" />,
+    icon: <Megaphone />,
     services: [
       { title: "Traffic Acquisition", icon: <Users />, description: "Implement strategies to drive high-quality traffic to your platforms." },
       { title: "Content Strategy", icon: <PieChart />, description: "Develop engaging content strategies to captivate and retain your audience." },
@@ -120,7 +120,7 @@ const serviceCategories = [
   },
   {
     title: "Investment Readiness",
-    icon: <DollarSign className="h-12 w-12 mb-4" />,
+    icon: <DollarSign />,
     services: [
       { title: "Due Diligence Prep", icon: <Briefcase />, description: "Prepare comprehensive documentation to satisfy investor scrutiny." },
       { title: "Pitch Deck Creation", icon: <PieChart />, description: "Craft compelling pitch decks that showcase your value proposition." },
@@ -131,9 +131,8 @@ const serviceCategories = [
 ];
 
 const partners = [
-  { name: "Line Messenger", logo: "/logos/line-messenger-logo.svg" },
+  { name: "Line Messenger", logo: "/logos/line-messenger-logo.svg", description: "Popular messaging app planning to launch mini apps, expanding their ecosystem for developers and businesses." },
   { name: "Supra Oracles", logo: "/logos/supra-oracles-logo.svg", description: "Decentralized oracle network providing real-time data for blockchain applications." },
-  { name: "Coming Soon", logo: "/logos/coming-soon-logo.svg" },
   { name: "Coming Soon", logo: "/logos/coming-soon-logo.svg" },
 ];
 
@@ -173,7 +172,7 @@ const AboutUs = () => {
         >
           Our Partners
         </motion.h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {partners.map((partner, index) => (
             <motion.div
               key={index}
