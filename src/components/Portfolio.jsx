@@ -7,9 +7,9 @@ const Portfolio = () => {
   const projects = [
     { 
       title: "CeDeFiAi", 
-      description: "An all-in-one non-custodial asset management platform for CeFi and DeFi. Connect all your sources and never miss opportunities.",
-      tags: ["Asset Management", "CeFi", "DeFi", "AI"],
-      status: "Onboarding 10M+ users"
+      description: "An all-in-one non-custodial asset management platform for CeFi and DeFi. Connect all your sources and never miss opportunities. Features gamified user financial activation and financial activities monitoring.",
+      tags: ["Asset Management", "CeFi", "DeFi", "AI", "Gamification"],
+      status: "Onboarding 10M+ users to crypto"
     },
     { 
       title: "Claimr", 
@@ -22,6 +22,12 @@ const Portfolio = () => {
       description: "An app store game converting to a Telegram mini-app, focusing on user retention and engagement.",
       tags: ["Gaming", "Telegram Mini-App", "User Retention"],
       status: "20k DAU"
+    },
+    { 
+      title: "Data Layer", 
+      description: "A comprehensive data infrastructure project to support and enhance our other initiatives with advanced analytics and insights.",
+      tags: ["Data Infrastructure", "Analytics", "Business Intelligence"],
+      status: "In development"
     }
   ];
 
@@ -44,7 +50,7 @@ const Portfolio = () => {
         >
           Explore our current development projects that showcase our expertise in various tech domains
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
