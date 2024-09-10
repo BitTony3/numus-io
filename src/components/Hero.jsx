@@ -39,12 +39,12 @@ const Hero = () => {
             Innovate with Data-Driven Tech
           </motion.h2>
           <motion.p
-            className="text-xl mb-8 max-w-xl mx-auto text-green-100"
+            className="text-xl mb-8 max-w-2xl mx-auto text-green-100"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            Harness cutting-edge technology and data analytics to accelerate your business growth.
+            Harness cutting-edge technology and data analytics to accelerate your business growth. Leverage our extensive contacts network, strategic business planning, and refined monetization models. Benefit from our traffic activation expertise and unlock new value streams for your project.
           </motion.p>
           <motion.div
             className="space-x-6"

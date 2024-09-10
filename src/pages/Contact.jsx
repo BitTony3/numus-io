@@ -56,7 +56,7 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, va
 );
 
 const SocialIcons = ({ icons, position }) => (
-  <div className={`fixed ${position}-0 top-1/2 transform -translate-y-1/2 w-16 flex flex-col items-center space-y-4`}>
+  <div className={`fixed ${position}-0 top-1/2 transform -translate-y-1/2 w-16 flex flex-col items-center space-y-4 z-50`}>
     {icons.map((item, index) => (
       <motion.a
         key={index}
