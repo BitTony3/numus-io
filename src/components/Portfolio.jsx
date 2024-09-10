@@ -7,35 +7,39 @@ const Portfolio = () => {
   const projects = [
     { 
       title: "CeDeFiAi", 
-      description: "An innovative all-in-one non-custodial asset management platform integrating CeFi and DeFi. Leveraging data-driven insights for optimal asset allocation and risk management. Features gamified user financial activation and real-time financial activities monitoring.",
+      description: "All-in-one non-custodial asset management platform integrating CeFi and DeFi. Data-driven insights for optimal asset allocation and risk management. Gamified user financial activation.",
       tags: ["Asset Management", "CeFi", "DeFi", "Gamification"],
-      status: "Onboarding 10M+ users to advanced financial ecosystems"
+      status: "9M+ users onboarded to advanced financial ecosystems",
+      logo: "/logos/cedefiai-logo.svg"
     },
     { 
       title: "Claimr", 
-      description: "A cutting-edge SocialFi project providing scalable, flexible infrastructure for user engagement and activation. Utilizes blockchain technology and data analytics for personalized user experiences.",
-      tags: ["SocialFi", "Blockchain", "Data Analytics", "User Engagement"],
-      status: "4M+ unique users engaged through data-driven strategies"
+      description: "Cutting-edge SocialFi project providing scalable infrastructure for user engagement. Utilizes blockchain and data analytics for personalized experiences.",
+      tags: ["SocialFi", "Blockchain", "Data Analytics"],
+      status: "3.6M+ unique users engaged through data-driven strategies",
+      logo: "/logos/claimr-logo.svg"
     },
     { 
       title: "ZombieTrain", 
-      description: "An innovative app store game transitioning to a Telegram mini-app, focusing on user retention and engagement through advanced analytics and algorithmic optimization.",
+      description: "Innovative app store game transitioning to a Telegram mini-app. Focuses on user retention through advanced analytics and optimization.",
       tags: ["Gaming", "User Retention", "Telegram Mini-App"],
-      status: "20k DAU with data-driven user experience optimization"
+      status: "18k DAU with optimized user experience",
+      logo: "/logos/zombietrain-logo.svg"
     },
     { 
       title: "Data Layer", 
-      description: "A state-of-the-art data infrastructure project supporting and enhancing our initiatives with advanced analytics, machine learning, and real-time insights. Enables data-driven decision-making across all platforms.",
-      tags: ["Data Infrastructure", "ML", "Real-time Analytics", "Business Intelligence"],
-      status: "Powering insights for millions of data points daily"
+      description: "State-of-the-art data infrastructure supporting our initiatives. Enables real-time insights and data-driven decision-making across platforms.",
+      tags: ["Data Infrastructure", "Real-time Analytics", "Business Intelligence"],
+      status: "Processing millions of data points daily",
+      logo: "/logos/datalayer-logo.svg"
     }
   ];
 
   return (
-    <section className="py-20 bg-green-900 text-white">
+    <section className="py-16 bg-green-900 text-white">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-4 text-green-300"
+          className="text-4xl font-bold text-center mb-4 text-green-300 neon-text"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -43,12 +47,12 @@ const Portfolio = () => {
           Innovative Projects
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-12 max-w-2xl mx-auto text-green-200"
+          className="text-xl text-center mb-10 max-w-2xl mx-auto text-green-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Explore our cutting-edge development projects showcasing our expertise in data-driven technologies and innovation
+          Explore our cutting-edge projects showcasing expertise in data-driven tech and innovation
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
@@ -59,12 +63,20 @@ const Portfolio = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
-              <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300">
-                <CardHeader>
+              <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300 overflow-hidden">
+                <CardHeader className="relative">
+                  <motion.img
+                    src={project.logo}
+                    alt={`${project.title} logo`}
+                    className="w-16 h-16 absolute top-4 right-4"
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  />
                   <CardTitle className="flex justify-between items-center">
-                    <span className="text-green-300">{project.title}</span>
-                    <Badge variant="secondary" className="bg-green-600">{project.status}</Badge>
+                    <span className="text-green-300 text-2xl">{project.title}</span>
                   </CardTitle>
+                  <Badge variant="secondary" className="bg-green-600 mt-2">{project.status}</Badge>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4 text-green-200">{project.description}</p>

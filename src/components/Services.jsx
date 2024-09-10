@@ -13,22 +13,31 @@ const ServiceCard = ({ category, index }) => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } }
       }}
     >
-      <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden">
-        <CardHeader className="bg-green-700">
+      <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group">
+        <CardHeader className="bg-green-700 group-hover:bg-green-600 transition-colors duration-300">
           <CardTitle className="flex flex-col items-center text-green-100">
-            <div className="p-3 rounded-full bg-green-600">
+            <motion.div 
+              className="p-3 rounded-full bg-green-600 group-hover:bg-green-500 transition-colors duration-300"
+              whileHover={{ rotate: 360, scale: 1.1 }}
+              transition={{ duration: 0.5 }}
+            >
               {React.cloneElement(category.icon, { className: "h-8 w-8 text-green-200" })}
-            </div>
+            </motion.div>
             <span className="mt-4 text-xl font-bold">{category.title}</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="mt-4">
           <ul className="space-y-2">
             {category.services.map((service, idx) => (
-              <li key={idx} className="flex items-center text-green-200">
+              <motion.li 
+                key={idx} 
+                className="flex items-center text-green-200"
+                whileHover={{ x: 5, color: "#4ade80" }}
+                transition={{ duration: 0.2 }}
+              >
                 <span className="mr-2">{React.cloneElement(service.icon, { className: "h-4 w-4" })}</span>
                 {service.title}
-              </li>
+              </motion.li>
             ))}
           </ul>
         </CardContent>
@@ -93,7 +102,7 @@ const Services = () => {
       title: "Investment Readiness",
       icon: <DollarSign className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Due Diligence Preparation", icon: <Briefcase /> },
+        { title: "Due Diligence Prep", icon: <Briefcase /> },
         { title: "Pitch Deck Creation", icon: <PieChart /> },
         { title: "Financial Modeling", icon: <LineChart /> },
         { title: "Investor Relations", icon: <Users /> }
@@ -102,10 +111,10 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-green-900 text-white overflow-hidden">
+    <section className="py-16 bg-green-900 text-white overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-5xl font-bold text-center mb-4 text-green-300"
+          className="text-5xl font-bold text-center mb-4 text-green-300 neon-text"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -113,12 +122,12 @@ const Services = () => {
           Hyper Matrix Solutions
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200"
+          className="text-lg text-center mb-10 max-w-2xl mx-auto text-green-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Empowering your project with full-cycle development, from concept to scale. We're your partners in creating, troubleshooting, and accelerating business growth across all dimensions.
+          Empowering projects with full-cycle development. We're your partners in creating, troubleshooting, and accelerating growth across all dimensions.
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceCategories.map((category, index) => (

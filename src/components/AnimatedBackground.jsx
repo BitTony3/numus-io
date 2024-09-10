@@ -47,6 +47,28 @@ const AnimatedBackground = ({ children }) => {
           }}
         />
       ))}
+      {[...Array(10)].map((_, i) => (
+        <motion.div
+          key={`hexagon-${i}`}
+          className="absolute bg-green-600 opacity-20"
+          style={{
+            width: 40,
+            height: 40,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+          }}
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: Math.random() * 20 + 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
       {children}
     </div>
   );

@@ -79,7 +79,7 @@
 }
 
 .futuristic-text {
-  text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3);
 }
 
 .futuristic-border {
@@ -91,10 +91,10 @@
 
 @keyframes border-glow {
   from {
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5), inset 0 0 5px rgba(0, 255, 0, 0.5);
   }
   to {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), inset 0 0 10px rgba(0, 255, 255, 0.8);
   }
 }
 
@@ -106,6 +106,24 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.futuristic-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  transform: scale(0);
+  transition: transform 0.5s;
+}
+
+.futuristic-button:hover::before {
+  transform: scale(1);
 }
 
 .futuristic-button:hover {
@@ -114,7 +132,7 @@
 }
 
 .neon-text {
-  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 35px #00ff00;
 }
 
 .futuristic-card {
@@ -122,6 +140,12 @@
   background-color: rgba(0, 255, 0, 0.1);
   border: 1px solid rgba(0, 255, 0, 0.2);
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.futuristic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 30px rgba(0, 255, 0, 0.5);
 }
 
 .cyber-grid {
@@ -129,4 +153,84 @@
     linear-gradient(to right, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 #00ffff;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 #ff00ff;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(17px, 9999px, 94px, 0);
+  }
+  20% {
+    clip: rect(63px, 9999px, 44px, 0);
+  }
+  40% {
+    clip: rect(145px, 9999px, 165px, 0);
+  }
+  60% {
+    clip: rect(67px, 9999px, 122px, 0);
+  }
+  80% {
+    clip: rect(140px, 9999px, 61px, 0);
+  }
+  100% {
+    clip: rect(24px, 9999px, 85px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(65px, 9999px, 119px, 0);
+  }
+  20% {
+    clip: rect(42px, 9999px, 113px, 0);
+  }
+  40% {
+    clip: rect(149px, 9999px, 34px, 0);
+  }
+  60% {
+    clip: rect(95px, 9999px, 67px, 0);
+  }
+  80% {
+    clip: rect(28px, 9999px, 136px, 0);
+  }
+  100% {
+    clip: rect(61px, 9999px, 52px, 0);
+  }
 }
