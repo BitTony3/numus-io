@@ -23,7 +23,7 @@ const socialIcons = [
 const inputClass = "bg-green-700 text-green-100 placeholder-green-300 border-green-500 focus:border-green-400 focus:ring-green-400";
 
 const FormField = ({ label, name, type = "text", placeholder, required = true, description }) => (
-  <div className="mb-4">
+  <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
     <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
     <Input
       type={type}
@@ -31,14 +31,14 @@ const FormField = ({ label, name, type = "text", placeholder, required = true, d
       name={name}
       placeholder={placeholder}
       required={required}
-      className={inputClass}
+      className={`${inputClass} futuristic-border`}
     />
     {description && <p className="mt-1 text-sm text-green-300">{description}</p>}
-  </div>
+  </motion.div>
 );
 
 const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, description }) => (
-  <div className="mb-4">
+  <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
     <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
     <Textarea
       id={name}
@@ -46,10 +46,10 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, de
       placeholder={placeholder}
       rows={rows}
       required={required}
-      className={inputClass}
+      className={`${inputClass} futuristic-border`}
     />
     {description && <p className="mt-1 text-sm text-green-300">{description}</p>}
-  </div>
+  </motion.div>
 );
 
 const SocialIcons = ({ icons, position }) => (
@@ -64,6 +64,7 @@ const SocialIcons = ({ icons, position }) => (
         initial={{ opacity: 0, x: position === 'left' ? -50 : 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
+        whileHover={{ scale: 1.2, rotate: 360 }}
       >
         <item.Icon size={32} />
         <span className="sr-only">{item.name}</span>
@@ -75,7 +76,12 @@ const SocialIcons = ({ icons, position }) => (
 const ContactForm = ({ type }) => {
   const isPartner = type === 'partner';
   return (
-    <form className="space-y-4">
+    <motion.form 
+      className="space-y-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <p className="text-green-100 mb-6">
         {isPartner
           ? "For potential partners: Please provide details about your proposal and we'll get back to you to schedule a call."
@@ -117,67 +123,35 @@ const ContactForm = ({ type }) => {
           : "Brief description of your project (e.g., AI-powered solution for optimizing renewable energy distribution)"}
         description="Provide a clear and concise overview of your proposal or project."
       />
-      {isPartner ? (
-        <FormField
-          label="Preferred Contact Method"
-          name="contactMethod"
-          placeholder="e.g., Email, Phone, Video Call"
-          description="Let us know how you'd prefer we reach out to discuss your proposal."
-        />
-      ) : (
-        <>
-          <FormField
-            label="Project Website or GitHub"
-            name="projectUrl"
-            type="url"
-            placeholder="https://your-project-site.com"
-            required={false}
-            description="If available, provide a link to your project website or GitHub repository."
-          />
-          <TextAreaField
-            label="Current Traction / Metrics"
-            name="traction"
-            placeholder="e.g., 10k monthly active users, $50k MRR, 30% month-over-month growth"
-            description="Share any key metrics or achievements that demonstrate your project's progress."
-          />
-          <FormField
-            label="Current Funding Stage"
-            name="fundingStage"
-            placeholder="e.g., Pre-seed, Seed, Series A"
-            description="Indicate your current funding stage or the stage you're targeting."
-          />
-          <TextAreaField
-            label="How Can Numus Help?"
-            name="assistance"
-            placeholder="e.g., Series A funding of $5M, technical expertise in blockchain integration, go-to-market strategy"
-            description="Specify the areas where you believe Numus can provide the most value to your project."
-          />
-        </>
-      )}
-      <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">
-        {isPartner ? "Submit Partnership Proposal" : "Submit Project for Review"}
-      </Button>
-    </form>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Button type="submit" className="w-full futuristic-button">
+          {isPartner ? "Submit Partnership Proposal" : "Submit Project for Review"}
+        </Button>
+      </motion.div>
+    </motion.form>
   );
 };
 
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-green-900">
-      <Header />
-      <main className="relative py-20">
-        <AnimatedBackground>
+      <AnimatedBackground>
+        <Header />
+        <main className="relative py-20">
           <motion.div
             className="container mx-auto px-4 relative z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl font-bold text-center mb-8 text-green-100">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Contact Us</h1>
             <p className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200">
               Ready to revolutionize your project with data-driven insights and cutting-edge technology? Connect with our team of experts at Numus.
             </p>
-            <Card className="max-w-2xl mx-auto bg-green-800 shadow-lg">
+            <Card className="max-w-2xl mx-auto futuristic-card">
               <CardContent className="p-6">
                 <Tabs defaultValue="partner" className="w-full">
                   <TabsList className="grid w-full grid-cols-2 mb-6">
@@ -194,11 +168,11 @@ const ContactPage = () => {
               </CardContent>
             </Card>
           </motion.div>
-        </AnimatedBackground>
+        </main>
         <SocialIcons icons={socialIcons.slice(0, 3)} position="left" />
         <SocialIcons icons={socialIcons.slice(3)} position="right" />
-      </main>
-      <Footer />
+        <Footer />
+      </AnimatedBackground>
     </div>
   );
 };

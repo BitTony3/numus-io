@@ -7,8 +7,8 @@ const Portfolio = () => {
   const projects = [
     { 
       title: "CeDeFiAi", 
-      description: "An innovative all-in-one non-custodial asset management platform integrating CeFi and DeFi. Leveraging AI-driven insights for optimal asset allocation and risk management. Features gamified user financial activation and real-time financial activities monitoring.",
-      tags: ["Asset Management", "AI", "CeFi", "DeFi", "Gamification"],
+      description: "An innovative all-in-one non-custodial asset management platform integrating CeFi and DeFi. Leveraging data-driven insights for optimal asset allocation and risk management. Features gamified user financial activation and real-time financial activities monitoring.",
+      tags: ["Asset Management", "CeFi", "DeFi", "Gamification"],
       status: "Onboarding 10M+ users to advanced financial ecosystems"
     },
     { 
@@ -19,9 +19,9 @@ const Portfolio = () => {
     },
     { 
       title: "ZombieTrain", 
-      description: "An innovative app store game transitioning to a Telegram mini-app, focusing on user retention and engagement through advanced analytics and machine learning algorithms.",
-      tags: ["Gaming", "ML", "User Retention", "Telegram Mini-App"],
-      status: "20k DAU with AI-powered user experience optimization"
+      description: "An innovative app store game transitioning to a Telegram mini-app, focusing on user retention and engagement through advanced analytics and algorithmic optimization.",
+      tags: ["Gaming", "User Retention", "Telegram Mini-App"],
+      status: "20k DAU with data-driven user experience optimization"
     },
     { 
       title: "Data Layer", 
@@ -57,6 +57,7 @@ const Portfolio = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300">
                 <CardHeader>
