@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
+import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -53,14 +54,15 @@ const Hero = () => {
           >
             <Link to="/services">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="futuristic-button">
+                <Button size="lg" className="futuristic-button group">
                   Explore Tech Stack
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </motion.div>
             </Link>
             <Link to="/portfolio">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="futuristic-button">
+                <Button size="lg" variant="outline" className="futuristic-button bg-transparent border-green-300 text-green-300 hover:bg-green-300 hover:text-green-900">
                   View Innovations
                 </Button>
               </motion.div>

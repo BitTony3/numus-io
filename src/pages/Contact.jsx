@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
 
 const socialIcons = [
   { Icon: Facebook, link: "https://facebook.com/numusio", name: "Facebook" },
@@ -22,7 +23,7 @@ const socialIcons = [
 
 const inputClass = "bg-green-700 text-green-100 placeholder-green-300 border-green-500 focus:border-green-400 focus:ring-green-400";
 
-const FormField = ({ label, name, type = "text", placeholder, required = true, description }) => (
+const FormField = ({ label, name, type = "text", placeholder, required = true, description, value, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
     <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
     <Input
@@ -32,12 +33,14 @@ const FormField = ({ label, name, type = "text", placeholder, required = true, d
       placeholder={placeholder}
       required={required}
       className={`${inputClass} futuristic-border`}
+      value={value}
+      onChange={onChange}
     />
     {description && <p className="mt-1 text-sm text-green-300">{description}</p>}
   </motion.div>
 );
 
-const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, description }) => (
+const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, description, value, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
     <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
     <Textarea
@@ -47,6 +50,8 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, de
       rows={rows}
       required={required}
       className={`${inputClass} futuristic-border`}
+      value={value}
+      onChange={onChange}
     />
     {description && <p className="mt-1 text-sm text-green-300">{description}</p>}
   </motion.div>
@@ -74,6 +79,40 @@ const SocialIcons = ({ icons, position }) => (
 );
 
 const ContactForm = ({ type }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+  const { toast } = useToast();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically send the form data to your backend
+    console.log('Form submitted:', formData);
+    toast({
+      title: "Form Submitted",
+      description: "Thank you for your submission. We'll get back to you soon!",
+      duration: 5000,
+    });
+    // Reset form after submission
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      message: ''
+    });
+  };
+
   const isPartner = type === 'partner';
   return (
     <motion.form 
@@ -81,6 +120,7 @@ const ContactForm = ({ type }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      onSubmit={handleSubmit}
     >
       <p className="text-green-100 mb-6">
         {isPartner
@@ -89,9 +129,11 @@ const ContactForm = ({ type }) => {
       </p>
       <FormField
         label={isPartner ? "Full Name" : "Project Name"}
-        name={isPartner ? "fullName" : "projectName"}
+        name="name"
         placeholder={isPartner ? "e.g., John Doe" : "e.g., EcoTech AI"}
         description={isPartner ? "Enter your full name as it appears on official documents." : "Enter a concise name that describes your project."}
+        value={formData.name}
+        onChange={handleChange}
       />
       <FormField
         label={isPartner ? "Business Email" : "Primary Contact Email"}
@@ -99,29 +141,26 @@ const ContactForm = ({ type }) => {
         type="email"
         placeholder={isPartner ? "e.g., john@company.com" : "e.g., project-lead@ecotech.com"}
         description="We'll use this email for all communications regarding your submission."
+        value={formData.email}
+        onChange={handleChange}
       />
-      {isPartner ? (
-        <FormField
-          label="Company Name"
-          name="companyName"
-          placeholder="e.g., Tech Innovations Inc."
-          description="The official name of your company or organization."
-        />
-      ) : (
-        <FormField
-          label="Team Size"
-          name="teamSize"
-          placeholder="e.g., 5-10 members, 20+ developers"
-          description="Provide an estimate of your current team size."
-        />
-      )}
+      <FormField
+        label={isPartner ? "Company Name" : "Team Size"}
+        name="company"
+        placeholder={isPartner ? "e.g., Tech Innovations Inc." : "e.g., 5-10 members, 20+ developers"}
+        description={isPartner ? "The official name of your company or organization." : "Provide an estimate of your current team size."}
+        value={formData.company}
+        onChange={handleChange}
+      />
       <TextAreaField
         label={isPartner ? "Partnership Proposal" : "Project Description"}
-        name={isPartner ? "proposal" : "projectDescription"}
+        name="message"
         placeholder={isPartner
           ? "Describe your partnership proposal (e.g., joint venture for AI development, co-marketing opportunity for fintech solutions)"
           : "Brief description of your project (e.g., AI-powered solution for optimizing renewable energy distribution)"}
         description="Provide a clear and concise overview of your proposal or project."
+        value={formData.message}
+        onChange={handleChange}
       />
       <motion.div
         whileHover={{ scale: 1.05 }}

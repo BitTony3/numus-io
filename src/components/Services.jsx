@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Code, BarChart, Briefcase, Zap, Shield, Cpu, GitBranch, Users, DollarSign, TrendingUp, Target, Megaphone, LineChart, PieChart, Network, Handshake } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
-const ServiceCard = ({ category, index }) => {
+const ServiceCard = ({ category, index, onSelect }) => {
   return (
     <motion.div
       initial="hidden"
@@ -21,8 +22,10 @@ const ServiceCard = ({ category, index }) => {
           } 
         }
       }}
+      whileHover={{ scale: 1.05 }}
+      onClick={() => onSelect(category)}
     >
-      <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group">
+      <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group cursor-pointer">
         <CardHeader className="bg-green-700 group-hover:bg-green-600 transition-colors duration-300">
           <CardTitle className="flex flex-col items-center text-green-100">
             <motion.div 
@@ -55,66 +58,91 @@ const ServiceCard = ({ category, index }) => {
   );
 };
 
+const ServiceDialog = ({ isOpen, onClose, service }) => (
+  <Dialog open={isOpen} onOpenChange={onClose}>
+    <DialogContent className="bg-green-800 text-green-100">
+      <DialogHeader>
+        <DialogTitle className="text-2xl font-bold text-green-300">{service?.title}</DialogTitle>
+      </DialogHeader>
+      <DialogDescription className="text-green-200">
+        <ul className="space-y-4 mt-4">
+          {service?.services.map((item, index) => (
+            <li key={index} className="flex items-start">
+              <span className="mr-2 mt-1">{React.cloneElement(item.icon, { className: "h-5 w-5 text-green-400" })}</span>
+              <div>
+                <h3 className="font-semibold text-green-300">{item.title}</h3>
+                <p className="text-sm">{item.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </DialogDescription>
+    </DialogContent>
+  </Dialog>
+);
+
 const AboutUs = () => {
+  const [selectedService, setSelectedService] = useState(null);
+
   const serviceCategories = [
     {
       title: "Full-Cycle Development",
       icon: <Code className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Tech Stack Integration", icon: <Cpu /> },
-        { title: "Scalable Architecture", icon: <Network /> },
-        { title: "Performance Optimization", icon: <Zap /> },
-        { title: "Blockchain Integration", icon: <GitBranch /> }
+        { title: "Tech Stack Integration", icon: <Cpu />, description: "Seamlessly integrate diverse technologies to create powerful, scalable solutions." },
+        { title: "Scalable Architecture", icon: <Network />, description: "Design robust architectures that grow with your business needs." },
+        { title: "Performance Optimization", icon: <Zap />, description: "Enhance system performance for lightning-fast user experiences." },
+        { title: "Blockchain Integration", icon: <GitBranch />, description: "Leverage blockchain technology for secure, transparent operations." }
       ]
     },
     {
       title: "Business Strategy",
       icon: <Briefcase className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Business Model Design", icon: <PieChart /> },
-        { title: "Use Case Development", icon: <Target /> },
-        { title: "Tokenomics Architecture", icon: <DollarSign /> },
-        { title: "Strategic Partnerships", icon: <Users /> }
+        { title: "Business Model Design", icon: <PieChart />, description: "Craft innovative business models tailored to your market and goals." },
+        { title: "Use Case Development", icon: <Target />, description: "Identify and develop compelling use cases for your technology." },
+        { title: "Tokenomics Architecture", icon: <DollarSign />, description: "Design effective token economies for blockchain projects." },
+        { title: "Strategic Partnerships", icon: <Users />, description: "Forge valuable partnerships to accelerate growth and innovation." }
       ]
     },
     {
       title: "Rapid Scaling",
       icon: <TrendingUp className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Growth Hacking", icon: <Zap /> },
-        { title: "Market Expansion", icon: <BarChart /> },
-        { title: "Efficiency Optimization", icon: <Target /> },
-        { title: "Agile Implementation", icon: <GitBranch /> }
+        { title: "Growth Hacking", icon: <Zap />, description: "Implement cutting-edge strategies for rapid user acquisition and retention." },
+        { title: "Market Expansion", icon: <BarChart />, description: "Strategically enter new markets and expand your global footprint." },
+        { title: "Efficiency Optimization", icon: <Target />, description: "Streamline operations to maximize productivity and minimize costs." },
+        { title: "Agile Implementation", icon: <GitBranch />, description: "Adopt agile methodologies for faster, more flexible development cycles." }
       ]
     },
     {
       title: "Crisis Management",
       icon: <Shield className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Emergency Response", icon: <Zap /> },
-        { title: "Risk Mitigation", icon: <Shield /> },
-        { title: "Reputation Management", icon: <Users /> },
-        { title: "Recovery Planning", icon: <TrendingUp /> }
+        { title: "Emergency Response", icon: <Zap />, description: "Rapid, effective responses to critical situations to minimize impact." },
+        { title: "Risk Mitigation", icon: <Shield />, description: "Identify and mitigate potential risks before they become crises." },
+        { title: "Reputation Management", icon: <Users />, description: "Protect and enhance your brand's reputation during challenging times." },
+        { title: "Recovery Planning", icon: <TrendingUp />, description: "Develop comprehensive plans for swift recovery post-crisis." }
       ]
     },
     {
       title: "Marketing & BD",
       icon: <Megaphone className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Traffic Acquisition", icon: <Users /> },
-        { title: "Content Strategy", icon: <PieChart /> },
-        { title: "Brand Development", icon: <Briefcase /> },
-        { title: "Partnership Outreach", icon: <Handshake /> }
+        { title: "Traffic Acquisition", icon: <Users />, description: "Implement strategies to drive high-quality traffic to your platforms." },
+        { title: "Content Strategy", icon: <PieChart />, description: "Develop engaging content strategies to captivate and retain your audience." },
+        { title: "Brand Development", icon: <Briefcase />, description: "Build a strong, recognizable brand that resonates with your target market." },
+        { title: "Partnership Outreach", icon: <Handshake />, description: "Identify and secure strategic partnerships to amplify your reach." }
       ]
     },
     {
       title: "Investment Readiness",
       icon: <DollarSign className="h-12 w-12 mb-4" />,
       services: [
-        { title: "Due Diligence Prep", icon: <Briefcase /> },
-        { title: "Pitch Deck Creation", icon: <PieChart /> },
-        { title: "Financial Modeling", icon: <LineChart /> },
-        { title: "Investor Relations", icon: <Users /> }
+        { title: "Due Diligence Prep", icon: <Briefcase />, description: "Prepare comprehensive documentation to satisfy investor scrutiny." },
+        { title: "Pitch Deck Creation", icon: <PieChart />, description: "Craft compelling pitch decks that showcase your value proposition." },
+        { title: "Financial Modeling", icon: <LineChart />, description: "Develop robust financial models to demonstrate growth potential." },
+        { title: "Investor Relations", icon: <Users />, description: "Build and maintain strong relationships with potential and current investors." }
       ]
     }
   ];
@@ -147,7 +175,7 @@ const AboutUs = () => {
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceCategories.map((category, index) => (
-            <ServiceCard key={index} category={category} index={index} />
+            <ServiceCard key={index} category={category} index={index} onSelect={setSelectedService} />
           ))}
         </div>
 
@@ -174,6 +202,15 @@ const AboutUs = () => {
           ))}
         </div>
       </div>
+      <AnimatePresence>
+        {selectedService && (
+          <ServiceDialog
+            isOpen={!!selectedService}
+            onClose={() => setSelectedService(null)}
+            service={selectedService}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
