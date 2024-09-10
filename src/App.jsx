@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import { motion } from 'framer-motion';
+import React, { Suspense } from 'react';
 
 const queryClient = new QueryClient();
 
@@ -35,17 +36,25 @@ const StarryBackground = () => (
   </div>
 );
 
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center h-screen">
+    <div className="text-green-500 text-2xl">Loading...</div>
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <StarryBackground />
       <BrowserRouter>
-        <Routes>
-          {navItems.map(({ to, page }) => (
-            <Route key={to} path={to} element={page} />
-          ))}
-        </Routes>
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            {navItems.map(({ to, page: PageComponent }) => (
+              <Route key={to} path={to} element={<PageComponent />} />
+            ))}
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
