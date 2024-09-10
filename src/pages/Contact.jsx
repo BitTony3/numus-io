@@ -23,11 +23,11 @@ const ContactPage = () => {
   const PartnerForm = () => (
     <form className="space-y-4">
       <p className="text-green-200 mb-4">For potential partners: Please provide details about your proposal and schedule a call with us.</p>
-      <Input type="text" placeholder="Your Full Name" required />
-      <Input type="email" placeholder="Your Business Email" required />
-      <Input type="text" placeholder="Your Company Name" required />
-      <Textarea placeholder="Describe your partnership proposal (e.g., collaboration ideas, mutual benefits)" rows={4} required />
-      <Input type="url" placeholder="Your Calendly or Google Meet link for scheduling" required />
+      <Input type="text" placeholder="Your full name (e.g., John Doe)" required />
+      <Input type="email" placeholder="Your business email (e.g., john@company.com)" required />
+      <Input type="text" placeholder="Your company name (e.g., Tech Innovations Inc.)" required />
+      <Textarea placeholder="Describe your partnership proposal (e.g., joint venture for AI development, co-marketing opportunity for fintech solutions)" rows={4} required />
+      <Input type="url" placeholder="Your scheduling link (e.g., Calendly or Google Meet URL)" required />
       <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">Submit Partnership Proposal</Button>
     </form>
   );
@@ -35,14 +35,14 @@ const ContactPage = () => {
   const ProjectForm = () => (
     <form className="space-y-4">
       <p className="text-green-200 mb-4">For project submissions: Please provide key details about your project for our initial review.</p>
-      <Input type="text" placeholder="Project Name" required />
-      <Input type="email" placeholder="Primary Contact Email" required />
-      <Input type="text" placeholder="Team Size (e.g., 5-10 members)" required />
-      <Textarea placeholder="Brief Project Description (main features, target audience, unique selling points)" rows={3} required />
-      <Input type="url" placeholder="Project Website or GitHub Repository URL (if available)" />
-      <Textarea placeholder="Current Traction / Metrics (e.g., user base, growth rate, revenue)" rows={3} required />
-      <Input type="text" placeholder="Current Funding Stage (e.g., Pre-seed, Seed, Series A)" required />
-      <Textarea placeholder="How can Numus help? (e.g., funding, mentorship, technical expertise)" rows={3} required />
+      <Input type="text" placeholder="Project name (e.g., EcoTech AI)" required />
+      <Input type="email" placeholder="Primary contact email (e.g., project-lead@ecotech.com)" required />
+      <Input type="text" placeholder="Team size (e.g., 5-10 members, 20+ developers)" required />
+      <Textarea placeholder="Brief project description (e.g., AI-powered solution for optimizing renewable energy distribution)" rows={3} required />
+      <Input type="url" placeholder="Project website or GitHub repository URL (if available)" />
+      <Textarea placeholder="Current traction / metrics (e.g., 10k monthly active users, $50k MRR, 30% month-over-month growth)" rows={3} required />
+      <Input type="text" placeholder="Current funding stage (e.g., Pre-seed, Seed, Series A)" required />
+      <Textarea placeholder="How can Numus help? (e.g., Series A funding of $5M, technical expertise in blockchain integration, go-to-market strategy)" rows={3} required />
       <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">Submit Project for Review</Button>
     </form>
   );
@@ -67,8 +67,8 @@ const ContactPage = () => {
                 <CardContent className="p-6">
                   <Tabs defaultValue="partner" className="w-full">
                     <TabsList className="grid w-full grid-cols-2 mb-6">
-                      <TabsTrigger value="partner" className="text-green-200 data-[state=active]:bg-green-700">Partner Contact</TabsTrigger>
-                      <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700">Project Submission</TabsTrigger>
+                      <TabsTrigger value="partner" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Partner Contact</TabsTrigger>
+                      <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Project Submission</TabsTrigger>
                     </TabsList>
                     <TabsContent value="partner">
                       <PartnerForm />
