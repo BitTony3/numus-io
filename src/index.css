@@ -84,33 +84,6 @@
   text-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80, 0 0 15px #4ade80, 0 0 20px #4ade80;
 }
 
-.cyber-grid {
-  background-image: 
-    linear-gradient(to right, rgba(74, 222, 128, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(74, 222, 128, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-  animation: grid-move 20s linear infinite;
-}
-
-@keyframes grid-move {
-  0% { background-position: 0 0; }
-  100% { background-position: 20px 20px; }
-}
-
-.glitch-text {
-  position: relative;
-  animation: glitch 3s infinite;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
-
 .shadow-text {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

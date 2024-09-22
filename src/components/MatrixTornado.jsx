@@ -7,7 +7,7 @@ const MatrixTornado = ({ className }) => {
 
   const symbols = useMemo(() => {
     const japaneseSymbols = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん';
-    const hiTechSymbols = '⌘⌥⇧⏎⏏︎⌫⌦⎋⇪⇥↵⇄⇅⇆⇇⇈⇉⇊⌤⌃⌅⍰⍼⍾⎆⎇⎈⎉⎊⎋⎌⎍⎎⎏';
+    const hiTechSymbols = '⌘⌥⇧⏎⏏︎⌫⌦⎋⇪⇥↵⇄⇅⇆⇇⇈⇉⇊⌤⌃⌅';
     return japaneseSymbols + hiTechSymbols;
   }, []);
 
@@ -39,7 +39,7 @@ const MatrixTornado = ({ className }) => {
     canvas.width = dimensions.width;
     canvas.height = dimensions.height;
 
-    const symbolObjects = Array.from({ length: 100 }, () => createSymbolObject(dimensions, symbols));
+    const symbolObjects = Array.from({ length: 50 }, () => createSymbolObject(dimensions, symbols));
 
     const animate = () => {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
