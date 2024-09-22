@@ -7,7 +7,7 @@ const MatrixTornado = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
-    canvas.height = 300; // Adjust height as needed
+    canvas.height = 300;
 
     const symbols = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const columns = canvas.width / 20;

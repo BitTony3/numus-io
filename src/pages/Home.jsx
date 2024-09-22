@@ -10,7 +10,7 @@ import MatrixTornado from '../components/MatrixTornado';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-green-900">
       <AnimatedBackground>
         <Header />
         <MatrixTornado />

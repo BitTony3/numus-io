@@ -8,7 +8,7 @@ import MatrixTornado from '../components/MatrixTornado';
 
 const AboutUsPage = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-green-900">
       <AnimatedBackground>
         <Header />
         <MatrixTornado />
@@ -20,7 +20,10 @@ const AboutUsPage = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="container mx-auto px-4 relative z-10">
-              {/* Content is now in the AboutUs component */}
+              <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Our Services</h1>
+              <p className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200">
+                Discover how our cutting-edge solutions and expert consulting can accelerate your business growth and drive innovation.
+              </p>
             </div>
           </motion.div>
           <AboutUs />
