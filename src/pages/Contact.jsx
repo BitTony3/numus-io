@@ -11,7 +11,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import MatrixTornado from '../components/MatrixTornado';
 
 const socialIcons = [
   { Icon: Facebook, link: "https://facebook.com/numusio" },
@@ -151,7 +150,6 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-green-900">
       <AnimatedBackground>
-        <MatrixTornado />
         <Header />
         <main className="relative py-20">
           <motion.div

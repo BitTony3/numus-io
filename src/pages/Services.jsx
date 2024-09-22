@@ -4,13 +4,11 @@ import AboutUs from '../components/Services';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
-import MatrixTornado from '../components/MatrixTornado';
 
 const AboutUsPage = () => {
   return (
     <div className="min-h-screen bg-black">
       <AnimatedBackground>
-        <MatrixTornado />
         <Header />
         <main>
           <motion.div
