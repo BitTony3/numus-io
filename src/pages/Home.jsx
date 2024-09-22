@@ -6,11 +6,13 @@ import Portfolio from '../components/Portfolio';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 import AnimatedBackground from '../components/AnimatedBackground';
+import MatrixTornado from '../components/MatrixTornado';
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <AnimatedBackground>
+        <MatrixTornado />
         <Header />
         <main>
           <Hero />
