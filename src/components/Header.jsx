@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { motion } from 'framer-motion';
 
 const Header = () => {
   const menuItems = [
@@ -12,62 +11,36 @@ const Header = () => {
   ];
 
   return (
-    <motion.header
-      className="bg-green-900 text-white shadow-lg"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
+    <header className="bg-green-900 text-white shadow-lg">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: 360 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <img
-              src="/logo.svg"
-              alt="Numus Logo"
-              className="w-12 h-12"
-            />
-          </motion.div>
-          <motion.span
-            className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-green-500"
-            animate={{
-              backgroundPosition: ["0%", "100%"],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
+          <img
+            src="/logo.svg"
+            alt="Numus Logo"
+            className="w-10 h-10"
+          />
+          <span className="text-2xl font-bold text-green-300">
             Numus
-          </motion.span>
+          </span>
         </Link>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-2">
             {menuItems.map((item, index) => (
-              <motion.li key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <li key={index}>
                 <Link to={item.path}>
                   <Button
                     variant="ghost"
-                    className="text-green-300 hover:text-green-100 relative overflow-hidden group rounded-full px-4 py-2"
+                    className="text-green-300 hover:text-green-100 hover:bg-green-800"
                   >
-                    <span className="relative z-10">{item.title}</span>
-                    <motion.div
-                      className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100"
-                      initial={{ scale: 0, borderRadius: '100%' }}
-                      whileHover={{ scale: 1, borderRadius: '16px' }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    {item.title}
                   </Button>
                 </Link>
-              </motion.li>
+              </li>
             ))}
           </ul>
         </nav>
       </div>
-    </motion.header>
+    </header>
   );
 };
 
