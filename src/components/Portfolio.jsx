@@ -225,21 +225,13 @@ const Portfolio = () => {
     <section className="py-16 bg-black text-white">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-4 futuristic-text"
+          className="text-4xl font-bold text-center mb-8 futuristic-text"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           Innovative Projects
         </motion.h2>
-        <motion.p 
-          className="text-xl text-center mb-10 max-w-2xl mx-auto text-green-200"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Explore our cutting-edge projects showcasing expertise in data-driven tech and innovation
-        </motion.p>
         <Carousel
           items={projects}
           renderItem={(project) => (
