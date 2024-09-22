@@ -55,8 +55,13 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, va
   </motion.div>
 );
 
-const SocialIcons = ({ icons, position }) => (
-  <div className={`fixed ${position}-0 top-1/2 transform -translate-y-1/2 w-16 flex flex-col items-center space-y-4 z-50`}>
+const SocialIcons = ({ icons }) => (
+  <motion.div 
+    className="flex justify-center space-x-4 mt-8 md:hidden"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.2 }}
+  >
     {icons.map((item, index) => (
       <motion.a
         key={index}
@@ -64,15 +69,13 @@ const SocialIcons = ({ icons, position }) => (
         target="_blank"
         rel="noopener noreferrer"
         className="text-green-300 hover:text-green-100 transition-colors duration-300"
-        initial={{ opacity: 0, x: position === 'left' ? -50 : 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
         whileHover={{ scale: 1.2, rotate: 360 }}
+        transition={{ duration: 0.3 }}
       >
-        <item.Icon size={32} />
+        <item.Icon size={24} />
       </motion.a>
     ))}
-  </div>
+  </motion.div>
 );
 
 const ContactForm = ({ type, onSubmit }) => {
@@ -175,10 +178,9 @@ const ContactPage = () => {
                 </Tabs>
               </CardContent>
             </Card>
+            <SocialIcons icons={socialIcons} />
           </motion.div>
         </main>
-        <SocialIcons icons={socialIcons.slice(0, 3)} position="left" />
-        <SocialIcons icons={socialIcons.slice(3)} position="right" />
         <Footer />
       </AnimatedBackground>
     </div>
