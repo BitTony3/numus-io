@@ -10,56 +10,49 @@ const MatrixTornado = () => {
     canvas.height = window.innerHeight;
 
     const runes = '᚛᚜ᚐᚑᚒᚓᚔᚕᚖᚗᚘᚙᚚ᚛᚜᚝᚞᚟ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶᚷᚸᚹᚺᚻᚼᚽᚾᚿᛀᛁᛂᛃᛄᛅᛆᛇᛈᛉᛊᛋᛌᛍᛎᛏᛐᛑᛒᛓᛔᛕᛖᛗᛘᛙᛚᛛᛜᛝᛞᛟᛠᛡᛢᛣᛤᛥᛦᛧᛨᛩᛪ᛫᛬᛭ᛮᛯᛰ';
-    const fontSize = 14;
     const runeObjects = [];
 
     class RuneObject {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.speed = Math.random() * 2 + 1;
+        this.radius = Math.random() * (canvas.width / 4) + (canvas.width / 4);
         this.angle = Math.random() * Math.PI * 2;
+        this.speed = Math.random() * 0.005 + 0.002;
         this.rune = runes[Math.floor(Math.random() * runes.length)];
         this.size = Math.random() * 20 + 10;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.1;
-        this.oscillationAmplitude = Math.random() * 50 + 25;
-        this.oscillationFrequency = Math.random() * 0.05 + 0.02;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+        this.opacity = Math.random() * 0.5 + 0.5;
       }
 
       update() {
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-        const dx = centerX - this.x;
-        const dy = centerY - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 50) {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-        } else {
-          const attractionForce = 0.05;
-          this.angle += this.rotationSpeed;
-          this.x += Math.cos(this.angle) * this.speed + dx * attractionForce;
-          this.y += Math.sin(this.angle) * this.speed + dy * attractionForce;
+        this.angle += this.speed;
+        this.x = centerX + Math.cos(this.angle) * this.radius;
+        this.y = centerY + Math.sin(this.angle) * this.radius;
 
-          // Add oscillation
-          this.x += Math.sin(this.y * this.oscillationFrequency) * this.oscillationAmplitude;
-          this.y += Math.sin(this.x * this.oscillationFrequency) * this.oscillationAmplitude;
+        this.radius -= 0.1;
+        if (this.radius < 10) {
+          this.radius = Math.random() * (canvas.width / 4) + (canvas.width / 4);
         }
+
+        this.opacity = Math.sin(this.angle) * 0.25 + 0.75;
       }
 
       draw() {
         ctx.font = `${this.size}px monospace`;
-        ctx.fillStyle = `rgba(0, ${Math.floor(Math.random() * 255)}, 0, ${Math.random() * 0.5 + 0.5})`;
+        ctx.fillStyle = `rgba(0, ${Math.floor(Math.random() * 255)}, 0, ${this.opacity})`;
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
+        ctx.rotate(this.angle * this.rotationSpeed);
         ctx.fillText(this.rune, 0, 0);
         ctx.restore();
       }
     }
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 150; i++) {
       runeObjects.push(new RuneObject());
     }
 
