@@ -3,7 +3,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 
 const ProjectCard = ({ project, onSelect }) => (
   <motion.div
@@ -69,67 +68,123 @@ const ProjectDialog = ({ isOpen, onClose, project }) => (
   </Dialog>
 );
 
+const projects = [
+  { 
+    title: "CeDeFiAi",
+    description: "All-in-one asset management platform integrating CeFi and DeFi. Data-driven insights for optimal allocation.",
+    tags: ["Asset Management", "CeFi", "DeFi"],
+    status: "9M+ users onboarded",
+    logo: "/logos/cedefiai-logo.svg",
+    features: [
+      "AI-powered asset allocation",
+      "Real-time market analysis",
+      "Automated portfolio rebalancing",
+      "Cross-chain asset management"
+    ],
+    technologies: ["React", "Node.js", "TensorFlow", "Solidity", "GraphQL"]
+  },
+  { 
+    title: "Claimr",
+    description: "SocialFi project providing scalable infrastructure for user engagement. Utilizes blockchain for personalized experiences.",
+    tags: ["SocialFi", "Blockchain"],
+    status: "3.6M+ unique users engaged",
+    logo: "/logos/claimr-logo.svg",
+    features: [
+      "Decentralized social network",
+      "Token-based reward system",
+      "Content monetization",
+      "Personalized user feeds"
+    ],
+    technologies: ["Vue.js", "Rust", "Polkadot", "IPFS", "WebAssembly"]
+  },
+  { 
+    title: "ZombieTrain",
+    description: "Innovative app store game transitioning to a Telegram mini-app. Focuses on user retention through advanced analytics.",
+    tags: ["Gaming", "User Retention"],
+    status: "18k DAU with optimized UX",
+    logo: "/logos/zombietrain-logo.svg",
+    features: [
+      "Cross-platform gameplay",
+      "In-game economy",
+      "Social features",
+      "AI-driven difficulty adjustment"
+    ],
+    technologies: ["Unity", "C#", "Firebase", "Telegram Bot API", "Python"]
+  },
+  { 
+    title: "Asterizm Liquid",
+    description: "Cross-chain interoperability layer and RWA liquid markets, enabling seamless asset transfer and liquidity across blockchains.",
+    tags: ["Interoperability", "RWA", "Liquidity"],
+    status: "Facilitating cross-chain transactions",
+    logo: "/logos/asterizm-logo.svg",
+    features: [
+      "Cross-chain asset transfer",
+      "RWA tokenization",
+      "Liquidity pooling",
+      "Interoperability protocols"
+    ],
+    technologies: ["Rust", "Substrate", "Solidity", "Cosmos SDK", "Tendermint"]
+  },
+  {
+    title: "ChainSpot",
+    description: "DEX aggregator providing best cross-chain swap opportunities, optimizing trades across multiple blockchains.",
+    tags: ["DEX", "Cross-chain", "Trading"],
+    status: "Aggregating liquidity across chains",
+    logo: "/logos/chainspot-logo.svg",
+    features: [
+      "Multi-chain price comparison",
+      "Optimal route finding",
+      "Gas fee optimization",
+      "Slippage protection"
+    ],
+    technologies: ["React", "Node.js", "GraphQL", "Solidity", "The Graph"]
+  },
+  {
+    title: "Rivo",
+    description: "Yield app aimed to onboard masses with stable yields and easy access to DeFi opportunities.",
+    tags: ["DeFi", "Yield", "Mass Adoption"],
+    status: "Simplifying DeFi for newcomers",
+    logo: "/logos/rivo-logo.svg",
+    features: [
+      "User-friendly interface",
+      "Stable yield strategies",
+      "Fiat on/off ramps",
+      "Educational resources"
+    ],
+    technologies: ["React Native", "Solidity", "Aave Protocol", "Compound Protocol", "MakerDAO"]
+  },
+  {
+    title: "Dormint",
+    description: "Sleep tracking app leveraging blockchain for data privacy and reward mechanisms.",
+    tags: ["Health", "Blockchain", "IoT"],
+    status: "Improving sleep for thousands",
+    logo: "/logos/dormint-logo.svg",
+    features: [
+      "Sleep cycle analysis",
+      "Blockchain-based data storage",
+      "Token rewards for good sleep habits",
+      "Integration with smart home devices"
+    ],
+    technologies: ["Flutter", "Solana", "TensorFlow Lite", "IPFS", "Raspberry Pi"]
+  },
+  {
+    title: "Pumpsticle",
+    description: "Cross-chain pump fun analogue, gamifying the trading experience with a focus on education and risk management.",
+    tags: ["Trading", "Gamification", "Education"],
+    status: "Engaging traders responsibly",
+    logo: "/logos/pumpsticle-logo.svg",
+    features: [
+      "Simulated trading environment",
+      "Cross-chain market data integration",
+      "Leaderboards and competitions",
+      "Educational quests and challenges"
+    ],
+    technologies: ["React", "Node.js", "WebSocket", "Binance API", "Ethereum API"]
+  }
+];
+
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-
-  const projects = [
-    { 
-      title: "CeDeFiAi",
-      description: "All-in-one asset management platform integrating CeFi and DeFi. Data-driven insights for optimal allocation.",
-      tags: ["Asset Management", "CeFi", "DeFi"],
-      status: "9M+ users onboarded",
-      logo: "/logos/cedefiai-logo.svg",
-      features: [
-        "AI-powered asset allocation",
-        "Real-time market analysis",
-        "Automated portfolio rebalancing",
-        "Cross-chain asset management"
-      ],
-      technologies: ["React", "Node.js", "TensorFlow", "Solidity", "GraphQL"]
-    },
-    { 
-      title: "Claimr",
-      description: "SocialFi project providing scalable infrastructure for user engagement. Utilizes blockchain for personalized experiences.",
-      tags: ["SocialFi", "Blockchain"],
-      status: "3.6M+ unique users engaged",
-      logo: "/logos/claimr-logo.svg",
-      features: [
-        "Decentralized social network",
-        "Token-based reward system",
-        "Content monetization",
-        "Personalized user feeds"
-      ],
-      technologies: ["Vue.js", "Rust", "Polkadot", "IPFS", "WebAssembly"]
-    },
-    { 
-      title: "ZombieTrain",
-      description: "Innovative app store game transitioning to a Telegram mini-app. Focuses on user retention through advanced analytics.",
-      tags: ["Gaming", "User Retention"],
-      status: "18k DAU with optimized UX",
-      logo: "/logos/zombietrain-logo.svg",
-      features: [
-        "Cross-platform gameplay",
-        "In-game economy",
-        "Social features",
-        "AI-driven difficulty adjustment"
-      ],
-      technologies: ["Unity", "C#", "Firebase", "Telegram Bot API", "Python"]
-    },
-    { 
-      title: "Data Layer",
-      description: "State-of-the-art data infrastructure supporting our initiatives. Enables real-time insights across platforms.",
-      tags: ["Data Infrastructure", "Analytics"],
-      status: "Processing millions of data points daily",
-      logo: "/logos/datalayer-logo.svg",
-      features: [
-        "Real-time data processing",
-        "Machine learning pipeline",
-        "Data visualization dashboard",
-        "Predictive analytics"
-      ],
-      technologies: ["Apache Kafka", "Spark", "Elasticsearch", "Tableau", "Python"]
-    }
-  ];
 
   return (
     <section className="py-16 bg-black text-white">
@@ -150,7 +205,7 @@ const Portfolio = () => {
         >
           Explore our cutting-edge projects showcasing expertise in data-driven tech and innovation
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} onSelect={setSelectedProject} />
           ))}
