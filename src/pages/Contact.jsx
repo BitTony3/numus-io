@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Youtube } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Mail, Youtube, Upload } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -55,6 +55,27 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, va
   </motion.div>
 );
 
+const FileUploadField = ({ label, name, accept, multiple = false, onChange }) => (
+  <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+    <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
+    <div className="relative">
+      <Input
+        type="file"
+        id={name}
+        name={name}
+        accept={accept}
+        multiple={multiple}
+        onChange={onChange}
+        className="hidden"
+      />
+      <Label htmlFor={name} className="cursor-pointer flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+        <Upload className="mr-2" size={20} />
+        Choose Files
+      </Label>
+    </div>
+  </motion.div>
+);
+
 const SocialIcons = ({ icons }) => (
   <motion.div 
     className="flex justify-center space-x-4 mt-8"
@@ -79,19 +100,25 @@ const SocialIcons = ({ icons }) => (
 );
 
 const ContactForm = ({ type, onSubmit }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '', pitchDeck: '' });
+  const [files, setFiles] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    setFiles([...e.target.files]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit({ ...formData, files });
   };
 
   const isPartner = type === 'partner';
+
   return (
     <motion.form 
       className="space-y-4"
@@ -129,6 +156,31 @@ const ContactForm = ({ type, onSubmit }) => {
         value={formData.message}
         onChange={handleChange}
       />
+      <FileUploadField
+        label="Branding Kit (Logos and Banners)"
+        name="brandingKit"
+        accept=".png,.svg"
+        multiple={true}
+        onChange={handleFileChange}
+      />
+      {!isPartner && (
+        <>
+          <FormField
+            label="Pitch Deck Link"
+            name="pitchDeck"
+            placeholder="https://example.com/pitch-deck"
+            required={false}
+            value={formData.pitchDeck}
+            onChange={handleChange}
+          />
+          <FileUploadField
+            label="Or Upload Pitch Deck"
+            name="pitchDeckFile"
+            accept=".pdf,.pptx"
+            onChange={handleFileChange}
+          />
+        </>
+      )}
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button type="submit" className="w-full futuristic-button">
           {isPartner ? "Submit Proposal" : "Submit Project"}
