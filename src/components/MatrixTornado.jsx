@@ -14,14 +14,22 @@ const MatrixTornado = () => {
 
     class RuneObject {
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.radius = Math.random() * (canvas.width / 4) + (canvas.width / 4);
-        this.angle = Math.random() * Math.PI * 2;
-        this.speed = Math.random() * 0.005 + 0.002;
+        this.reset();
+      }
+
+      reset() {
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * (canvas.width / 4) + (canvas.width / 4);
+        
+        this.x = centerX + Math.cos(angle) * radius;
+        this.y = centerY + Math.sin(angle) * radius;
+        this.radius = radius;
+        this.angle = angle;
+        this.speed = (Math.random() * 0.001 + 0.001) * (Math.random() < 0.5 ? 1 : -1);
         this.rune = runes[Math.floor(Math.random() * runes.length)];
-        this.size = Math.random() * 20 + 10;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+        this.size = Math.random() * 15 + 10;
         this.opacity = Math.random() * 0.5 + 0.5;
       }
 
@@ -35,7 +43,7 @@ const MatrixTornado = () => {
 
         this.radius -= 0.1;
         if (this.radius < 10) {
-          this.radius = Math.random() * (canvas.width / 4) + (canvas.width / 4);
+          this.reset();
         }
 
         this.opacity = Math.sin(this.angle) * 0.25 + 0.75;
@@ -46,7 +54,7 @@ const MatrixTornado = () => {
         ctx.fillStyle = `rgba(0, ${Math.floor(Math.random() * 255)}, 0, ${this.opacity})`;
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle * this.rotationSpeed);
+        ctx.rotate(this.angle);
         ctx.fillText(this.rune, 0, 0);
         ctx.restore();
       }
@@ -73,6 +81,7 @@ const MatrixTornado = () => {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      runeObjects.forEach(rune => rune.reset());
     };
 
     window.addEventListener('resize', handleResize);
