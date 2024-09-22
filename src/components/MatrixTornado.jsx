@@ -23,11 +23,11 @@ const MatrixTornado = () => {
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.z = Math.random() * 1500 + 500; // depth
-        this.size = Math.random() * 15 + 10;
+        this.z = Math.random() * 1500 + 500;
+        this.size = Math.random() * 10 + 5; // Reduced size for subtlety
         this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
-        this.color = `rgba(0, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.5})`;
-        this.speed = Math.random() * 2 + 1;
+        this.color = `rgba(0, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.3 + 0.1})`; // Reduced opacity
+        this.speed = Math.random() * 1.5 + 0.5; // Slightly slower speed
       }
 
       update() {
@@ -45,8 +45,8 @@ const MatrixTornado = () => {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 100) {
-          this.x += dx * 0.01;
-          this.y += dy * 0.01;
+          this.x += dx * 0.005; // Reduced mouse influence
+          this.y += dy * 0.005;
         }
 
         if (x2d < 0 || x2d > canvas.width || y2d < 0 || y2d > canvas.height) {
@@ -65,12 +65,12 @@ const MatrixTornado = () => {
       }
     }
 
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 150; i++) { // Reduced number of symbols
       symbolObjects.push(new SymbolObject());
     }
 
     function animate() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.02)'; // Increased fade effect
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       symbolObjects.forEach(symbol => {
