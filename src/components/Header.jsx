@@ -5,15 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import MatrixTornado from './MatrixTornado';
 
+const menuItems = [
+  { title: 'Home', path: '/' },
+  { title: 'Services', path: '/about' },
+  { title: 'Portfolio', path: '/portfolio' },
+  { title: 'Partners', path: '/partners' },
+  { title: 'Contact', path: '/contact' },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const menuItems = [
-    { title: 'Home', path: '/' },
-    { title: 'Services', path: '/about' },
-    { title: 'Portfolio', path: '/portfolio' },
-    { title: 'Contact', path: '/contact' },
-  ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -27,16 +28,13 @@ const Header = () => {
       <MatrixTornado />
       <div className="container mx-auto px-4 py-4 flex justify-between items-center relative z-20">
         <Link to="/" className="flex items-center space-x-2">
-          <motion.div
+          <motion.img
+            src="/logo.svg"
+            alt="Numus Logo"
+            className="w-12 h-12"
             whileHover={{ scale: 1.1, rotate: 360 }}
             whileTap={{ scale: 0.9 }}
-          >
-            <img
-              src="/logo.svg"
-              alt="Numus Logo"
-              className="w-12 h-12"
-            />
-          </motion.div>
+          />
           <motion.span
             className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-green-500"
             animate={{

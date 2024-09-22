@@ -57,7 +57,7 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, va
 
 const SocialIcons = ({ icons }) => (
   <motion.div 
-    className="flex justify-center space-x-4 mt-8 md:hidden"
+    className="flex justify-center space-x-4 mt-8"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.2 }}
