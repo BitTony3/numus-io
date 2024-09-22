@@ -208,11 +208,17 @@ const Carousel = ({ items, renderItem }) => {
           ))}
         </motion.div>
       </div>
-      <Button className="absolute top-1/2 left-4 transform -translate-y-1/2" onClick={prevSlide}>
-        <ChevronLeft className="h-6 w-6" />
+      <Button 
+        className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+        onClick={prevSlide}
+      >
+        <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
       </Button>
-      <Button className="absolute top-1/2 right-4 transform -translate-y-1/2" onClick={nextSlide}>
-        <ChevronRight className="h-6 w-6" />
+      <Button 
+        className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+        onClick={nextSlide}
+      >
+        <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
       </Button>
     </div>
   );
