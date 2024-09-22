@@ -10,10 +10,12 @@ const MatrixTornado = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const runes = '᚛᚜ᚐᚑᚒᚓᚔᚕᚖᚗᚘᚙᚚ᚛᚜᚝᚞᚟ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶᚷᚸᚹᚺᚻᚼᚽᚾᚿᛀᛁᛂᛃᛄᛅᛆᛇᛈᛉᛊᛋᛌᛍᛎᛏᛐᛑᛒᛓᛔᛕᛖᛗᛘᛙᛚᛛᛜᛝᛞᛟᛠᛡᛢᛣᛤᛥᛦᛧᛨᛩᛪ᛫᛬᛭ᛮᛯᛰ';
-    const runeObjects = [];
+    const japaneseSymbols = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん';
+    const hiTechSymbols = '⌘⌥⇧⏎⏏︎⌫⌦⎋⇪⇥↵⇄⇅⇆⇇⇈⇉⇊⌤⌃⌅⍰⍼⍾⎆⎇⎈⎉⎊⎋⎌⎍⎎⎏';
+    const symbols = japaneseSymbols + hiTechSymbols;
+    const symbolObjects = [];
 
-    class RuneObject {
+    class SymbolObject {
       constructor() {
         this.reset();
       }
@@ -21,56 +23,59 @@ const MatrixTornado = () => {
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 1500 + 500; // depth
         this.size = Math.random() * 15 + 10;
-        this.rune = runes[Math.floor(Math.random() * runes.length)];
-        this.color = `rgba(0, ${Math.floor(Math.random() * 255)}, 0, ${Math.random() * 0.5 + 0.5})`;
-        this.angle = Math.random() * Math.PI * 2;
-        this.speed = Math.random() * 0.5 + 0.5;
+        this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+        this.color = `rgba(0, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.random() * 0.5 + 0.5})`;
+        this.speed = Math.random() * 2 + 1;
       }
 
       update() {
-        const dx = mousePosition.x - this.x;
-        const dy = mousePosition.y - this.y;
+        this.z -= this.speed;
+        if (this.z < 1) {
+          this.reset();
+        }
+
+        const scale = 1000 / (1000 + this.z);
+        const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
+        const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
+
+        const dx = mousePosition.x - x2d;
+        const dy = mousePosition.y - y2d;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 100) {
-          this.angle = Math.atan2(dy, dx);
-          this.speed = 2;
-        } else {
-          this.speed *= 0.99;
-          if (this.speed < 0.5) this.speed = 0.5;
+          this.x += dx * 0.01;
+          this.y += dy * 0.01;
         }
 
-        this.x += Math.cos(this.angle) * this.speed;
-        this.y += Math.sin(this.angle) * this.speed;
-
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        if (x2d < 0 || x2d > canvas.width || y2d < 0 || y2d > canvas.height) {
           this.reset();
         }
       }
 
       draw() {
-        ctx.font = `${this.size}px monospace`;
+        const scale = 1000 / (1000 + this.z);
+        const x2d = (this.x - canvas.width / 2) * scale + canvas.width / 2;
+        const y2d = (this.y - canvas.height / 2) * scale + canvas.height / 2;
+
+        ctx.font = `${this.size * scale}px monospace`;
         ctx.fillStyle = this.color;
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.fillText(this.rune, 0, 0);
-        ctx.restore();
+        ctx.fillText(this.symbol, x2d, y2d);
       }
     }
 
-    for (let i = 0; i < 100; i++) {
-      runeObjects.push(new RuneObject());
+    for (let i = 0; i < 200; i++) {
+      symbolObjects.push(new SymbolObject());
     }
 
     function animate() {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      runeObjects.forEach(rune => {
-        rune.update();
-        rune.draw();
+      symbolObjects.forEach(symbol => {
+        symbol.update();
+        symbol.draw();
       });
 
       requestAnimationFrame(animate);
@@ -81,7 +86,7 @@ const MatrixTornado = () => {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      runeObjects.forEach(rune => rune.reset());
+      symbolObjects.forEach(symbol => symbol.reset());
     };
 
     const handleMouseMove = (event) => {
