@@ -2,17 +2,16 @@ import React from 'react';
 import Header from '../components/Header';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
 import MatrixTornado from '../components/MatrixTornado';
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-green-900 relative">
-      <AnimatedBackground>
+    <div className="min-h-screen bg-black relative">
+      <MatrixTornado />
+      <div className="relative z-20">
         <Header />
-        <MatrixTornado />
-        <main className="relative z-20 py-20">
+        <main className="py-20">
           <motion.div
             className="container mx-auto px-4"
             initial={{ opacity: 0 }}
@@ -27,7 +26,7 @@ const ContactPage = () => {
           </motion.div>
         </main>
         <Footer />
-      </AnimatedBackground>
+      </div>
     </div>
   );
 };

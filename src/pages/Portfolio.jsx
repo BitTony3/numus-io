@@ -2,17 +2,16 @@ import React from 'react';
 import Header from '../components/Header';
 import Portfolio from '../components/Portfolio';
 import Footer from '../components/Footer';
-import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
 import MatrixTornado from '../components/MatrixTornado';
 
 const PortfolioPage = () => {
   return (
-    <div className="min-h-screen bg-green-900 relative">
-      <AnimatedBackground>
+    <div className="min-h-screen bg-black relative">
+      <MatrixTornado />
+      <div className="relative z-20">
         <Header />
-        <MatrixTornado />
-        <main className="relative z-20">
+        <main>
           <motion.div
             className="py-20"
             initial={{ opacity: 0, y: 50 }}
@@ -29,7 +28,7 @@ const PortfolioPage = () => {
           <Portfolio />
         </main>
         <Footer />
-      </AnimatedBackground>
+      </div>
     </div>
   );
 };

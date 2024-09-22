@@ -5,16 +5,15 @@ import Services from '../components/Services';
 import Portfolio from '../components/Portfolio';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
-import AnimatedBackground from '../components/AnimatedBackground';
 import MatrixTornado from '../components/MatrixTornado';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-green-900 relative">
-      <AnimatedBackground>
+    <div className="min-h-screen bg-black relative">
+      <MatrixTornado />
+      <div className="relative z-20">
         <Header />
-        <MatrixTornado />
-        <main className="relative z-20">
+        <main>
           <Hero />
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -32,7 +31,7 @@ const Home = () => {
           </motion.div>
         </main>
         <Footer />
-      </AnimatedBackground>
+      </div>
     </div>
   );
 };

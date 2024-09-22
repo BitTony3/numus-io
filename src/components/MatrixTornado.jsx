@@ -9,13 +9,13 @@ const MatrixTornado = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const symbols = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const fontSize = 15;
+    const runes = '᚛᚜ᚐᚑᚒᚓᚔᚕᚖᚗᚘᚙᚚ᚛᚜᚝᚞᚟ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶᚷᚸᚹᚺᚻᚼᚽᚾᚿᛀᛁᛂᛃᛄᛅᛆᛇᛈᛉᛊᛋᛌᛍᛎᛏᛐᛑᛒᛓᛔᛕᛖᛗᛘᛙᛚᛛᛜᛝᛞᛟᛠᛡᛢᛣᛤᛥᛦᛧᛨᛩᛪ᛫᛬᛭ᛮᛯᛰ';
+    const fontSize = 14;
     const columns = canvas.width / fontSize;
     const drops = [];
 
     for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -canvas.height;
+      drops[i] = Math.random() * canvas.height;
     }
 
     function draw() {
@@ -26,15 +26,17 @@ const MatrixTornado = () => {
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
-        const text = symbols[Math.floor(Math.random() * symbols.length)];
+        const text = runes[Math.floor(Math.random() * runes.length)];
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
         // Calculate the angle for the tornado effect
-        const angle = (y / canvas.height) * Math.PI * 2;
-        const radius = (canvas.width / 2) * (1 - y / canvas.height);
-        const tornadoX = canvas.width / 2 + Math.cos(angle) * radius;
-        const tornadoY = y;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const angle = Math.atan2(y - centerY, x - centerX);
+        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+        const tornadoX = centerX + Math.cos(angle + distance / 50) * distance;
+        const tornadoY = centerY + Math.sin(angle + distance / 50) * distance;
 
         ctx.save();
         ctx.translate(tornadoX, tornadoY);
