@@ -45,6 +45,7 @@ const LoadingFallback = () => (
 const Home = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Services"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Partners = lazy(() => import("./pages/Partners"));
 const Contact = lazy(() => import("./pages/Contact"));
 
 const App = () => (
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/partners" element={<Partners />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Suspense>
