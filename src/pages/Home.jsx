@@ -10,7 +10,7 @@ import MatrixTornado from '../components/MatrixTornado';
 const Home = () => {
   return (
     <div className="min-h-screen bg-black relative">
-      <div className="relative z-20">
+      <div className="relative z-10">
         <Header />
         <main>
           <Hero />
@@ -31,9 +31,7 @@ const Home = () => {
         </main>
         <Footer />
       </div>
-      <div className="fixed inset-0 pointer-events-none z-30">
-        <MatrixTornado />
-      </div>
+      <MatrixTornado className="fixed inset-0 z-20 pointer-events-none" />
     </div>
   );
 };
