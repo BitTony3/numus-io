@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Code, BarChart, Briefcase, Zap, Shield, Cpu, GitBranch, Users, DollarSign, TrendingUp, Target, Megaphone, LineChart, PieChart, Network, Handshake } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const ServiceCard = ({ category, index, onSelect }) => (
   <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
+    initial={{ opacity: 0, rotateY: 180 }}
+    animate={{ opacity: 1, rotateY: 0 }}
+    transition={{ duration: 0.8, delay: index * 0.2, type: "spring", stiffness: 100 }}
     whileHover={{ scale: 1.05 }}
     onClick={() => onSelect(category)}
   >
     <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group cursor-pointer">
       <CardHeader className="bg-green-700 group-hover:bg-green-600 transition-colors duration-300">
-        <CardTitle className="flex items-center text-green-100">
+        <CardTitle className="flex flex-col items-center text-green-100">
           <motion.div 
-            className="p-3 rounded-full bg-green-600 group-hover:bg-green-500 transition-colors duration-300 mr-4"
-            whileHover={{ rotate: 360 }}
+            className="p-3 rounded-full bg-green-600 group-hover:bg-green-500 transition-colors duration-300"
+            whileHover={{ rotate: 360, scale: 1.1 }}
             transition={{ duration: 0.5 }}
           >
-            {React.cloneElement(category.icon, { className: "h-6 w-6 text-green-200" })}
+            {React.cloneElement(category.icon, { className: "h-8 w-8 text-green-200" })}
           </motion.div>
-          <span className="text-xl font-bold">{category.title}</span>
+          <span className="mt-4 text-xl font-bold">{category.title}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="mt-4">
         <ul className="space-y-2">
-          {category.services.slice(0, 3).map((service, idx) => (
+          {category.services.map((service, idx) => (
             <motion.li 
               key={idx} 
               className="flex items-center text-green-200"
@@ -46,12 +46,9 @@ const ServiceCard = ({ category, index, onSelect }) => (
 
 const ServiceDialog = ({ isOpen, onClose, service }) => (
   <Dialog open={isOpen} onOpenChange={onClose}>
-    <DialogContent className="bg-green-800 text-green-100 max-w-3xl">
+    <DialogContent className="bg-green-800 text-green-100">
       <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-green-300 flex items-center">
-          {React.cloneElement(service?.icon, { className: "h-8 w-8 mr-4 text-green-400" })}
-          {service?.title}
-        </DialogTitle>
+        <DialogTitle className="text-2xl font-bold text-green-300">{service?.title}</DialogTitle>
       </DialogHeader>
       <DialogDescription className="text-green-200">
         <ul className="space-y-4 mt-4">
@@ -133,22 +130,27 @@ const serviceCategories = [
   }
 ];
 
-const Services = () => {
+const partners = [
+  { name: "Line Messenger", logo: "/logos/line-messenger-logo.svg", description: "Popular messaging app planning to launch mini apps, expanding their ecosystem for developers and businesses." },
+  { name: "Supra Oracles", logo: "/logos/supra-oracles-logo.svg", description: "Decentralized oracle network providing real-time data for blockchain applications." },
+];
+
+const AboutUs = () => {
   const [selectedService, setSelectedService] = useState(null);
 
   return (
-    <section className="py-16 bg-green-900 text-white">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-green-900 text-white overflow-hidden">
+      <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-4 text-green-300 neon-text"
+          className="text-5xl font-bold text-center mb-4 text-green-300 neon-text"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Our Services
+          Hyper Matrix Solutions
         </motion.h2>
         <motion.p 
-          className="text-xl text-center mb-12 max-w-2xl mx-auto text-green-200"
+          className="text-lg text-center mb-10 max-w-2xl mx-auto text-green-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -158,6 +160,30 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceCategories.map((category, index) => (
             <ServiceCard key={index} category={category} index={index} onSelect={setSelectedService} />
+          ))}
+        </div>
+
+        <motion.h3
+          className="text-4xl font-bold text-center mt-20 mb-10 text-green-300 neon-text"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Our Partners
+        </motion.h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {partners.map((partner, index) => (
+            <motion.div
+              key={index}
+              className="bg-black p-6 rounded-lg shadow-lg flex flex-col items-center justify-center"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <img src={partner.logo} alt={partner.name} className="w-32 h-32 object-contain mb-4" />
+              <p className="text-center text-green-200 font-semibold">{partner.name}</p>
+              <p className="mt-2 text-sm text-center text-green-300">{partner.description}</p>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -174,4 +200,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default AboutUs;
