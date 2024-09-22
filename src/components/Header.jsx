@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { motion } from 'framer-motion';
+import { Menu } from 'lucide-react';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const menuItems = [
     { title: 'Home', path: '/' },
     { title: 'Services', path: '/about' },
     { title: 'Portfolio', path: '/portfolio' },
     { title: 'Contact', path: '/contact' },
   ];
+
+  const MenuItem = ({ item, mobile = false }) => (
+    <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <Link to={item.path} onClick={() => mobile && setIsOpen(false)}>
+        <Button
+          variant="ghost"
+          className="text-green-300 hover:text-green-100 relative overflow-hidden group rounded-full px-4 py-2"
+        >
+          <span className="relative z-10">{item.title}</span>
+          <motion.div
+            className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100"
+            initial={{ scale: 0, borderRadius: '100%' }}
+            whileHover={{ scale: 1, borderRadius: '16px' }}
+            transition={{ duration: 0.3 }}
+          />
+        </Button>
+      </Link>
+    </motion.li>
+  );
 
   return (
     <motion.header
@@ -44,28 +67,31 @@ const Header = () => {
             Numus
           </motion.span>
         </Link>
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex space-x-4">
             {menuItems.map((item, index) => (
-              <motion.li key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link to={item.path}>
-                  <Button
-                    variant="ghost"
-                    className="text-green-300 hover:text-green-100 relative overflow-hidden group rounded-full px-4 py-2"
-                  >
-                    <span className="relative z-10">{item.title}</span>
-                    <motion.div
-                      className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-100"
-                      initial={{ scale: 0, borderRadius: '100%' }}
-                      whileHover={{ scale: 1, borderRadius: '16px' }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </Button>
-                </Link>
-              </motion.li>
+              <MenuItem key={index} item={item} />
             ))}
           </ul>
         </nav>
+        <div className="md:hidden">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6 text-green-300" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] bg-green-900 p-0">
+              <nav className="flex flex-col h-full justify-center">
+                <ul className="space-y-4">
+                  {menuItems.map((item, index) => (
+                    <MenuItem key={index} item={item} mobile />
+                  ))}
+                </ul>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </motion.header>
   );
