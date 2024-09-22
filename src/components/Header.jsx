@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const menuItems = [
     { title: 'Home', path: '/' },
     { title: 'Services', path: '/about' },
     { title: 'Portfolio', path: '/portfolio' },
     { title: 'Contact', path: '/contact' },
   ];
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <motion.header
@@ -44,7 +49,7 @@ const Header = () => {
             Numus
           </motion.span>
         </Link>
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex space-x-4">
             {menuItems.map((item, index) => (
               <motion.li key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -66,7 +71,45 @@ const Header = () => {
             ))}
           </ul>
         </nav>
+        <div className="md:hidden">
+          <Button variant="ghost" onClick={toggleMenu}>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </Button>
+        </div>
       </div>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <nav className="bg-green-800 py-4">
+              <ul className="flex flex-col items-center space-y-4">
+                {menuItems.map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link to={item.path} onClick={toggleMenu}>
+                      <Button
+                        variant="ghost"
+                        className="text-green-300 hover:text-green-100 w-full"
+                      >
+                        {item.title}
+                      </Button>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
