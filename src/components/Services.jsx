@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, BarChart, Briefcase, Zap, Shield, Cpu, GitBranch, Users, DollarSign, TrendingUp, Target, Megaphone, LineChart, PieChart, Network, Handshake, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Code, Briefcase, TrendingUp, Shield, Megaphone, DollarSign } from 'lucide-react';
 
 const ServiceCard = ({ category, onSelect }) => (
   <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group cursor-pointer" onClick={() => onSelect(category)}>
@@ -65,60 +66,60 @@ const serviceCategories = [
     title: "Full-Cycle Development",
     icon: <Code />,
     services: [
-      { title: "Tech Stack Integration", icon: <Cpu />, description: "Seamlessly integrate diverse technologies to create powerful, scalable solutions." },
-      { title: "Scalable Architecture", icon: <Network />, description: "Design robust architectures that grow with your business needs." },
-      { title: "Performance Optimization", icon: <Zap />, description: "Enhance system performance for lightning-fast user experiences." },
-      { title: "Blockchain Integration", icon: <GitBranch />, description: "Leverage blockchain technology for secure, transparent operations." }
+      { title: "Tech Stack Integration", icon: <Code />, description: "Seamlessly integrate diverse technologies to create powerful, scalable solutions." },
+      { title: "Scalable Architecture", icon: <Code />, description: "Design robust architectures that grow with your business needs." },
+      { title: "Performance Optimization", icon: <Code />, description: "Enhance system performance for lightning-fast user experiences." },
+      { title: "Blockchain Integration", icon: <Code />, description: "Leverage blockchain technology for secure, transparent operations." }
     ]
   },
   {
     title: "Business Strategy",
     icon: <Briefcase />,
     services: [
-      { title: "Business Model Design", icon: <PieChart />, description: "Craft innovative business models tailored to your market and goals." },
-      { title: "Use Case Development", icon: <Target />, description: "Identify and develop compelling use cases for your technology." },
-      { title: "Tokenomics Architecture", icon: <DollarSign />, description: "Design effective token economies for blockchain projects." },
-      { title: "Strategic Partnerships", icon: <Users />, description: "Forge valuable partnerships to accelerate growth and innovation." }
+      { title: "Business Model Design", icon: <Briefcase />, description: "Craft innovative business models tailored to your market and goals." },
+      { title: "Use Case Development", icon: <Briefcase />, description: "Identify and develop compelling use cases for your technology." },
+      { title: "Tokenomics Architecture", icon: <Briefcase />, description: "Design effective token economies for blockchain projects." },
+      { title: "Strategic Partnerships", icon: <Briefcase />, description: "Forge valuable partnerships to accelerate growth and innovation." }
     ]
   },
   {
     title: "Rapid Scaling",
     icon: <TrendingUp />,
     services: [
-      { title: "Growth Hacking", icon: <Zap />, description: "Implement cutting-edge strategies for rapid user acquisition and retention." },
-      { title: "Market Expansion", icon: <BarChart />, description: "Strategically enter new markets and expand your global footprint." },
-      { title: "Efficiency Optimization", icon: <Target />, description: "Streamline operations to maximize productivity and minimize costs." },
-      { title: "Agile Implementation", icon: <GitBranch />, description: "Adopt agile methodologies for faster, more flexible development cycles." }
+      { title: "Growth Hacking", icon: <TrendingUp />, description: "Implement cutting-edge strategies for rapid user acquisition and retention." },
+      { title: "Market Expansion", icon: <TrendingUp />, description: "Strategically enter new markets and expand your global footprint." },
+      { title: "Efficiency Optimization", icon: <TrendingUp />, description: "Streamline operations to maximize productivity and minimize costs." },
+      { title: "Agile Implementation", icon: <TrendingUp />, description: "Adopt agile methodologies for faster, more flexible development cycles." }
     ]
   },
   {
     title: "Crisis Management",
     icon: <Shield />,
     services: [
-      { title: "Emergency Response", icon: <Zap />, description: "Rapid, effective responses to critical situations to minimize impact." },
+      { title: "Emergency Response", icon: <Shield />, description: "Rapid, effective responses to critical situations to minimize impact." },
       { title: "Risk Mitigation", icon: <Shield />, description: "Identify and mitigate potential risks before they become crises." },
-      { title: "Reputation Management", icon: <Users />, description: "Protect and enhance your brand's reputation during challenging times." },
-      { title: "Recovery Planning", icon: <TrendingUp />, description: "Develop comprehensive plans for swift recovery post-crisis." }
+      { title: "Reputation Management", icon: <Shield />, description: "Protect and enhance your brand's reputation during challenging times." },
+      { title: "Recovery Planning", icon: <Shield />, description: "Develop comprehensive plans for swift recovery post-crisis." }
     ]
   },
   {
     title: "Marketing & BD",
     icon: <Megaphone />,
     services: [
-      { title: "Traffic Acquisition", icon: <Users />, description: "Implement strategies to drive high-quality traffic to your platforms." },
-      { title: "Content Strategy", icon: <PieChart />, description: "Develop engaging content strategies to captivate and retain your audience." },
-      { title: "Brand Development", icon: <Briefcase />, description: "Build a strong, recognizable brand that resonates with your target market." },
-      { title: "Partnership Outreach", icon: <Handshake />, description: "Identify and secure strategic partnerships to amplify your reach." }
+      { title: "Traffic Acquisition", icon: <Megaphone />, description: "Implement strategies to drive high-quality traffic to your platforms." },
+      { title: "Content Strategy", icon: <Megaphone />, description: "Develop engaging content strategies to captivate and retain your audience." },
+      { title: "Brand Development", icon: <Megaphone />, description: "Build a strong, recognizable brand that resonates with your target market." },
+      { title: "Partnership Outreach", icon: <Megaphone />, description: "Identify and secure strategic partnerships to amplify your reach." }
     ]
   },
   {
     title: "Investment Readiness",
     icon: <DollarSign />,
     services: [
-      { title: "Due Diligence Prep", icon: <Briefcase />, description: "Prepare comprehensive documentation to satisfy investor scrutiny." },
-      { title: "Pitch Deck Creation", icon: <PieChart />, description: "Craft compelling pitch decks that showcase your value proposition." },
-      { title: "Financial Modeling", icon: <LineChart />, description: "Develop robust financial models to demonstrate growth potential." },
-      { title: "Investor Relations", icon: <Users />, description: "Build and maintain strong relationships with potential and current investors." }
+      { title: "Due Diligence Prep", icon: <DollarSign />, description: "Prepare comprehensive documentation to satisfy investor scrutiny." },
+      { title: "Pitch Deck Creation", icon: <DollarSign />, description: "Craft compelling pitch decks that showcase your value proposition." },
+      { title: "Financial Modeling", icon: <DollarSign />, description: "Develop robust financial models to demonstrate growth potential." },
+      { title: "Investor Relations", icon: <DollarSign />, description: "Build and maintain strong relationships with potential and current investors." }
     ]
   }
 ];
@@ -127,11 +128,11 @@ const Carousel = ({ items, renderItem }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % (items.length - 2));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length - 2) % (items.length - 2));
   };
 
   return (
@@ -139,11 +140,11 @@ const Carousel = ({ items, renderItem }) => {
       <div className="overflow-hidden">
         <motion.div
           className="flex"
-          animate={{ x: `${-currentIndex * 100}%` }}
+          animate={{ x: `${-currentIndex * 33.33}%` }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+            <div key={index} className="w-1/3 flex-shrink-0 p-2">
               {renderItem(item)}
             </div>
           ))}

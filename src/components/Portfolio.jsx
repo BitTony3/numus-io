@@ -186,11 +186,11 @@ const Carousel = ({ items, renderItem }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % (items.length - 2));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length - 2) % (items.length - 2));
   };
 
   return (
@@ -198,11 +198,11 @@ const Carousel = ({ items, renderItem }) => {
       <div className="overflow-hidden">
         <motion.div
           className="flex"
-          animate={{ x: `${-currentIndex * 100}%` }}
+          animate={{ x: `${-currentIndex * 33.33}%` }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+            <div key={index} className="w-1/3 flex-shrink-0 p-2">
               {renderItem(item)}
             </div>
           ))}
