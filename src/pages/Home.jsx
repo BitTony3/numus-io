@@ -10,29 +10,27 @@ import MatrixTornado from '../components/MatrixTornado';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-green-900">
+    <div className="min-h-screen bg-green-900 relative">
       <AnimatedBackground>
         <Header />
-        <div className="relative w-full">
-          <MatrixTornado />
-          <main>
-            <Hero />
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Services />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <Portfolio />
-            </motion.div>
-          </main>
-        </div>
+        <MatrixTornado />
+        <main className="relative z-20">
+          <Hero />
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Services />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Portfolio />
+          </motion.div>
+        </main>
         <Footer />
       </AnimatedBackground>
     </div>

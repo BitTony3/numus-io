@@ -8,26 +8,24 @@ import MatrixTornado from '../components/MatrixTornado';
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-green-900">
+    <div className="min-h-screen bg-green-900 relative">
       <AnimatedBackground>
         <Header />
-        <div className="relative w-full">
-          <MatrixTornado />
-          <main className="relative py-20">
-            <motion.div
-              className="container mx-auto px-4 relative z-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Contact Us</h1>
-              <p className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200">
-                Get in touch with our team to explore how Numus can accelerate your eco-friendly project or green investment strategy.
-              </p>
-              <Contact />
-            </motion.div>
-          </main>
-        </div>
+        <MatrixTornado />
+        <main className="relative z-20 py-20">
+          <motion.div
+            className="container mx-auto px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Contact Us</h1>
+            <p className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200">
+              Get in touch with our team to explore how Numus can accelerate your eco-friendly project or green investment strategy.
+            </p>
+            <Contact />
+          </motion.div>
+        </main>
         <Footer />
       </AnimatedBackground>
     </div>

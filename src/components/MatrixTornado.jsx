@@ -7,14 +7,15 @@ const MatrixTornado = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
-    canvas.height = 300;
+    canvas.height = window.innerHeight;
 
     const symbols = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const columns = canvas.width / 20;
+    const fontSize = 15;
+    const columns = canvas.width / fontSize;
     const drops = [];
 
     for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -100;
+      drops[i] = Math.random() * -canvas.height;
     }
 
     function draw() {
@@ -22,20 +23,30 @@ const MatrixTornado = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = '#0f0';
-      ctx.font = '15px monospace';
+      ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const text = symbols[Math.floor(Math.random() * symbols.length)];
-        const x = i * 20;
-        const y = drops[i] * 20;
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        ctx.fillText(text, x, y);
+        // Calculate the angle for the tornado effect
+        const angle = (y / canvas.height) * Math.PI * 2;
+        const radius = (canvas.width / 2) * (1 - y / canvas.height);
+        const tornadoX = canvas.width / 2 + Math.cos(angle) * radius;
+        const tornadoY = y;
+
+        ctx.save();
+        ctx.translate(tornadoX, tornadoY);
+        ctx.rotate(angle);
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
 
         if (y > canvas.height && Math.random() > 0.99) {
           drops[i] = 0;
         }
 
-        drops[i] += 0.1; // Reduced speed
+        drops[i] += 0.05; // Slower falling speed
       }
     }
 
@@ -48,7 +59,7 @@ const MatrixTornado = () => {
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
-      canvas.height = 300;
+      canvas.height = window.innerHeight;
     };
 
     window.addEventListener('resize', handleResize);
@@ -62,7 +73,8 @@ const MatrixTornado = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none"
+      className="fixed top-0 left-0 w-full h-full z-10 pointer-events-none"
+      style={{ mixBlendMode: 'screen' }}
     />
   );
 };
