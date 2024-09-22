@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const MatrixTornado = () => {
   const canvasRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -18,40 +19,39 @@ const MatrixTornado = () => {
       }
 
       reset() {
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * (canvas.width / 4) + (canvas.width / 4);
-        
-        this.x = centerX + Math.cos(angle) * radius;
-        this.y = centerY + Math.sin(angle) * radius;
-        this.radius = radius;
-        this.angle = angle;
-        this.speed = (Math.random() * 0.001 + 0.001) * (Math.random() < 0.5 ? 1 : -1);
-        this.rune = runes[Math.floor(Math.random() * runes.length)];
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
         this.size = Math.random() * 15 + 10;
-        this.opacity = Math.random() * 0.5 + 0.5;
+        this.rune = runes[Math.floor(Math.random() * runes.length)];
+        this.color = `rgba(0, ${Math.floor(Math.random() * 255)}, 0, ${Math.random() * 0.5 + 0.5})`;
+        this.angle = Math.random() * Math.PI * 2;
+        this.speed = Math.random() * 0.5 + 0.5;
       }
 
       update() {
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
+        const dx = mousePosition.x - this.x;
+        const dy = mousePosition.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-        this.angle += this.speed;
-        this.x = centerX + Math.cos(this.angle) * this.radius;
-        this.y = centerY + Math.sin(this.angle) * this.radius;
-
-        this.radius -= 0.1;
-        if (this.radius < 10) {
-          this.reset();
+        if (distance < 100) {
+          this.angle = Math.atan2(dy, dx);
+          this.speed = 2;
+        } else {
+          this.speed *= 0.99;
+          if (this.speed < 0.5) this.speed = 0.5;
         }
 
-        this.opacity = Math.sin(this.angle) * 0.25 + 0.75;
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
       }
 
       draw() {
         ctx.font = `${this.size}px monospace`;
-        ctx.fillStyle = `rgba(0, ${Math.floor(Math.random() * 255)}, 0, ${this.opacity})`;
+        ctx.fillStyle = this.color;
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
@@ -60,7 +60,7 @@ const MatrixTornado = () => {
       }
     }
 
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 100; i++) {
       runeObjects.push(new RuneObject());
     }
 
@@ -84,12 +84,18 @@ const MatrixTornado = () => {
       runeObjects.forEach(rune => rune.reset());
     };
 
+    const handleMouseMove = (event) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
     window.addEventListener('resize', handleResize);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [mousePosition]);
 
   return (
     <canvas
