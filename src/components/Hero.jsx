@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
+import MatrixTornado from './MatrixTornado';
 import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <AnimatedBackground>
-      <section className="relative z-10 bg-gradient-to-b from-green-900 via-green-700 to-green-500 text-white py-28">
-        <div className="container mx-auto px-4 text-center">
+    <section className="relative z-10 bg-gradient-to-b from-green-900 via-green-700 to-green-500 text-white py-28 overflow-hidden">
+      <MatrixTornado />
+      <AnimatedBackground>
+        <div className="container mx-auto px-4 text-center relative z-20">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -69,8 +71,8 @@ const Hero = () => {
             </Link>
           </motion.div>
         </div>
-      </section>
-    </AnimatedBackground>
+      </AnimatedBackground>
+    </section>
   );
 };
 
