@@ -3,12 +3,11 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ProjectCard = ({ project, onSelect }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5 }}
     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
     onClick={() => onSelect(project)}
   >
@@ -183,6 +182,42 @@ const projects = [
   }
 ];
 
+const Carousel = ({ items, renderItem }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+  };
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden">
+        <motion.div
+          className="flex"
+          animate={{ x: `${-currentIndex * 100}%` }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        >
+          {items.map((item, index) => (
+            <div key={index} className="w-full flex-shrink-0">
+              {renderItem(item)}
+            </div>
+          ))}
+        </motion.div>
+      </div>
+      <Button className="absolute top-1/2 left-4 transform -translate-y-1/2" onClick={prevSlide}>
+        <ChevronLeft className="h-6 w-6" />
+      </Button>
+      <Button className="absolute top-1/2 right-4 transform -translate-y-1/2" onClick={nextSlide}>
+        <ChevronRight className="h-6 w-6" />
+      </Button>
+    </div>
+  );
+};
+
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -205,11 +240,12 @@ const Portfolio = () => {
         >
           Explore our cutting-edge projects showcasing expertise in data-driven tech and innovation
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} onSelect={setSelectedProject} />
-          ))}
-        </div>
+        <Carousel
+          items={projects}
+          renderItem={(project) => (
+            <ProjectCard project={project} onSelect={setSelectedProject} />
+          )}
+        />
       </div>
       <AnimatePresence>
         {selectedProject && (
