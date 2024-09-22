@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Code, BarChart, Briefcase, Zap, Shield, Cpu } from 'lucide-react';
+import { Code, BarChart, Briefcase, Zap, Shield, Cpu, TrendingUp, Target, Users } from 'lucide-react';
 
 const ServiceCard = ({ category }) => (
   <Card className="bg-green-700 border-green-600 hover:shadow-lg transition-all duration-300 h-full">
@@ -41,7 +41,7 @@ const serviceCategories = [
     services: [
       { title: "Business Model Design", icon: <BarChart /> },
       { title: "Use Case Development", icon: <Briefcase /> },
-      { title: "Strategic Partnerships", icon: <Handshake /> },
+      { title: "Strategic Partnerships", icon: <Users /> },
     ]
   },
   {
