@@ -31,11 +31,11 @@ const MatrixTornado = () => {
 
         ctx.fillText(text, x, y);
 
-        if (y > canvas.height && Math.random() > 0.975) {
+        if (y > canvas.height && Math.random() > 0.99) {
           drops[i] = 0;
         }
 
-        drops[i]++;
+        drops[i] += 0.1; // Reduced speed
       }
     }
 
@@ -46,7 +46,17 @@ const MatrixTornado = () => {
 
     animate();
 
-    return () => cancelAnimationFrame(animate);
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = 300;
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cancelAnimationFrame(animate);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
