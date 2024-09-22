@@ -4,14 +4,12 @@ import Portfolio from '../components/Portfolio';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
-import MatrixTornado from '../components/MatrixTornado';
 
 const PortfolioPage = () => {
   return (
     <div className="min-h-screen bg-green-900">
       <AnimatedBackground>
         <Header />
-        <MatrixTornado />
         <main>
           <motion.div
             className="py-20 relative overflow-hidden"
@@ -21,9 +19,6 @@ const PortfolioPage = () => {
           >
             <div className="container mx-auto px-4 relative z-10">
               <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Our Portfolio</h1>
-              <p className="text-xl text-center mb-12 max-w-3xl mx-auto text-green-200">
-                Explore our portfolio of groundbreaking projects and innovative solutions. We leverage data-driven strategies and cutting-edge technologies to create impactful products across various industries, showcasing the power of our global tech stack and expert consulting services.
-              </p>
             </div>
           </motion.div>
           <Portfolio />

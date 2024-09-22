@@ -4,14 +4,12 @@ import AboutUs from '../components/Services';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
-import MatrixTornado from '../components/MatrixTornado';
 
 const AboutUsPage = () => {
   return (
     <div className="min-h-screen bg-black">
       <AnimatedBackground>
         <Header />
-        <MatrixTornado />
         <main>
           <motion.div
             className="py-20 relative overflow-hidden"

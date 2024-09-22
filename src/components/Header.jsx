@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import MatrixTornado from './MatrixTornado';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,12 +19,13 @@ const Header = () => {
 
   return (
     <motion.header
-      className="bg-green-900 text-white shadow-lg"
+      className="bg-green-900 text-white shadow-lg relative h-20"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
+      <MatrixTornado />
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center relative z-20">
         <Link to="/" className="flex items-center space-x-2">
           <motion.div
             whileHover={{ scale: 1.1, rotate: 360 }}
@@ -80,13 +82,13 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden"
+            className="md:hidden absolute top-full left-0 right-0 bg-green-800 z-30"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <nav className="bg-green-800 py-4">
+            <nav className="py-4">
               <ul className="flex flex-col items-center space-y-4">
                 {menuItems.map((item, index) => (
                   <motion.li

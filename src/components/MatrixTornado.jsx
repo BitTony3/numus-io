@@ -7,7 +7,7 @@ const MatrixTornado = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
-    canvas.height = 300; // Adjust height as needed
+    canvas.height = 80; // Set to match header height
 
     const symbols = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const columns = canvas.width / 20;
@@ -52,7 +52,7 @@ const MatrixTornado = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none"
+      className="absolute top-0 left-0 w-full h-20 z-10 pointer-events-none"
     />
   );
 };
