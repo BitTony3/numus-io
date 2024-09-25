@@ -11,12 +11,12 @@ const ProjectCard = ({ project, onSelect }) => (
     onClick={() => onSelect(project)}
     className="cursor-pointer"
   >
-    <div className="bg-green-800 p-6 rounded-lg shadow-lg h-full">
-      <h3 className="text-xl font-bold text-green-300 mb-2">{project.title}</h3>
-      <p className="text-green-100 mb-4">{project.description}</p>
+    <div className="bg-green-800 p-4 md:p-6 rounded-lg shadow-lg h-full">
+      <h3 className="text-lg md:text-xl font-bold text-green-300 mb-2">{project.title}</h3>
+      <p className="text-sm md:text-base text-green-100 mb-4">{project.description}</p>
       <div className="flex flex-wrap gap-2">
         {project.tags.map((tag, index) => (
-          <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-sm">
+          <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-xs md:text-sm">
             {tag}
           </span>
         ))}
@@ -27,24 +27,24 @@ const ProjectCard = ({ project, onSelect }) => (
 
 const ProjectDialog = ({ isOpen, onClose, project }) => (
   <Dialog open={isOpen} onOpenChange={onClose}>
-    <DialogContent className="bg-green-800 text-green-100 max-w-3xl">
+    <DialogContent className="bg-green-800 text-green-100 max-w-3xl max-h-[80vh] overflow-y-auto">
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold text-green-300 flex items-center">
-          <img src={project?.logo} alt={`${project?.title} logo`} className="w-10 h-10 mr-3" />
+        <DialogTitle className="text-2xl font-bold text-green-300 flex items-center">
+          <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
           {project?.title}
         </DialogTitle>
       </DialogHeader>
       <DialogDescription className="text-green-200">
-        <p className="text-lg mb-4">{project?.highlight}</p>
-        <h3 className="text-xl font-semibold text-green-300 mb-2">Valuation:</h3>
+        <p className="text-base md:text-lg mb-4">{project?.highlight}</p>
+        <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Valuation:</h3>
         <p className="mb-4">{project?.valuation}</p>
-        <h3 className="text-xl font-semibold text-green-300 mb-2">Raise Status:</h3>
+        <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Raise Status:</h3>
         <p className="mb-4">{project?.raiseStatus}</p>
-        <h3 className="text-xl font-semibold text-green-300 mb-2">Strategic Advantage:</h3>
+        <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Strategic Advantage:</h3>
         <p className="mb-4">{project?.strategicAdvantage}</p>
         {project?.additionalInfo && (
           <>
-            <h3 className="text-xl font-semibold text-green-300 mb-2">Additional Info:</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Additional Info:</h3>
             <p>{project?.additionalInfo}</p>
           </>
         )}
@@ -68,7 +68,7 @@ const Portfolio = () => {
     <section className="py-16 bg-black text-white">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-8 futuristic-text"
+          className="text-3xl md:text-4xl font-bold text-center mb-8 futuristic-text"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -76,14 +76,14 @@ const Portfolio = () => {
           Numus Project Portfolio
         </motion.h2>
         <motion.p
-          className="text-xl text-center mb-12 max-w-2xl mx-auto text-green-200"
+          className="text-base md:text-lg text-center mb-12 max-w-2xl mx-auto text-green-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           Explore our diverse range of innovative blockchain projects, each designed to push the boundaries of Web3 technology and create new opportunities for growth and investment.
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {currentProjects.map((project, index) => (
             <ProjectCard key={index} project={project} onSelect={setSelectedProject} />
           ))}

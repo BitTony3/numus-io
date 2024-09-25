@@ -27,7 +27,7 @@ const Services = () => {
     <section className="py-16 bg-green-900 text-white overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-center mb-4 text-green-300 neon-text"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-green-300 neon-text"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -35,7 +35,7 @@ const Services = () => {
           Numus Venture Studio Services
         </motion.h2>
         <motion.p 
-          className="text-base md:text-lg text-center mb-10 max-w-2xl mx-auto text-green-200"
+          className="text-sm md:text-base lg:text-lg text-center mb-10 max-w-2xl mx-auto text-green-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -44,13 +44,13 @@ const Services = () => {
         </motion.p>
         <div className="relative">
           <motion.div
-            className="flex transition-all duration-500 ease-in-out"
-            animate={{ x: `calc(-${startIndex * (100 / visibleServices)}%)` }}
+            className="flex flex-col md:flex-row transition-all duration-500 ease-in-out"
+            animate={{ x: isMobile ? 0 : `calc(-${startIndex * (100 / visibleServices)}%)` }}
           >
             {serviceCategories.map((category, index) => (
               <motion.div
                 key={index}
-                className={`w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 p-4`}
+                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-4 ${isMobile ? 'mb-6' : ''}`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -59,18 +59,22 @@ const Services = () => {
               </motion.div>
             ))}
           </motion.div>
-          <Button 
-            className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
-            onClick={prevSlide}
-          >
-            <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
-          </Button>
-          <Button 
-            className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
-            onClick={nextSlide}
-          >
-            <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
-          </Button>
+          {!isMobile && (
+            <>
+              <Button 
+                className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+                onClick={prevSlide}
+              >
+                <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
+              </Button>
+              <Button 
+                className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+                onClick={nextSlide}
+              >
+                <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
+              </Button>
+            </>
+          )}
         </div>
       </div>
       <ServiceDialog

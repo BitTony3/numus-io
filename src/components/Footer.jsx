@@ -12,13 +12,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white py-6">
+    <footer className="bg-black text-white py-8 md:py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="mb-6 md:mb-0"
           >
             <Link to="/" className="flex items-center space-x-2">
               <img src="/logo.svg" alt="Numus Logo" className="w-8 h-8" />
@@ -31,8 +32,9 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-6 md:mb-0"
           >
-            <ul className="flex space-x-6 mt-4 md:mt-0">
+            <ul className="flex flex-wrap justify-center space-x-4 md:space-x-6">
               {['Home', 'Services', 'Portfolio'].map((item) => (
                 <li key={item}>
                   <Link
@@ -46,7 +48,7 @@ const Footer = () => {
             </ul>
           </motion.nav>
           <motion.div
-            className="flex space-x-4 mt-4 md:mt-0"
+            className="flex space-x-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -70,7 +72,7 @@ const Footer = () => {
           </motion.div>
         </div>
         <motion.div
-          className="text-center text-sm mt-6 text-gray-400"
+          className="text-center text-sm mt-8 text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
