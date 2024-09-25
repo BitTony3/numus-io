@@ -3,7 +3,7 @@ import { Rocket, Briefcase, TrendingUp, Shield, Zap, DollarSign } from 'lucide-r
 export const serviceCategories = [
   {
     title: "Full-Cycle Development",
-    icon: <Rocket />,
+    icon: Rocket,
     services: [
       { title: "Cross-Chain Integration", description: "Connect projects to TON, Solana, Tron, and EVM chains for enhanced liquidity and reach." },
       { title: "CeDeFiAi Integration", description: "Leverage our flagship project for cross-chain aggregation and traffic coordination." },
@@ -13,7 +13,7 @@ export const serviceCategories = [
   },
   {
     title: "Portfolio Optimization",
-    icon: <Briefcase />,
+    icon: Briefcase,
     services: [
       { title: "Cost Optimization", description: "Reduce burn rates and optimize operational costs for portfolio projects." },
       { title: "Funding Preparation", description: "Prepare projects for significant funding rounds and growth opportunities." },
@@ -23,7 +23,7 @@ export const serviceCategories = [
   },
   {
     title: "Incubation & Acceleration",
-    icon: <TrendingUp />,
+    icon: TrendingUp,
     services: [
       { title: "Ecosystem Alignment", description: "Create mutual ecosystem alignments to amplify revenue and user engagement." },
       { title: "Incentivization Pools", description: "Design and implement incentive structures to drive rapid growth." },
@@ -33,7 +33,7 @@ export const serviceCategories = [
   },
   {
     title: "Strategic Partnerships",
-    icon: <Zap />,
+    icon: Zap,
     services: [
       { title: "VC Collaboration", description: "Partner with VCs to enhance portfolio value and identify high-potential projects." },
       { title: "Investor Synergies", description: "Create synergies between investors and projects for mutual growth." },
@@ -43,7 +43,7 @@ export const serviceCategories = [
   },
   {
     title: "Traffic Activation",
-    icon: <Shield />,
+    icon: Shield,
     services: [
       { title: "User Acquisition", description: "Tap into our network of 150M+ users for rapid user acquisition." },
       { title: "Cross-Platform Integration", description: "Integrate with web and Telegram mini apps for wider reach." },
@@ -53,7 +53,7 @@ export const serviceCategories = [
   },
   {
     title: "Investment Opportunities",
-    icon: <DollarSign />,
+    icon: DollarSign,
     services: [
       { title: "High-Growth Projects", description: "Access to a curated portfolio of high-potential blockchain projects." },
       { title: "Cross-Chain Investments", description: "Diversify investments across multiple blockchain ecosystems." },
