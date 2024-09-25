@@ -16,7 +16,7 @@ const ProjectCard = ({ project, onSelect }) => (
         className="w-16 h-16 mx-auto mb-4"
         initial={{ rotateY: 0 }}
         animate={{ rotateY: 360 }}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
       >
         <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" />
       </motion.div>
