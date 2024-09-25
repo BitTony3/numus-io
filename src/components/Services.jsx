@@ -5,7 +5,27 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { serviceCategories } from '@/data/serviceCategories';
 import ServiceCard from './ServiceCard';
-import ServiceDialog from './ServiceDialog';
+import Modal from './Modal';
+
+const ServiceDialog = ({ service, onClose }) => (
+  <div>
+    <h2 className="text-2xl font-bold text-green-300 mb-4 flex items-center">
+      {React.createElement(service.icon, { className: "w-8 h-8 mr-3 text-green-400" })}
+      {service.title}
+    </h2>
+    <ul className="space-y-4">
+      {service.services.map((item, index) => (
+        <li key={index} className="flex items-start">
+          <span className="w-2 h-2 bg-green-400 rounded-full mr-3 mt-2"></span>
+          <div>
+            <h3 className="font-semibold text-green-300">{item.title}</h3>
+            <p className="text-green-200">{item.description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -27,7 +47,7 @@ const Services = () => {
     <section className="py-16 bg-green-900 text-white overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-green-300 neon-text"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-green-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -77,11 +97,9 @@ const Services = () => {
           )}
         </div>
       </div>
-      <ServiceDialog
-        isOpen={!!selectedService}
-        onClose={() => setSelectedService(null)}
-        service={selectedService}
-      />
+      <Modal isOpen={!!selectedService} onClose={() => setSelectedService(null)}>
+        {selectedService && <ServiceDialog service={selectedService} onClose={() => setSelectedService(null)} />}
+      </Modal>
     </section>
   );
 };

@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import Modal from '../components/Modal';
 
 const socialIcons = [
   { Icon: Facebook, link: "https://facebook.com/numusio" },
@@ -192,14 +193,13 @@ const ContactForm = ({ type, onSubmit }) => {
 
 const ContactPage = () => {
   const { toast } = useToast();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   const handleSubmit = (formData) => {
     console.log('Form submitted:', formData);
-    toast({
-      title: "Form Submitted",
-      description: "Thank you for your submission. We'll get back to you soon!",
-      duration: 5000,
-    });
+    setModalContent('Thank you for your submission. We'll get back to you soon!');
+    setIsModalOpen(true);
   };
 
   return (
@@ -213,7 +213,7 @@ const ContactPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl font-bold text-center mb-8 text-green-100 neon-text">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-center mb-8 text-green-100">Contact Us</h1>
             <Card className="max-w-2xl mx-auto futuristic-card">
               <CardContent className="p-6">
                 <Tabs defaultValue="partner" className="w-full">
@@ -235,6 +235,12 @@ const ContactPage = () => {
         </main>
         <Footer />
       </AnimatedBackground>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div className="text-green-100 text-center">
+          <h2 className="text-2xl font-bold mb-4">Submission Received</h2>
+          <p>{modalContent}</p>
+        </div>
+      </Modal>
     </div>
   );
 };

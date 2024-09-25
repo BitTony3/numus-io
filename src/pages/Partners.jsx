@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { motion } from 'framer-motion';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import Modal from '../components/Modal';
 import { partnerData } from '../data/partnerData';
 
 const PartnerLogo = ({ partner, onClick }) => (
@@ -21,18 +21,12 @@ const PartnerLogo = ({ partner, onClick }) => (
   </motion.div>
 );
 
-const PartnerDialog = ({ isOpen, onClose, partner }) => (
-  <Dialog open={isOpen} onOpenChange={onClose}>
-    <DialogContent className="bg-green-800 text-green-100">
-      <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-green-300">{partner?.name}</DialogTitle>
-      </DialogHeader>
-      <DialogDescription className="text-green-200">
-        {partner?.logo && <img src={partner.logo} alt={`${partner.name} logo`} className="h-24 w-auto object-contain mx-auto mb-4" />}
-        <p>{partner?.description}</p>
-      </DialogDescription>
-    </DialogContent>
-  </Dialog>
+const PartnerDialog = ({ partner, onClose }) => (
+  <div>
+    <h2 className="text-2xl font-bold text-green-300 mb-4">{partner?.name}</h2>
+    {partner?.logo && <img src={partner.logo} alt={`${partner.name} logo`} className="h-24 w-auto object-contain mx-auto mb-4" />}
+    <p className="text-green-200">{partner?.description}</p>
+  </div>
 );
 
 const Partners = () => {
@@ -45,7 +39,7 @@ const Partners = () => {
         <main className="py-20">
           <div className="container mx-auto px-4">
             <motion.h1
-              className="text-4xl font-bold text-center mb-12 title-text"
+              className="text-4xl font-bold text-center mb-12 text-green-300"
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -66,13 +60,9 @@ const Partners = () => {
         </main>
         <Footer />
       </AnimatedBackground>
-      {selectedPartner && (
-        <PartnerDialog
-          isOpen={!!selectedPartner}
-          onClose={() => setSelectedPartner(null)}
-          partner={selectedPartner}
-        />
-      )}
+      <Modal isOpen={!!selectedPartner} onClose={() => setSelectedPartner(null)}>
+        {selectedPartner && <PartnerDialog partner={selectedPartner} onClose={() => setSelectedPartner(null)} />}
+      </Modal>
     </div>
   );
 };

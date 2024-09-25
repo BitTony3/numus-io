@@ -1,70 +1,65 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { projectData } from '../data/projectData';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { projectData } from '@/data/projectData';
+import Modal from './Modal';
 
 const ProjectCard = ({ project, onSelect }) => (
   <motion.div
     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+    whileTap={{ scale: 0.95 }}
     onClick={() => onSelect(project)}
-    className="cursor-pointer"
+    className="cursor-pointer bg-green-800 p-4 rounded-lg shadow-lg"
   >
-    <div className="bg-green-800 p-4 md:p-6 rounded-lg shadow-lg h-full">
-      <motion.div
-        className="w-16 h-16 mx-auto mb-4"
-        initial={{ rotateY: 0 }}
-        animate={{ rotateY: 360 }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      >
-        <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" />
-      </motion.div>
-      <h3 className="text-lg md:text-xl font-bold text-green-300 mb-2">{project.title}</h3>
-      <p className="text-sm md:text-base text-green-100 mb-4">{project.description}</p>
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((tag, index) => (
-          <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-xs md:text-sm">
-            {tag}
-          </span>
-        ))}
-      </div>
+    <motion.div
+      className="w-16 h-16 mx-auto mb-4"
+      initial={{ rotateY: 0 }}
+      animate={{ rotateY: 360 }}
+      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+    >
+      <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" />
+    </motion.div>
+    <h3 className="text-lg font-bold text-green-300 mb-2">{project.title}</h3>
+    <p className="text-sm text-green-100 mb-4">{project.description}</p>
+    <div className="flex flex-wrap gap-2">
+      {project.tags.map((tag, index) => (
+        <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-xs">
+          {tag}
+        </span>
+      ))}
     </div>
   </motion.div>
 );
 
-const ProjectDialog = ({ isOpen, onClose, project }) => (
-  <Dialog open={isOpen} onOpenChange={onClose}>
-    <DialogContent className="bg-green-800 text-green-100 max-w-3xl max-h-[80vh] overflow-y-auto">
-      <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-green-300 flex items-center">
-          <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
-          {project?.title}
-        </DialogTitle>
-      </DialogHeader>
-      <DialogDescription className="text-green-200">
-        <p className="text-base md:text-lg mb-4">{project?.highlight}</p>
-        <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Valuation:</h3>
-        <p className="mb-4">{project?.valuation}</p>
-        <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Raise Status:</h3>
-        <p className="mb-4">{project?.raiseStatus}</p>
-        <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Strategic Advantage:</h3>
-        <p className="mb-4">{project?.strategicAdvantage}</p>
-        {project?.additionalInfo && (
-          <>
-            <h3 className="text-lg md:text-xl font-semibold text-green-300 mb-2">Additional Info:</h3>
-            <p>{project?.additionalInfo}</p>
-          </>
-        )}
-      </DialogDescription>
-    </DialogContent>
-  </Dialog>
+const ProjectDialog = ({ project, onClose }) => (
+  <div>
+    <h2 className="text-2xl font-bold text-green-300 mb-4 flex items-center">
+      <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
+      {project?.title}
+    </h2>
+    <p className="text-green-200 mb-4">{project?.highlight}</p>
+    <h3 className="text-lg font-semibold text-green-300 mb-2">Valuation:</h3>
+    <p className="text-green-200 mb-4">{project?.valuation}</p>
+    <h3 className="text-lg font-semibold text-green-300 mb-2">Raise Status:</h3>
+    <p className="text-green-200 mb-4">{project?.raiseStatus}</p>
+    <h3 className="text-lg font-semibold text-green-300 mb-2">Strategic Advantage:</h3>
+    <p className="text-green-200 mb-4">{project?.strategicAdvantage}</p>
+    {project?.additionalInfo && (
+      <>
+        <h3 className="text-lg font-semibold text-green-300 mb-2">Additional Info:</h3>
+        <p className="text-green-200">{project?.additionalInfo}</p>
+      </>
+    )}
+  </div>
 );
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -73,10 +68,10 @@ const Portfolio = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <section className="py-16 bg-black text-white">
+    <section className="py-16 bg-green-900 text-white">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl md:text-4xl font-bold text-center mb-8 futuristic-text"
+          className="text-3xl md:text-4xl font-bold text-center mb-8 text-green-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -122,15 +117,9 @@ const Portfolio = () => {
           </Button>
         </div>
       </div>
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectDialog
-            isOpen={!!selectedProject}
-            onClose={() => setSelectedProject(null)}
-            project={selectedProject}
-          />
-        )}
-      </AnimatePresence>
+      <Modal isOpen={!!selectedProject} onClose={() => setSelectedProject(null)}>
+        {selectedProject && <ProjectDialog project={selectedProject} onClose={() => setSelectedProject(null)} />}
+      </Modal>
     </section>
   );
 };
