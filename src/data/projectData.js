@@ -2,10 +2,10 @@ export const projectData = [
   {
     title: "CeDeFiAi",
     logo: "/logos/cedefiai-logo.svg",
-    description: "Cross-chain liquidity aggregator and yield farming platform connected to 20+ blockchains.",
+    description: "Cross-chain liquidity aggregator and yield farming platform connected to 20+ blockchains and 10+ exchanges, featuring login abstraction.",
     tags: ["Cross-chain", "Liquidity", "Yield Farming"],
     status: "Series A",
-    highlight: "CeDeFiAi is a cross-chain liquidity aggregator and yield farming platform connected to 20+ blockchains including TON, Tron, Solana, EVM and BTC layer2 comings soon. It enables users to manage opportunities and monitor assets through an abstract connection layer, and also integrates with both web and Telegram mini apps allowing users to Trade on CEX's from their telegram messanger directly and securely as well as providing investment opportunities on other chains bringing abstraction to crypto at it's finest.",
+    highlight: "CeDeFiAi is a cross-chain liquidity aggregator and yield farming platform connected to 20+ blockchains including TON, Tron, Solana, EVM and BTC layer2 comings soon, as well as 10+ exchanges. It enables users to manage opportunities and monitor assets through an abstract connection layer, and also integrates with both web and Telegram mini apps allowing users to Trade on CEX's from their telegram messanger directly and securely as well as providing investment opportunities on other chains bringing abstraction to crypto at it's finest. The platform features login abstraction for seamless user experience across multiple chains and exchanges.",
     valuation: "$250M",
     raiseStatus: "Series A at $25M, focused on expanding traffic activation and launching core bundles early October 2024.",
     strategicAdvantage: "With access to over 150M users and deep data layers from exchanges and user activities off-chain and on-chain, a unified interface for all ecosystems and products adapted to different web environments. CeDeFiAi technically responsible today for coordination of traffic exchange of more then 150M users and users financial coordinations.",
