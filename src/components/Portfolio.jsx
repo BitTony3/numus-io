@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { projectData } from '@/data/projectData';
 import Modal from './Modal';
@@ -34,7 +34,7 @@ const ProjectCard = ({ project, onSelect }) => (
 );
 
 const ProjectDialog = ({ project, onClose }) => (
-  <div className="text-green-100">
+  <div className="text-green-100 max-h-[80vh] overflow-y-auto">
     <h2 className="text-2xl font-bold text-green-300 mb-4 flex items-center">
       <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
       {project?.title}
@@ -49,9 +49,21 @@ const ProjectDialog = ({ project, onClose }) => (
     {project?.additionalInfo && (
       <>
         <h3 className="text-lg font-semibold text-green-300 mb-2">Additional Info:</h3>
-        <p className="text-green-200">{project?.additionalInfo}</p>
+        <p className="text-green-200 mb-4">{project?.additionalInfo}</p>
       </>
     )}
+    <div className="flex flex-col space-y-2 mt-4">
+      {project?.website && (
+        <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+          <ExternalLink className="w-4 h-4 mr-2" /> Visit Website
+        </a>
+      )}
+      {project?.telegramApp && (
+        <a href={project.telegramApp} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+          <ExternalLink className="w-4 h-4 mr-2" /> Telegram Mini App
+        </a>
+      )}
+    </div>
   </div>
 );
 
@@ -72,16 +84,16 @@ const Portfolio = () => {
       <div className="container mx-auto px-4">
         <motion.h2 
           className="text-3xl md:text-4xl font-bold text-center mb-8 text-green-300"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           Numus Project Portfolio
         </motion.h2>
         <motion.p
           className="text-base md:text-lg text-center mb-12 max-w-2xl mx-auto text-green-200"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           Explore our diverse range of innovative blockchain projects, each designed to push the boundaries of Web3 technology and create new opportunities for growth and investment.
