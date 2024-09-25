@@ -121,8 +121,16 @@ const Portfolio = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Innovative Projects
+          Numus Project Portfolio
         </motion.h2>
+        <motion.p
+          className="text-xl text-center mb-12 max-w-2xl mx-auto text-green-200"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Explore our diverse range of innovative blockchain projects, each designed to push the boundaries of Web3 technology and create new opportunities for growth and investment.
+        </motion.p>
         <Carousel
           items={projectData}
           renderItem={(project) => (

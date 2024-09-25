@@ -3,7 +3,70 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Code, Briefcase, TrendingUp, Shield, Megaphone, DollarSign } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Rocket, Briefcase, TrendingUp, Shield, Zap, DollarSign } from 'lucide-react';
+
+const serviceCategories = [
+  {
+    title: "Full-Cycle Development",
+    icon: <Rocket />,
+    services: [
+      { title: "Cross-Chain Integration", icon: <Rocket />, description: "Connect projects to TON, Solana, Tron, and EVM chains for enhanced liquidity and reach." },
+      { title: "CeDeFiAi Integration", icon: <Rocket />, description: "Leverage our flagship project for cross-chain aggregation and traffic coordination." },
+      { title: "Rapid Execution", icon: <Rocket />, description: "6-week preparation cycles to transform ventures into market-ready solutions." },
+      { title: "Technical Innovation", icon: <Rocket />, description: "Cutting-edge blockchain solutions tailored to your project's needs." }
+    ]
+  },
+  {
+    title: "Portfolio Optimization",
+    icon: <Briefcase />,
+    services: [
+      { title: "Cost Optimization", icon: <Briefcase />, description: "Reduce burn rates and optimize operational costs for portfolio projects." },
+      { title: "Funding Preparation", icon: <Briefcase />, description: "Prepare projects for significant funding rounds and growth opportunities." },
+      { title: "Strategic Refinement", icon: <Briefcase />, description: "Troubleshoot and refine existing projects to enhance their market potential." },
+      { title: "Data-Driven Insights", icon: <Briefcase />, description: "Leverage our expansive data ecosystem for informed decision-making." }
+    ]
+  },
+  {
+    title: "Incubation & Acceleration",
+    icon: <TrendingUp />,
+    services: [
+      { title: "Ecosystem Alignment", icon: <TrendingUp />, description: "Create mutual ecosystem alignments to amplify revenue and user engagement." },
+      { title: "Incentivization Pools", icon: <TrendingUp />, description: "Design and implement incentive structures to drive rapid growth." },
+      { title: "Marketing Ecosystems", icon: <TrendingUp />, description: "Develop comprehensive marketing strategies leveraging our network." },
+      { title: "Early-Stage Acceleration", icon: <TrendingUp />, description: "Transform promising ideas into thriving ventures with our support." }
+    ]
+  },
+  {
+    title: "Strategic Partnerships",
+    icon: <Zap />,
+    services: [
+      { title: "VC Collaboration", icon: <Zap />, description: "Partner with VCs to enhance portfolio value and identify high-potential projects." },
+      { title: "Investor Synergies", icon: <Zap />, description: "Create synergies between investors and projects for mutual growth." },
+      { title: "Joint Ventures", icon: <Zap />, description: "Explore joint venture opportunities to leverage combined strengths." },
+      { title: "Ecosystem Expansion", icon: <Zap />, description: "Expand your reach and impact through our extensive partner network." }
+    ]
+  },
+  {
+    title: "Traffic Activation",
+    icon: <Shield />,
+    services: [
+      { title: "User Acquisition", icon: <Shield />, description: "Tap into our network of 150M+ users for rapid user acquisition." },
+      { title: "Cross-Platform Integration", icon: <Shield />, description: "Integrate with web and Telegram mini apps for wider reach." },
+      { title: "Engagement Strategies", icon: <Shield />, description: "Implement proven strategies to boost user engagement and retention." },
+      { title: "Data-Driven Targeting", icon: <Shield />, description: "Utilize our deep data layers for precise user targeting and growth." }
+    ]
+  },
+  {
+    title: "Investment Opportunities",
+    icon: <DollarSign />,
+    services: [
+      { title: "High-Growth Projects", icon: <DollarSign />, description: "Access to a curated portfolio of high-potential blockchain projects." },
+      { title: "Cross-Chain Investments", icon: <DollarSign />, description: "Diversify investments across multiple blockchain ecosystems." },
+      { title: "Early Access", icon: <DollarSign />, description: "Get early access to promising projects incubated by Numus." },
+      { title: "Strategic Co-Investments", icon: <DollarSign />, description: "Participate in strategic co-investment opportunities with Numus." }
+    ]
+  }
+];
 
 const ServiceCard = ({ category, onSelect }) => (
   <Card className="bg-green-800 border-green-700 hover:shadow-lg hover:shadow-green-300/20 transition-all duration-300 h-full overflow-hidden group cursor-pointer" onClick={() => onSelect(category)}>
@@ -60,69 +123,6 @@ const ServiceDialog = ({ isOpen, onClose, service }) => (
   </Dialog>
 );
 
-const serviceCategories = [
-  {
-    title: "Full-Cycle Development",
-    icon: <Code />,
-    services: [
-      { title: "Tech Stack Integration", icon: <Code />, description: "Seamlessly integrate diverse technologies to create powerful, scalable solutions." },
-      { title: "Scalable Architecture", icon: <Code />, description: "Design robust architectures that grow with your business needs." },
-      { title: "Performance Optimization", icon: <Code />, description: "Enhance system performance for lightning-fast user experiences." },
-      { title: "Blockchain Integration", icon: <Code />, description: "Leverage blockchain technology for secure, transparent operations." }
-    ]
-  },
-  {
-    title: "Business Strategy",
-    icon: <Briefcase />,
-    services: [
-      { title: "Business Model Design", icon: <Briefcase />, description: "Craft innovative business models tailored to your market and goals." },
-      { title: "Use Case Development", icon: <Briefcase />, description: "Identify and develop compelling use cases for your technology." },
-      { title: "Tokenomics Architecture", icon: <Briefcase />, description: "Design effective token economies for blockchain projects." },
-      { title: "Strategic Partnerships", icon: <Briefcase />, description: "Forge valuable partnerships to accelerate growth and innovation." }
-    ]
-  },
-  {
-    title: "Rapid Scaling",
-    icon: <TrendingUp />,
-    services: [
-      { title: "Growth Hacking", icon: <TrendingUp />, description: "Implement cutting-edge strategies for rapid user acquisition and retention." },
-      { title: "Market Expansion", icon: <TrendingUp />, description: "Strategically enter new markets and expand your global footprint." },
-      { title: "Efficiency Optimization", icon: <TrendingUp />, description: "Streamline operations to maximize productivity and minimize costs." },
-      { title: "Agile Implementation", icon: <TrendingUp />, description: "Adopt agile methodologies for faster, more flexible development cycles." }
-    ]
-  },
-  {
-    title: "Crisis Management",
-    icon: <Shield />,
-    services: [
-      { title: "Emergency Response", icon: <Shield />, description: "Rapid, effective responses to critical situations to minimize impact." },
-      { title: "Risk Mitigation", icon: <Shield />, description: "Identify and mitigate potential risks before they become crises." },
-      { title: "Reputation Management", icon: <Shield />, description: "Protect and enhance your brand's reputation during challenging times." },
-      { title: "Recovery Planning", icon: <Shield />, description: "Develop comprehensive plans for swift recovery post-crisis." }
-    ]
-  },
-  {
-    title: "Marketing & BD",
-    icon: <Megaphone />,
-    services: [
-      { title: "Traffic Acquisition", icon: <Megaphone />, description: "Implement strategies to drive high-quality traffic to your platforms." },
-      { title: "Content Strategy", icon: <Megaphone />, description: "Develop engaging content strategies to captivate and retain your audience." },
-      { title: "Brand Development", icon: <Megaphone />, description: "Build a strong, recognizable brand that resonates with your target market." },
-      { title: "Partnership Outreach", icon: <Megaphone />, description: "Identify and secure strategic partnerships to amplify your reach." }
-    ]
-  },
-  {
-    title: "Investment Readiness",
-    icon: <DollarSign />,
-    services: [
-      { title: "Due Diligence Prep", icon: <DollarSign />, description: "Prepare comprehensive documentation to satisfy investor scrutiny." },
-      { title: "Pitch Deck Creation", icon: <DollarSign />, description: "Craft compelling pitch decks that showcase your value proposition." },
-      { title: "Financial Modeling", icon: <DollarSign />, description: "Develop robust financial models to demonstrate growth potential." },
-      { title: "Investor Relations", icon: <DollarSign />, description: "Build and maintain strong relationships with potential and current investors." }
-    ]
-  }
-];
-
 const Carousel = ({ items, renderItem }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -177,7 +177,7 @@ const Services = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          Hyper Matrix Solutions
+          Numus Venture Studio Services
         </motion.h2>
         <motion.p 
           className="text-base md:text-lg text-center mb-10 max-w-2xl mx-auto text-green-200"
@@ -185,7 +185,7 @@ const Services = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Empowering projects with full-cycle development. We're your partners in creating, troubleshooting, and accelerating growth across all dimensions.
+          Empowering VCs, investors, and hedge funds with a full-cycle venture ecosystem. We accelerate growth, incubate innovation, and refine portfolios across the Web3 landscape.
         </motion.p>
         <Carousel
           items={serviceCategories}
