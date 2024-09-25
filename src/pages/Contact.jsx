@@ -198,7 +198,7 @@ const ContactPage = () => {
 
   const handleSubmit = (formData) => {
     console.log('Form submitted:', formData);
-    setModalContent('Thank you for your submission. We'll get back to you soon!');
+    setModalContent("Thank you for your submission. We'll get back to you soon!");
     setIsModalOpen(true);
   };
 
