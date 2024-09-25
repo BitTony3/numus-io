@@ -7,23 +7,25 @@ const Modal = ({ isOpen, onClose, children }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-green-800 rounded-lg p-6 max-w-2xl w-full mx-4"
+            className="bg-green-800 rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
           >
-            <div className="flex justify-end">
+            <div className="flex justify-end mb-4">
               <button onClick={onClose} className="text-green-300 hover:text-green-100">
                 <X size={24} />
               </button>
             </div>
-            {children}
+            <div className="pr-2">
+              {children}
+            </div>
           </motion.div>
         </motion.div>
       )}

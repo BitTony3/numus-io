@@ -34,7 +34,7 @@ const ProjectCard = ({ project, onSelect }) => (
 );
 
 const ProjectDialog = ({ project, onClose }) => (
-  <div>
+  <div className="text-green-100">
     <h2 className="text-2xl font-bold text-green-300 mb-4 flex items-center">
       <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
       {project?.title}
