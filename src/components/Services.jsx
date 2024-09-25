@@ -102,7 +102,7 @@ const ServiceCard = ({ category, onSelect }) => (
 
 const ServiceDialog = ({ isOpen, onClose, service }) => (
   <Dialog open={isOpen} onOpenChange={onClose}>
-    <DialogContent className="bg-green-800 text-green-100">
+    <DialogContent className="bg-green-800 text-green-100 max-w-3xl max-h-[80vh] overflow-y-auto">
       <DialogHeader>
         <DialogTitle className="text-2xl font-bold text-green-300">{service?.title}</DialogTitle>
       </DialogHeader>
@@ -123,50 +123,17 @@ const ServiceDialog = ({ isOpen, onClose, service }) => (
   </Dialog>
 );
 
-const Carousel = ({ items, renderItem }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Services = () => {
+  const [selectedService, setSelectedService] = useState(null);
+  const [startIndex, setStartIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+    setStartIndex((prevIndex) => (prevIndex + 1) % serviceCategories.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+    setStartIndex((prevIndex) => (prevIndex - 1 + serviceCategories.length) % serviceCategories.length);
   };
-
-  return (
-    <div className="relative">
-      <div className="overflow-hidden">
-        <motion.div
-          className="flex"
-          animate={{ x: `${-currentIndex * 100}%` }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        >
-          {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0 p-2 md:w-1/3">
-              {renderItem(item)}
-            </div>
-          ))}
-        </motion.div>
-      </div>
-      <Button 
-        className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
-      </Button>
-      <Button 
-        className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
-        onClick={nextSlide}
-      >
-        <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
-      </Button>
-    </div>
-  );
-};
-
-const Services = () => {
-  const [selectedService, setSelectedService] = useState(null);
 
   return (
     <section className="py-16 bg-green-900 text-white overflow-hidden">
@@ -187,12 +154,34 @@ const Services = () => {
         >
           Empowering VCs, investors, and hedge funds with a full-cycle venture ecosystem. We accelerate growth, incubate innovation, and refine portfolios across the Web3 landscape.
         </motion.p>
-        <Carousel
-          items={serviceCategories}
-          renderItem={(category) => (
-            <ServiceCard category={category} onSelect={setSelectedService} />
-          )}
-        />
+        <div className="relative">
+          <div className="overflow-x-auto pb-4">
+            <motion.div
+              className="flex"
+              animate={{ x: `${-startIndex * 100}%` }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              style={{ width: `${serviceCategories.length * 100}%` }}
+            >
+              {serviceCategories.map((category, index) => (
+                <div key={index} className="w-full md:w-1/3 flex-shrink-0 p-2">
+                  <ServiceCard category={category} onSelect={setSelectedService} />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+          <Button 
+            className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+            onClick={prevSlide}
+          >
+            <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
+          </Button>
+          <Button 
+            className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+            onClick={nextSlide}
+          >
+            <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
+          </Button>
+        </div>
       </div>
       <AnimatePresence>
         {selectedService && (

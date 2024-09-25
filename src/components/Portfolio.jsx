@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -11,31 +9,19 @@ const ProjectCard = ({ project, onSelect }) => (
   <motion.div
     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
     onClick={() => onSelect(project)}
+    className="cursor-pointer"
   >
-    <Card className="futuristic-card h-full cursor-pointer">
-      <CardHeader className="relative">
-        <motion.img
-          src={project.logo}
-          alt={`${project.title} logo`}
-          className="w-16 h-16 absolute top-4 right-4"
-          initial={{ rotate: 0 }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <CardTitle className="flex justify-between items-center">
-          <span className="text-green-400 text-2xl">{project.title}</span>
-        </CardTitle>
-        <Badge variant="secondary" className="bg-green-700 text-white mt-2">{project.status}</Badge>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-4 text-gray-300">{project.description}</p>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag, tagIndex) => (
-            <Badge key={tagIndex} variant="outline" className="border-green-500 text-green-400">{tag}</Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="bg-green-800 p-6 rounded-lg shadow-lg h-full">
+      <h3 className="text-xl font-bold text-green-300 mb-2">{project.title}</h3>
+      <p className="text-green-100 mb-4">{project.description}</p>
+      <div className="flex flex-wrap gap-2">
+        {project.tags.map((tag, index) => (
+          <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-sm">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
   </motion.div>
 );
 
@@ -67,50 +53,16 @@ const ProjectDialog = ({ isOpen, onClose, project }) => (
   </Dialog>
 );
 
-const Carousel = ({ items, renderItem }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
-  };
-
-  return (
-    <div className="relative">
-      <div className="overflow-hidden">
-        <motion.div
-          className="flex"
-          animate={{ x: `${-currentIndex * 100}%` }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        >
-          {items.map((item, index) => (
-            <div key={index} className="w-full flex-shrink-0 p-2 md:w-1/3">
-              {renderItem(item)}
-            </div>
-          ))}
-        </motion.div>
-      </div>
-      <Button 
-        className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
-      </Button>
-      <Button 
-        className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
-        onClick={nextSlide}
-      >
-        <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
-      </Button>
-    </div>
-  );
-};
-
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 6;
+
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projectData.slice(indexOfFirstProject, indexOfLastProject);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <section className="py-16 bg-black text-white">
@@ -131,12 +83,36 @@ const Portfolio = () => {
         >
           Explore our diverse range of innovative blockchain projects, each designed to push the boundaries of Web3 technology and create new opportunities for growth and investment.
         </motion.p>
-        <Carousel
-          items={projectData}
-          renderItem={(project) => (
-            <ProjectCard project={project} onSelect={setSelectedProject} />
-          )}
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {currentProjects.map((project, index) => (
+            <ProjectCard key={index} project={project} onSelect={setSelectedProject} />
+          ))}
+        </div>
+        <div className="flex justify-center mt-8">
+          <Button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="mr-2"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          {Array.from({ length: Math.ceil(projectData.length / projectsPerPage) }).map((_, index) => (
+            <Button
+              key={index}
+              onClick={() => paginate(index + 1)}
+              className={`mx-1 ${currentPage === index + 1 ? 'bg-green-600' : 'bg-green-800'}`}
+            >
+              {index + 1}
+            </Button>
+          ))}
+          <Button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === Math.ceil(projectData.length / projectsPerPage)}
+            className="ml-2"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
       <AnimatePresence>
         {selectedProject && (
