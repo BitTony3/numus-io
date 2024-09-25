@@ -48,14 +48,15 @@ const AboutUs = () => {
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-bold mb-4 text-green-300">Our Flagship Product: CeDeFiAi</h2>
                   <p className="text-green-100">
-                    CeDeFiAi is our cutting-edge cross-chain liquidity aggregator and yield farming platform. Connected to 20+ blockchains, it enables us to:
+                    CeDeFiAi is our cutting-edge cross-chain liquidity aggregator and yield farming platform. Connected to 20+ blockchains and integrated with centralized exchanges, it enables us to:
                   </p>
                   <ul className="list-disc list-inside mt-4 text-green-200">
-                    <li>Manage opportunities and monitor assets across multiple chains</li>
+                    <li>Manage and monitor assets across multiple chains and centralized exchanges, creating a full portfolio management system</li>
                     <li>Provide seamless trading experiences through web and Telegram mini apps</li>
-                    <li>Offer unique investment opportunities across various blockchain ecosystems</li>
+                    <li>Offer unique investment opportunities across various blockchain ecosystems and traditional markets</li>
                     <li>Coordinate traffic exchange for over 150M users</li>
                     <li>Leverage deep data layers from exchanges and user activities for strategic insights</li>
+                    <li>Allow for abstraction in crypto asset management, bridging the gap between DeFi and CeFi</li>
                   </ul>
                 </CardContent>
               </Card>

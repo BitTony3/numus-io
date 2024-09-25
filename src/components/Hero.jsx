@@ -44,7 +44,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            Numus Venture Studio offers a full-cycle ecosystem to accelerate, incubate, and refine cutting-edge blockchain projects. We empower VCs, investors, and hedge funds with the tools and infrastructure to optimize portfolios and unlock new levels of growth.
+            Numus Venture Studio offers a full-cycle ecosystem to accelerate, incubate, and refine cutting-edge blockchain projects. Our flagship product, CeDeFiAi, enables management and monitoring of assets across multiple chains and centralized exchanges, creating a comprehensive portfolio management system with unparalleled abstraction in the crypto space.
           </motion.p>
           <motion.div
             className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6"
