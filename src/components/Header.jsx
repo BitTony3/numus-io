@@ -4,14 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import MatrixTornado from './MatrixTornado';
-
-const menuItems = [
-  { title: 'Home', path: '/' },
-  { title: 'Services', path: '/about' },
-  { title: 'Portfolio', path: '/portfolio' },
-  { title: 'Partners', path: '/partners' },
-  { title: 'Contact', path: '/contact' },
-];
+import { navItems } from '../nav-items';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,9 +44,9 @@ const Header = () => {
         </Link>
         <nav className="hidden md:block">
           <ul className="flex space-x-4">
-            {menuItems.map((item, index) => (
+            {navItems.map((item, index) => (
               <motion.li key={index} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link to={item.path}>
+                <Link to={item.to}>
                   <Button
                     variant="ghost"
                     className="text-green-300 hover:text-green-100 relative overflow-hidden group rounded-full px-4 py-2"
@@ -88,14 +81,14 @@ const Header = () => {
           >
             <nav className="py-4">
               <ul className="flex flex-col items-center space-y-4">
-                {menuItems.map((item, index) => (
+                {navItems.map((item, index) => (
                   <motion.li
                     key={index}
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link to={item.path} onClick={toggleMenu}>
+                    <Link to={item.to} onClick={toggleMenu}>
                       <Button
                         variant="ghost"
                         className="text-green-300 hover:text-green-100 w-full"
