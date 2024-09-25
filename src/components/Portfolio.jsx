@@ -12,6 +12,14 @@ const ProjectCard = ({ project, onSelect }) => (
     className="cursor-pointer"
   >
     <div className="bg-green-800 p-4 md:p-6 rounded-lg shadow-lg h-full">
+      <motion.div
+        className="w-16 h-16 mx-auto mb-4"
+        initial={{ rotateY: 0 }}
+        animate={{ rotateY: 360 }}
+        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+      >
+        <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" />
+      </motion.div>
       <h3 className="text-lg md:text-xl font-bold text-green-300 mb-2">{project.title}</h3>
       <p className="text-sm md:text-base text-green-100 mb-4">{project.description}</p>
       <div className="flex flex-wrap gap-2">
