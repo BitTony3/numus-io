@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { partnerData } from '../data/partnerData';
 
@@ -66,15 +66,13 @@ const Partners = () => {
         </main>
         <Footer />
       </AnimatedBackground>
-      <AnimatePresence>
-        {selectedPartner && (
-          <PartnerDialog
-            isOpen={!!selectedPartner}
-            onClose={() => setSelectedPartner(null)}
-            partner={selectedPartner}
-          />
-        )}
-      </AnimatePresence>
+      {selectedPartner && (
+        <PartnerDialog
+          isOpen={!!selectedPartner}
+          onClose={() => setSelectedPartner(null)}
+          partner={selectedPartner}
+        />
+      )}
     </div>
   );
 };
