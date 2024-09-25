@@ -2,7 +2,7 @@ import { HomeIcon, Briefcase, Users, Phone } from "lucide-react";
 import { lazy } from 'react';
 
 const Home = lazy(() => import("./pages/Home.jsx"));
-const AboutUs = lazy(() => import("./pages/Services.jsx"));
+const AboutUs = lazy(() => import("./pages/AboutUs.jsx"));
 const Portfolio = lazy(() => import("./pages/Portfolio.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 
