@@ -61,5 +61,19 @@ export const projectData = [
     strategicAdvantage: "Its data tracking layer provides precise user behavior insights, making it an essential tool for projects looking to boost user retention and engagement.",
     additionalInfo: "100 client projects integrated Claimr, 5M users onboarded.",
     website: "https://claimr.io"
+  },
+  {
+    title: "ZombieTrain",
+    logo: "/logos/zombietrain-logo.svg",
+    description: "Engaging mobile game transitioning to Telegram mini app with in-game monetization.",
+    tags: ["Gaming", "Mobile", "Blockchain"],
+    status: "Live",
+    highlight: "ZombieTrain is an exciting mobile game available on App Store and Google Play, now transitioning to a Telegram mini app. The game is set to be integrated into multiple game stores with in-game monetization features.",
+    valuation: "TBA",
+    raiseStatus: "Currently self-funded, exploring strategic partnerships for expansion.",
+    strategicAdvantage: "Leveraging the popularity of zombie-themed games and the massive user base of Telegram, ZombieTrain is positioned for rapid growth in the mobile gaming market.",
+    additionalInfo: "Average DAU growing by 80 users daily, showcasing strong user engagement and retention.",
+    website: "https://zombietra.in/",
+    googlePlay: "https://play.google.com/store/apps/details?id=com.KorubovGames.ZombieTrain"
   }
 ];

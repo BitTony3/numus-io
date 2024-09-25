@@ -63,6 +63,11 @@ const ProjectDialog = ({ project, onClose }) => (
           <ExternalLink className="w-4 h-4 mr-2" /> Telegram Mini App
         </a>
       )}
+      {project?.googlePlay && (
+        <a href={project.googlePlay} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+          <ExternalLink className="w-4 h-4 mr-2" /> Google Play Store
+        </a>
+      )}
     </div>
   </div>
 );
