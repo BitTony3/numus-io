@@ -22,17 +22,19 @@ const AnimatedEcosystem = () => {
         description: project.description,
       }));
 
-      const subNodes = projectData.flatMap((project, index) => 
-        (project.tags || []).map((tag, subIndex) => ({
-          id: `${project.title}-${tag}`,
+      const childNodes = projectData.flatMap((project, index) => 
+        (project.children || []).map((child, subIndex) => ({
+          id: `${project.title}-${child.title}`,
           x: Math.random() * 80 + 10,
           y: Math.random() * 80 + 10,
           radius: 25,
           parentId: project.title,
+          logo: child.logo,
+          description: child.title,
         }))
       );
 
-      return [numusNode, ...projectNodes, ...subNodes];
+      return [numusNode, ...projectNodes, ...childNodes];
     };
 
     setNodes(generateNodes());
@@ -74,6 +76,19 @@ const AnimatedEcosystem = () => {
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 2, delay: Math.random() }}
               />
+              {node.parentId && (
+                <motion.line
+                  x1={`${nodes.find(n => n.id === node.parentId).x}%`}
+                  y1={`${nodes.find(n => n.id === node.parentId).y}%`}
+                  x2={`${node.x}%`}
+                  y2={`${node.y}%`}
+                  stroke="#00D67F"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: Math.random() }}
+                />
+              )}
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
@@ -111,8 +126,8 @@ const AnimatedEcosystem = () => {
                 fontSize={node.radius / 2}
                 className="pointer-events-none"
               >
-                <tspan x={`${node.x}%`} dy="-0.5em">{node.id.split(' ')[0]}</tspan>
-                <tspan x={`${node.x}%`} dy="1.2em">{node.id.split(' ')[1]}</tspan>
+                <tspan x={`${node.x}%`} dy="-0.5em">{node.id.split('-')[0]}</tspan>
+                <tspan x={`${node.x}%`} dy="1.2em">{node.id.split('-')[1]}</tspan>
               </text>
             </g>
           ))}

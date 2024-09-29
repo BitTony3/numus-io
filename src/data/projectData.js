@@ -2,118 +2,41 @@ export const projectData = [
   {
     title: "CeDeFiAi",
     logo: "/logos/cedefiai-logo.svg",
-    description: "Cross-chain liquidity aggregator and yield farming platform connected to 20+ blockchains and 10+ exchanges, featuring login abstraction.",
-    tags: ["Cross-chain", "Liquidity", "Yield Farming"],
-    status: "Series A",
-    highlight: "CeDeFiAi is a cross-chain liquidity aggregator and yield farming platform connected to 20+ blockchains including TON, Tron, Solana, EVM and BTC layer2 comings soon, as well as 10+ exchanges. It enables users to manage opportunities and monitor assets through an abstract connection layer, and also integrates with both web and Telegram mini apps allowing users to Trade on CEX's from their telegram messanger directly and securely as well as providing investment opportunities on other chains bringing abstraction to crypto at it's finest. The platform features login abstraction for seamless user experience across multiple chains and exchanges.",
-    valuation: "$250M",
-    raiseStatus: "Series A at $25M, focused on expanding traffic activation and launching core bundles early October 2024.",
-    strategicAdvantage: "With access to over 150M users and deep data layers from exchanges and user activities off-chain and on-chain, a unified interface for all ecosystems and products adapted to different web environments. CeDeFiAi technically responsible today for coordination of traffic exchange of more then 150M users and users financial coordinations.",
-    website: "https://cdfi.ai",
-    telegramApp: "https://t.me/cdfi_bot"
+    description: "Cross-chain liquidity aggregator and yield farming platform",
+    children: [
+      { title: "Chains", logo: "/logos/chains-logo.svg" },
+      { title: "Layer2", logo: "/logos/layer2-logo.svg" },
+      { title: "Exchanges", logo: "/logos/exchanges-logo.svg" },
+      { title: "Protocols", logo: "/logos/protocols-logo.svg" },
+      { title: "Wallets/Connections", logo: "/logos/wallets-connections-logo.svg" },
+      { title: "Aggregated Bridges", logo: "/logos/aggregated-bridges-logo.svg" },
+      { title: "DEXes", logo: "/logos/dexes-logo.svg" },
+    ]
   },
   {
     title: "Asterizm",
     logo: "/logos/asterizm-logo.svg",
-    description: "Layer0 competitive cross-chain infrastructure, providing parallel token creation and cross-chain liquidity pools.",
-    tags: ["Layer0", "Cross-chain", "Liquidity"],
-    status: "Pre-seed",
-    highlight: "Asterizm offers Layer0 competitive cross-chain infrastructure, providing parallel token creation and cross-chain liquidity pools. It plays a key role in helping projects scale across multiple blockchains. TON main-net going live soon.",
-    valuation: "$30M",
-    raiseStatus: "Pre-seed, aiming for $2.5M to scale operations and infrastructure.",
-    strategicAdvantage: "Its cross-chain asset management capabilities allow users to efficiently handle token operations across major chains, adding value to any portfolio project. 20+ chains added. Solana, Ton, EVM live.",
-    website: "https://asterizm.io"
-  },
-  {
-    title: "LolliPump",
-    logo: "/logos/lollipump-logo.svg",
-    description: "Powerful token launch platform enabling cross-chain tokens and liquidity pools creation.",
-    tags: ["Token Launch", "Cross-chain", "Liquidity"],
-    status: "Launching Soon",
-    highlight: "Lollipump is a powerful token launch platform that enables users to create cross-chain tokens and liquidity pools across TON, Solana, EVM, and Tron ecosystems simultaneously with just a few clicks. It also includes a paper account system, allowing Web2 users to explore crypto without any financial commitment.",
-    valuation: "$40M",
-    raiseStatus: "Expected in 1 month, targeting a raise of $8M to support user growth and token liquidity integration.",
-    strategicAdvantage: "Pumpsticle's risk-free, incentivized learning model positions it as a key tool in onboarding the next generation of Web3 users.",
-    website: "https://lollipump.io",
-    telegramApp: "https://t.me/LolliPumpBot/Lolli"
+    description: "Layer0 competitive cross-chain infrastructure",
+    children: [
+      { title: "Chains", logo: "/logos/chains-logo.svg" },
+      { title: "Relayers", logo: "/logos/relayers-logo.svg" },
+      { title: "Oracles", logo: "/logos/oracles-logo.svg" },
+    ]
   },
   {
     title: "ChainSpot",
     logo: "/logos/chainspot-logo.svg",
-    description: "Bridging and swap aggregator supporting transactions across 28+ chains.",
-    tags: ["Bridging", "Swap Aggregator", "Multi-chain"],
-    status: "Seed",
-    highlight: "A bridging and swap aggregator supporting transactions across 28+ chains. ChainSpot offers gas-optimized swaps and features a loyalty program to incentivize user engagement.",
-    valuation: "$12M",
-    raiseStatus: "Seed at $1M, primarily for expanding swap infrastructure and adding support for new chains.",
-    strategicAdvantage: "ChainSpot's unique value proposition lies in its ability to provide liquidity aggregation and seamless bridging across multiple ecosystems.",
-    website: "https://chainspot.io"
+    description: "Bridging and swap aggregator",
+    children: []
   },
   {
     title: "Claimr",
     logo: "/logos/claimr-logo.svg",
-    description: "Simplifies the process of claiming rewards, airdrops, and token distributions.",
-    tags: ["Rewards", "Airdrops", "Engagement"],
-    status: "Seed",
-    highlight: "Claimr simplifies the process of claiming rewards, airdrops, and token distributions, integrating a quest-based infrastructure for incentivized engagement.",
-    valuation: "$30M",
-    raiseStatus: "Seed, aiming for $3M to develop cross-chain reward integration.",
-    strategicAdvantage: "Its data tracking layer provides precise user behavior insights, making it an essential tool for projects looking to boost user retention and engagement.",
-    additionalInfo: "100 client projects integrated Claimr, 5M users onboarded.",
-    website: "https://claimr.io"
+    description: "Simplifies claiming rewards, airdrops, and token distributions",
+    children: [
+      { title: "Connections", logo: "/logos/connections-logo.svg" },
+      { title: "Tracking Sources", logo: "/logos/tracking-sources-logo.svg" },
+      { title: "Versatility of Platforms", logo: "/logos/versatility-platforms-logo.svg" },
+    ]
   },
-  {
-    title: "ZombieTrain",
-    logo: "/logos/zombietrain-logo.svg",
-    description: "Engaging mobile game transitioning to Telegram mini app with in-game monetization.",
-    tags: ["Gaming", "Mobile", "Blockchain"],
-    status: "Live",
-    highlight: "ZombieTrain is an exciting mobile game available on App Store and Google Play, now transitioning to a Telegram mini app. The game is set to be integrated into multiple game stores with in-game monetization features.",
-    valuation: "TBA",
-    raiseStatus: "Currently self-funded, exploring strategic partnerships for expansion.",
-    strategicAdvantage: "Leveraging the popularity of zombie-themed games and the massive user base of Telegram, ZombieTrain is positioned for rapid growth in the mobile gaming market.",
-    additionalInfo: "Average DAU growing by 80 users daily, showcasing strong user engagement and retention.",
-    website: "https://zombietra.in/",
-    googlePlay: "https://play.google.com/store/apps/details?id=com.KorubovGames.ZombieTrain"
-  },
-  {
-    title: "Multi-Chain Wallet Hub",
-    logo: "/logos/multi-chain-wallet-hub-logo.svg",
-    description: "Comprehensive multi-chain wallet management platform with advanced features.",
-    tags: ["Multi-chain", "Wallet", "DeFi"],
-    status: "Beta",
-    highlight: "Multi-Chain Wallet Hub is a cutting-edge platform that allows users to manage multiple blockchain wallets across various networks. It offers features like portfolio tracking, transaction history, and seamless asset transfers between chains.",
-    valuation: "$20M",
-    raiseStatus: "Seed round completed, preparing for Series A to expand supported chains and enhance security features.",
-    strategicAdvantage: "Unique position in the market with support for a wide range of blockchain networks and intuitive user interface, making it accessible for both novice and experienced crypto users.",
-    additionalInfo: "Currently supporting 10+ major blockchain networks with plans to integrate 20+ more in the next quarter.",
-    website: "https://multi-chain-wallet-hub.gptengineer.run/"
-  },
-  {
-    title: "Future Lend Sphere",
-    logo: "/logos/future-lend-sphere-logo.svg",
-    description: "Next-generation decentralized lending and borrowing platform with AI-driven risk assessment.",
-    tags: ["DeFi", "Lending", "AI"],
-    status: "Alpha",
-    highlight: "Future Lend Sphere revolutionizes DeFi lending by incorporating AI-driven risk assessment models, enabling more accurate interest rates and collateral requirements. The platform supports multiple assets across various blockchain networks.",
-    valuation: "$15M",
-    raiseStatus: "Currently in private alpha, preparing for public beta launch and subsequent seed round.",
-    strategicAdvantage: "AI-powered risk assessment provides a significant edge over traditional DeFi lending platforms, potentially reducing default rates and optimizing returns for lenders.",
-    additionalInfo: "Early tests show a 30% improvement in risk prediction accuracy compared to traditional models.",
-    website: "https://future-lend-sphere.gptengineer.run/"
-  },
-  {
-    title: "Rewarded.tv & Imagine Replay",
-    logo: "/logos/rewarded-imagine-logo.svg", // You may need to create this combined logo
-    description: "A dual-platform initiative combining streaming rewards and AI-powered video creation.",
-    tags: ["Streaming", "AI", "Video Creation", "Rewards"],
-    status: "Live",
-    highlight: "Rewarded.tv offers a unique streaming platform with built-in rewards, while Imagine Replay provides AI-powered video creation and editing tools. Together, they form a comprehensive ecosystem for content creators and viewers.",
-    valuation: "TBA",
-    raiseStatus: "Actively seeking strategic partnerships and investments.",
-    strategicAdvantage: "The combination of Rewarded.tv's engagement-driven streaming platform and Imagine Replay's AI video tools creates a unique value proposition in the content creation space.",
-    additionalInfo: "Rewarded.tv incentivizes viewer engagement, while Imagine Replay democratizes high-quality video production through AI.",
-    website: "https://rewarded.tv/",
-    imagineReplayWebsite: "https://imaginereplay.org/"
-  }
 ];
