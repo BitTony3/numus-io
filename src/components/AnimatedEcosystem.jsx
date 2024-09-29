@@ -54,6 +54,19 @@ const AnimatedEcosystem = () => {
     }
   };
 
+  const renderStar = (cx, cy, r, n = 5) => {
+    const angle = Math.PI / n;
+    const points = [];
+    for (let i = 0; i < 2 * n; i++) {
+      const radius = i % 2 === 0 ? r : r / 2;
+      points.push(
+        cx + radius * Math.sin(i * angle),
+        cy - radius * Math.cos(i * angle)
+      );
+    }
+    return points.join(' ');
+  };
+
   return (
     <div 
       className="w-full h-screen bg-green-900 relative overflow-hidden cursor-move"
@@ -92,11 +105,10 @@ const AnimatedEcosystem = () => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <motion.circle
-                      cx={`${node.x}%`}
-                      cy={`${node.y}%`}
-                      r={node.radius}
+                    <motion.polygon
+                      points={renderStar(node.x, node.y, node.radius)}
                       fill={node.id === 'Numus' ? '#00D67F' : '#005C36'}
+                      className="star-node"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       whileHover={{ scale: 1.1 }}
