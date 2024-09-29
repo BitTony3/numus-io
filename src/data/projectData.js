@@ -75,5 +75,31 @@ export const projectData = [
     additionalInfo: "Average DAU growing by 80 users daily, showcasing strong user engagement and retention.",
     website: "https://zombietra.in/",
     googlePlay: "https://play.google.com/store/apps/details?id=com.KorubovGames.ZombieTrain"
+  },
+  {
+    title: "Multi-Chain Wallet Hub",
+    logo: "/logos/multi-chain-wallet-hub-logo.svg",
+    description: "Comprehensive multi-chain wallet management platform with advanced features.",
+    tags: ["Multi-chain", "Wallet", "DeFi"],
+    status: "Beta",
+    highlight: "Multi-Chain Wallet Hub is a cutting-edge platform that allows users to manage multiple blockchain wallets across various networks. It offers features like portfolio tracking, transaction history, and seamless asset transfers between chains.",
+    valuation: "$20M",
+    raiseStatus: "Seed round completed, preparing for Series A to expand supported chains and enhance security features.",
+    strategicAdvantage: "Unique position in the market with support for a wide range of blockchain networks and intuitive user interface, making it accessible for both novice and experienced crypto users.",
+    additionalInfo: "Currently supporting 10+ major blockchain networks with plans to integrate 20+ more in the next quarter.",
+    website: "https://multi-chain-wallet-hub.gptengineer.run/"
+  },
+  {
+    title: "Future Lend Sphere",
+    logo: "/logos/future-lend-sphere-logo.svg",
+    description: "Next-generation decentralized lending and borrowing platform with AI-driven risk assessment.",
+    tags: ["DeFi", "Lending", "AI"],
+    status: "Alpha",
+    highlight: "Future Lend Sphere revolutionizes DeFi lending by incorporating AI-driven risk assessment models, enabling more accurate interest rates and collateral requirements. The platform supports multiple assets across various blockchain networks.",
+    valuation: "$15M",
+    raiseStatus: "Currently in private alpha, preparing for public beta launch and subsequent seed round.",
+    strategicAdvantage: "AI-powered risk assessment provides a significant edge over traditional DeFi lending platforms, potentially reducing default rates and optimizing returns for lenders.",
+    additionalInfo: "Early tests show a 30% improvement in risk prediction accuracy compared to traditional models.",
+    website: "https://future-lend-sphere.gptengineer.run/"
   }
 ];
