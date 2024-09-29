@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Tooltip } from "@/components/ui/tooltip";
 import { TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { getRandomChainLogo } from '@/utils/chainLogos';
 
 const AnimatedEcosystem = () => {
   const [nodes, setNodes] = useState([]);
@@ -17,7 +18,8 @@ const AnimatedEcosystem = () => {
         x: Math.random() * 80 + 10,
         y: Math.random() * 80 + 10,
         radius: 30,
-        type: 'chain'
+        type: 'chain',
+        logo: getRandomChainLogo()
       }));
       const bridges = Array.from({ length: 30 }, (_, i) => ({
         id: `Bridge-${i + 1}`,
@@ -113,15 +115,30 @@ const AnimatedEcosystem = () => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <motion.polygon
-                      points={renderStar(node.x, node.y, node.radius)}
-                      fill={getNodeColor(node.type)}
-                      className="star-node"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      whileHover={{ scale: 1.2 }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    {node.type === 'chain' && node.logo ? (
+                      <motion.image
+                        href={node.logo}
+                        x={`${node.x - node.radius / 2}%`}
+                        y={`${node.y - node.radius / 2}%`}
+                        width={`${node.radius}%`}
+                        height={`${node.radius}%`}
+                        className="star-node"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    ) : (
+                      <motion.polygon
+                        points={renderStar(node.x, node.y, node.radius)}
+                        fill={getNodeColor(node.type)}
+                        className="star-node"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{node.id}</p>
