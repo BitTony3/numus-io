@@ -109,12 +109,3 @@
   80% { transform: translate(2px, -2px); }
   100% { transform: translate(0); }
 }
-
-.star-node {
-  animation: twinkle 4s infinite alternate;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
-}
