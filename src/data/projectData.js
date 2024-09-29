@@ -77,17 +77,17 @@ export const projectData = [
     googlePlay: "https://play.google.com/store/apps/details?id=com.KorubovGames.ZombieTrain"
   },
   {
-    title: "Multi-Chain Wallet Hub",
-    logo: "/logos/multi-chain-wallet-hub-logo.svg",
+    title: "BundleB Bundle",
+    logo: "/logos/bundleb-bundle-logo.svg",
     description: "Comprehensive multi-chain wallet management platform with advanced features.",
     tags: ["Multi-chain", "Wallet", "DeFi"],
     status: "Beta",
-    highlight: "Multi-Chain Wallet Hub is a cutting-edge platform that allows users to manage multiple blockchain wallets across various networks. It offers features like portfolio tracking, transaction history, and seamless asset transfers between chains.",
+    highlight: "BundleB Bundle is a cutting-edge platform that allows users to manage multiple blockchain wallets across various networks. It offers features like portfolio tracking, transaction history, and seamless asset transfers between chains.",
     valuation: "$20M",
     raiseStatus: "Seed round completed, preparing for Series A to expand supported chains and enhance security features.",
     strategicAdvantage: "Unique position in the market with support for a wide range of blockchain networks and intuitive user interface, making it accessible for both novice and experienced crypto users.",
     additionalInfo: "Currently supporting 10+ major blockchain networks with plans to integrate 20+ more in the next quarter.",
-    website: "https://multi-chain-wallet-hub.gptengineer.run/"
+    website: "https://bundleb-bundle.gptengineer.run/"
   },
   {
     title: "Future Lend Sphere",
@@ -104,7 +104,7 @@ export const projectData = [
   },
   {
     title: "Rewarded.tv & Imagine Replay",
-    logo: "/logos/rewarded-imagine-logo.svg", // You may need to create this combined logo
+    logo: "/logos/rewarded-imagine-logo.svg",
     description: "A dual-platform initiative combining streaming rewards and AI-powered video creation.",
     tags: ["Streaming", "AI", "Video Creation", "Rewards"],
     status: "Live",
