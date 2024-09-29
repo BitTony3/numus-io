@@ -4,32 +4,14 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
 import { ArrowRight } from 'lucide-react';
+import AnimatedEcosystem from './AnimatedEcosystem';
 
 const Hero = () => {
   return (
     <AnimatedBackground>
       <section className="relative z-10 bg-gradient-to-b from-green-900 via-green-700 to-green-500 text-white py-16 md:py-28">
         <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
-          >
-            <motion.img
-              src="/logo.svg"
-              alt="Numus Logo"
-              className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6"
-              animate={{
-                rotateY: [0, 360],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          </motion.div>
+          <AnimatedEcosystem />
           <motion.h2
             className="text-3xl md:text-4xl lg:text-6xl font-bold mb-5 title-text"
             initial={{ opacity: 0, y: 50 }}
