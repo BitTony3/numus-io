@@ -24,7 +24,7 @@ const ProjectCard = ({ project, onSelect }) => (
     <h3 className="text-lg font-bold text-green-300 mb-2">{project.title}</h3>
     <p className="text-sm text-green-100 mb-4">{project.description}</p>
     <div className="flex flex-wrap gap-2">
-      {project.tags.map((tag, index) => (
+      {project.tags && project.tags.map((tag, index) => (
         <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-xs">
           {tag}
         </span>
