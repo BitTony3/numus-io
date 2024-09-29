@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { projectData } from '../data/projectData';
 import { Tooltip } from "@/components/ui/tooltip";
 import { TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -12,29 +11,37 @@ const AnimatedEcosystem = () => {
 
   useEffect(() => {
     const generateNodes = () => {
-      const numusNode = { id: 'Numus', x: 50, y: 50, radius: 60 };
-      const projectNodes = projectData.map((project, index) => ({
-        id: project.title,
+      const numusNode = { id: 'Numus', x: 50, y: 50, radius: 60, type: 'center' };
+      const chains = Array.from({ length: 50 }, (_, i) => ({
+        id: `Chain-${i + 1}`,
         x: Math.random() * 80 + 10,
         y: Math.random() * 80 + 10,
-        radius: 40,
-        logo: project.logo,
-        description: project.description,
+        radius: 30,
+        type: 'chain'
+      }));
+      const bridges = Array.from({ length: 30 }, (_, i) => ({
+        id: `Bridge-${i + 1}`,
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10,
+        radius: 25,
+        type: 'bridge'
+      }));
+      const wallets = Array.from({ length: 20 }, (_, i) => ({
+        id: `Wallet-${i + 1}`,
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10,
+        radius: 20,
+        type: 'wallet'
+      }));
+      const dapps = Array.from({ length: 40 }, (_, i) => ({
+        id: `DApp-${i + 1}`,
+        x: Math.random() * 80 + 10,
+        y: Math.random() * 80 + 10,
+        radius: 15,
+        type: 'dapp'
       }));
 
-      const childNodes = projectData.flatMap((project, index) => 
-        (project.children || []).map((child, subIndex) => ({
-          id: `${project.title}-${child.title}`,
-          x: Math.random() * 80 + 10,
-          y: Math.random() * 80 + 10,
-          radius: 25,
-          parentId: project.title,
-          logo: child.logo,
-          description: child.title,
-        }))
-      );
-
-      return [numusNode, ...projectNodes, ...childNodes];
+      return [numusNode, ...chains, ...bridges, ...wallets, ...dapps];
     };
 
     setNodes(generateNodes());
@@ -67,6 +74,17 @@ const AnimatedEcosystem = () => {
     return points.join(' ');
   };
 
+  const getNodeColor = (type) => {
+    switch (type) {
+      case 'center': return '#00D67F';
+      case 'chain': return '#4CAF50';
+      case 'bridge': return '#2196F3';
+      case 'wallet': return '#FFC107';
+      case 'dapp': return '#9C27B0';
+      default: return '#00A86B';
+    }
+  };
+
   return (
     <div 
       className="w-full h-screen bg-green-900 relative overflow-hidden cursor-move"
@@ -78,28 +96,18 @@ const AnimatedEcosystem = () => {
         <g transform={`translate(${position.x}, ${position.y}) scale(${scale})`}>
           {nodes.map((node) => (
             <g key={node.id}>
-              <motion.line
-                x1={`${nodes.find(n => n.id === 'Numus').x}%`}
-                y1={`${nodes.find(n => n.id === 'Numus').y}%`}
-                x2={`${node.x}%`}
-                y2={`${node.y}%`}
-                stroke="#00A86B"
-                strokeWidth="2"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 2, delay: Math.random() }}
-              />
-              {node.parentId && (
+              {node.type !== 'center' && (
                 <motion.line
-                  x1={`${nodes.find(n => n.id === node.parentId).x}%`}
-                  y1={`${nodes.find(n => n.id === node.parentId).y}%`}
+                  x1={`${nodes.find(n => n.id === 'Numus').x}%`}
+                  y1={`${nodes.find(n => n.id === 'Numus').y}%`}
                   x2={`${node.x}%`}
                   y2={`${node.y}%`}
-                  stroke="#00D67F"
+                  stroke={getNodeColor(node.type)}
                   strokeWidth="1"
+                  strokeOpacity="0.3"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, delay: Math.random() }}
+                  transition={{ duration: 2, delay: Math.random() }}
                 />
               )}
               <TooltipProvider>
@@ -107,39 +115,28 @@ const AnimatedEcosystem = () => {
                   <TooltipTrigger>
                     <motion.polygon
                       points={renderStar(node.x, node.y, node.radius)}
-                      fill={node.id === 'Numus' ? '#00D67F' : '#005C36'}
+                      fill={getNodeColor(node.type)}
                       className="star-node"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     />
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>{node.description || node.id}</p>
+                    <p>{node.id}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-              {node.logo && (
-                <image
-                  href={node.logo}
-                  x={`${node.x}%`}
-                  y={`${node.y}%`}
-                  height={node.radius * 1.5}
-                  width={node.radius * 1.5}
-                  transform={`translate(-${node.radius * 0.75}, -${node.radius * 0.75})`}
-                />
-              )}
               <text
                 x={`${node.x}%`}
                 y={`${node.y + (node.radius / 2)}%`}
                 textAnchor="middle"
                 fill="white"
-                fontSize={node.radius / 2}
+                fontSize={node.radius / 3}
                 className="pointer-events-none"
               >
-                <tspan x={`${node.x}%`} dy="-0.5em">{node.id.split('-')[0]}</tspan>
-                <tspan x={`${node.x}%`} dy="1.2em">{node.id.split('-')[1]}</tspan>
+                {node.id.split('-')[0]}
               </text>
             </g>
           ))}
