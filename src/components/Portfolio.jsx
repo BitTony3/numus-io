@@ -58,6 +58,11 @@ const ProjectDialog = ({ project, onClose }) => (
           <ExternalLink className="w-4 h-4 mr-2" /> Visit Website
         </a>
       )}
+      {project?.imagineReplayWebsite && (
+        <a href={project.imagineReplayWebsite} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+          <ExternalLink className="w-4 h-4 mr-2" /> Visit Imagine Replay
+        </a>
+      )}
       {project?.telegramApp && (
         <a href={project.telegramApp} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
           <ExternalLink className="w-4 h-4 mr-2" /> Telegram Mini App

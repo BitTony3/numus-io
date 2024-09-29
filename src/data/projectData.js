@@ -101,5 +101,19 @@ export const projectData = [
     strategicAdvantage: "AI-powered risk assessment provides a significant edge over traditional DeFi lending platforms, potentially reducing default rates and optimizing returns for lenders.",
     additionalInfo: "Early tests show a 30% improvement in risk prediction accuracy compared to traditional models.",
     website: "https://future-lend-sphere.gptengineer.run/"
+  },
+  {
+    title: "Rewarded.tv & Imagine Replay",
+    logo: "/logos/rewarded-imagine-logo.svg", // You may need to create this combined logo
+    description: "A dual-platform initiative combining streaming rewards and AI-powered video creation.",
+    tags: ["Streaming", "AI", "Video Creation", "Rewards"],
+    status: "Live",
+    highlight: "Rewarded.tv offers a unique streaming platform with built-in rewards, while Imagine Replay provides AI-powered video creation and editing tools. Together, they form a comprehensive ecosystem for content creators and viewers.",
+    valuation: "TBA",
+    raiseStatus: "Actively seeking strategic partnerships and investments.",
+    strategicAdvantage: "The combination of Rewarded.tv's engagement-driven streaming platform and Imagine Replay's AI video tools creates a unique value proposition in the content creation space.",
+    additionalInfo: "Rewarded.tv incentivizes viewer engagement, while Imagine Replay democratizes high-quality video production through AI.",
+    website: "https://rewarded.tv/",
+    imagineReplayWebsite: "https://imaginereplay.org/"
   }
 ];
