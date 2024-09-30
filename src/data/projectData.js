@@ -90,17 +90,17 @@ export const projectData = [
     website: "https://bundleb-bundle.gptengineer.run/"
   },
   {
-    title: "Future Lend Sphere",
-    logo: "/logos/future-lend-sphere-logo.svg",
-    description: "Next-generation decentralized lending and borrowing platform with AI-driven risk assessment.",
+    title: "AAMM",
+    logo: "/logos/aamm-logo.svg", // Assuming we have this logo file
+    description: "Abstracted Automated Money Market - Next-generation decentralized lending and borrowing platform with AI-driven risk assessment.",
     tags: ["DeFi", "Lending", "AI"],
     status: "Alpha",
-    highlight: "Future Lend Sphere revolutionizes DeFi lending by incorporating AI-driven risk assessment models, enabling more accurate interest rates and collateral requirements. The platform supports multiple assets across various blockchain networks.",
+    highlight: "AAMM (Abstracted Automated Money Market) revolutionizes DeFi lending by incorporating AI-driven risk assessment models, enabling more accurate interest rates and collateral requirements. The platform supports multiple assets across various blockchain networks.",
     valuation: "$15M",
     raiseStatus: "Currently in private alpha, preparing for public beta launch and subsequent seed round.",
     strategicAdvantage: "AI-powered risk assessment provides a significant edge over traditional DeFi lending platforms, potentially reducing default rates and optimizing returns for lenders.",
     additionalInfo: "Early tests show a 30% improvement in risk prediction accuracy compared to traditional models.",
-    website: "https://future-lend-sphere.gptengineer.run/"
+    website: "https://aamm.finance" // Updated website URL
   },
   {
     title: "Rewarded.tv & Imagine Replay",
@@ -118,7 +118,7 @@ export const projectData = [
   },
   {
     title: "tads.me",
-    logo: "/logos/tads-logo.svg",
+    logo: "/logos/tads-logo.svg", // Assuming we have this logo file
     description: "Decentralized advertising platform leveraging blockchain for transparent and efficient ad campaigns.",
     tags: ["Advertising", "Blockchain", "DApp"],
     status: "Live",
