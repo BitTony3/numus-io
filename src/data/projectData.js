@@ -129,5 +129,19 @@ export const projectData = [
     additionalInfo: "Currently serving over 1,000 active advertisers and 10,000 content creators, with a 40% month-over-month growth in ad impressions.",
     website: "https://tads.me",
     telegramApp: "https://t.me/tadsmebot"
+  },
+  {
+    title: "CatchUP",
+    logo: "/logos/catchup-logo.svg", // Assuming we have this logo file
+    description: "AI-powered news aggregator and summarizer with personalized feeds and community engagement.",
+    tags: ["AI", "News", "Social Media"],
+    status: "Live",
+    highlight: "CatchUP is an innovative AI-powered news aggregator that provides personalized feeds and summaries of the latest news across various topics. It features community engagement tools and a unique 'CatchUP in 60 seconds' feature for quick news consumption.",
+    valuation: "$10M",
+    raiseStatus: "Seed round completed, raised $1.5M to enhance AI capabilities and expand user base.",
+    strategicAdvantage: "Utilizes advanced AI for content curation and summarization, offering a unique blend of personalized news and community interaction. The platform's ability to provide quick, digestible news summaries caters to the modern, fast-paced lifestyle.",
+    additionalInfo: "Over 100,000 active users, with a 40% month-over-month growth in user engagement. Featured in TechCrunch as one of the top emerging news apps of the year.",
+    website: "https://catchup.fans",
+    telegramApp: "https://t.me/catchupfans_bot"
   }
 ];
