@@ -143,5 +143,57 @@ export const projectData = [
     additionalInfo: "Over 100,000 active users, with a 40% month-over-month growth in user engagement. Featured in TechCrunch as one of the top emerging news apps of the year.",
     website: "https://catchup.fans",
     telegramApp: "https://t.me/catchupfans_bot"
+  },
+  {
+    title: "Ommly",
+    logo: "/logos/ommly-logo.svg", // Assuming we have this logo file
+    description: "AI-powered platform for personalized wellness and mindfulness experiences.",
+    tags: ["AI", "Wellness", "Mindfulness"],
+    status: "Seed",
+    highlight: "Ommly leverages AI to create tailored wellness and mindfulness programs, adapting to individual user needs and preferences in real-time.",
+    valuation: "TBA",
+    raiseStatus: "Seed round, details to be announced.",
+    strategicAdvantage: "Unique AI algorithms that personalize mindfulness practices, potentially revolutionizing the digital wellness industry.",
+    additionalInfo: "Currently in beta testing with a select group of users, showing promising engagement metrics.",
+    website: "https://ommly.com"
+  },
+  {
+    title: "Evolur",
+    logo: "/logos/evolur-logo.svg", // Assuming we have this logo file
+    description: "Blockchain-based platform for transparent and efficient luxury goods authentication and trading.",
+    tags: ["Blockchain", "Luxury Goods", "Authentication"],
+    status: "Series A",
+    highlight: "Evolur uses blockchain technology to create immutable records for luxury items, ensuring authenticity and facilitating secure peer-to-peer trading.",
+    valuation: "$40M",
+    raiseStatus: "Completed Series A, raised $8M to expand market reach and enhance platform features.",
+    strategicAdvantage: "First-mover advantage in applying blockchain to luxury goods authentication, partnering with major luxury brands.",
+    additionalInfo: "Already integrated with 5 top luxury brands, with 20+ more in the pipeline.",
+    website: "https://evolur.io"
+  },
+  {
+    title: "Goods",
+    logo: "/logos/goods-logo.svg", // Assuming we have this logo file
+    description: "Decentralized marketplace for sustainable and ethically sourced consumer goods.",
+    tags: ["DeFi", "Sustainability", "E-commerce"],
+    status: "Seed",
+    highlight: "Goods combines DeFi principles with sustainable e-commerce, creating a transparent supply chain and incentivizing ethical production and consumption.",
+    valuation: "$15M",
+    raiseStatus: "Seed round ongoing, aiming to raise $3M for platform development and merchant onboarding.",
+    strategicAdvantage: "Unique positioning at the intersection of DeFi, sustainability, and e-commerce, tapping into growing consumer demand for ethical products.",
+    additionalInfo: "Beta platform launched with 100+ merchants and showing 30% month-over-month growth in transactions.",
+    website: "https://goods.market"
+  },
+  {
+    title: "Playtonic",
+    logo: "/logos/playtonic-logo.svg", // Assuming we have this logo file
+    description: "AI-driven platform for creating and sharing interactive music experiences.",
+    tags: ["AI", "Music", "Social"],
+    status: "Pre-seed",
+    highlight: "Playtonic uses AI to enable users to create, remix, and share music in novel ways, fostering a new form of social music interaction.",
+    valuation: "TBA",
+    raiseStatus: "Pre-seed round, details to be announced.",
+    strategicAdvantage: "Innovative AI algorithms for music creation and interaction, potentially disrupting how people consume and engage with music.",
+    additionalInfo: "Prototype demonstrated at major music tech conferences, generating significant industry buzz.",
+    website: "https://playtonic.ai"
   }
 ];
