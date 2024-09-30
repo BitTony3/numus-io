@@ -115,5 +115,19 @@ export const projectData = [
     additionalInfo: "Rewarded.tv incentivizes viewer engagement, while Imagine Replay democratizes high-quality video production through AI.",
     website: "https://rewarded.tv/",
     imagineReplayWebsite: "https://imaginereplay.org/"
+  },
+  {
+    title: "tads.me",
+    logo: "/logos/tads-logo.svg",
+    description: "Decentralized advertising platform leveraging blockchain for transparent and efficient ad campaigns.",
+    tags: ["Advertising", "Blockchain", "DApp"],
+    status: "Live",
+    highlight: "tads.me is a revolutionary decentralized advertising platform that utilizes blockchain technology to create a transparent, efficient, and user-centric advertising ecosystem. It connects advertisers directly with content creators and audiences, eliminating intermediaries and reducing costs.",
+    valuation: "$50M",
+    raiseStatus: "Series A completed, raised $10M to expand market reach and enhance platform features.",
+    strategicAdvantage: "By leveraging blockchain, tads.me offers unparalleled transparency in ad spending and performance metrics. Its decentralized nature ensures fair compensation for content creators and better targeting for advertisers.",
+    additionalInfo: "Currently serving over 1,000 active advertisers and 10,000 content creators, with a 40% month-over-month growth in ad impressions.",
+    website: "https://tads.me",
+    telegramApp: "https://t.me/tadsmebot"
   }
 ];
