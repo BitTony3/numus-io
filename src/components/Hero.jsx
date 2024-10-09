@@ -11,15 +11,25 @@ const Hero = () => {
   const rendererRef = useRef(null);
   const [currentShape, setCurrentShape] = useState(0);
   const [error, setError] = useState(null);
-  const [currentTitle, setCurrentTitle] = useState('Abstracting Access');
+  const [currentTitle, setCurrentTitle] = useState('Full-Cycle Venture Studio');
 
   const titles = [
-    'Abstracting Access',
-    'Omni-Chain',
-    'Cross-Environment',
-    'All-in-one Terminal',
-    'Redefining Web3'
+    'Full-Cycle Venture Studio',
+    'Cross-Chain Solutions',
+    'Project Incubation',
+    'Portfolio Optimization',
+    'Traffic Activation'
   ];
+
+  const descriptions = [
+    'Accelerating blockchain innovation from concept to market success',
+    'Seamless integration across 50+ chains and bridges',
+    'Nurturing early-stage projects with expert guidance and resources',
+    'Refining and enhancing existing projects for maximum potential',
+    'Leveraging a network of 150M+ users for rapid growth'
+  ];
+
+  const [currentDescription, setCurrentDescription] = useState(descriptions[0]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -65,15 +75,14 @@ const Hero = () => {
       };
       animate();
 
-      const changeShapeAndTitle = () => {
-        scene.remove(mesh);
+      const changeContent = () => {
         setCurrentShape((prev) => (prev + 1) % shapes.length);
-        setCurrentTitle(titles[(currentShape + 1) % titles.length]);
-        mesh = new THREE.Mesh(shapes[currentShape], material);
-        scene.add(mesh);
+        const nextIndex = (currentShape + 1) % titles.length;
+        setCurrentTitle(titles[nextIndex]);
+        setCurrentDescription(descriptions[nextIndex]);
       };
 
-      const intervalId = setInterval(changeShapeAndTitle, 5000);
+      const intervalId = setInterval(changeContent, 5000);
 
       const handleResize = () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -123,15 +132,15 @@ const Hero = () => {
             className="futuristic-text text-xl mb-8 max-w-2xl mx-auto"
             animate={controls}
           >
-            Numus Venture Studio offers a comprehensive ecosystem to accelerate, incubate, and refine cutting-edge blockchain projects for institutional investors.
+            {currentDescription}
           </motion.p>
           <motion.div 
             className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
             animate={controls}
           >
-            <Link to="/about">
+            <Link to="/services">
               <Button size="lg" className="w-full sm:w-auto futuristic-button">
-                Explore Our Ecosystem
+                Explore Our Services
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
