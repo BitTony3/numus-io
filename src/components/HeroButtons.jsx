@@ -11,13 +11,15 @@ const HeroButtons = () => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.4, duration: 0.5 }}
   >
-    <Link to="/about">
+    <Link to="/about" className="w-full sm:w-auto">
       <Button size="lg" className="w-full sm:w-auto futuristic-button group">
-        Explore Our Services
-        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        <span className="flex items-center justify-center">
+          Explore Our Services
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        </span>
       </Button>
     </Link>
-    <Link to="/portfolio">
+    <Link to="/portfolio" className="w-full sm:w-auto">
       <Button size="lg" variant="outline" className="w-full sm:w-auto border-futuristic-400 text-futuristic-400 hover:bg-futuristic-800 hover:text-futuristic-100 transition-colors">
         View Our Projects
       </Button>

@@ -47,7 +47,7 @@ const Hero = () => {
           
           <div 
             ref={containerRef} 
-            className="flex-grow mb-2 md:mb-8 h-48 md:h-72 transform scale-90 -translate-y-[calc(70%+40px)] md:scale-100 md:-translate-y-[calc(55%+40px)]"
+            className="flex-grow mb-2 md:mb-8 h-48 md:h-72 transform scale-75 -translate-y-[calc(60%+20px)] md:scale-100 md:-translate-y-[calc(55%+40px)]"
           />
         </motion.div>
       </div>
