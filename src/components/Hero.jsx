@@ -122,6 +122,47 @@ const Hero = () => {
 
   const { title, description, icon: Icon } = heroContent[currentIndex];
 
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      y: -20, 
+      transition: { 
+        duration: 0.3 
+      } 
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+        delay: 0.2
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      x: 20, 
+      transition: { 
+        duration: 0.3 
+      } 
+    }
+  };
+
   return (
     <section className="relative min-h-screen holographic-bg overflow-hidden">
       <div ref={containerRef} className="absolute inset-0 z-0" />
@@ -136,18 +177,39 @@ const Hero = () => {
             className="flex items-center justify-center mb-6"
             animate={controls}
           >
-            <Icon className="w-16 h-16 text-futuristic-300 mr-4" />
-            <h1 className="futuristic-title text-5xl md:text-7xl">{title}</h1>
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            >
+              <Icon className="w-16 h-16 text-futuristic-300 mr-4" />
+            </motion.div>
+            <motion.h1
+              key={title}
+              className="futuristic-title text-5xl md:text-7xl"
+              variants={titleVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {title}
+            </motion.h1>
           </motion.div>
           <motion.p 
+            key={description}
             className="futuristic-text text-xl mb-8 max-w-2xl mx-auto"
-            animate={controls}
+            variants={descriptionVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
             {description}
           </motion.p>
           <motion.div 
             className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
-            animate={controls}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
           >
             <Link to="/services">
               <Button size="lg" className="w-full sm:w-auto futuristic-button group">
