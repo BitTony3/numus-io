@@ -28,10 +28,10 @@ const Services = () => {
   };
 
   return (
-    <section className="py-16 bg-futuristic-900 text-futuristic-100 overflow-hidden">
+    <section className="py-16 md:py-24 bg-futuristic-900 text-futuristic-100 overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 text-futuristic-300"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 md:mb-8 text-futuristic-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -39,7 +39,7 @@ const Services = () => {
           Numus Venture Studio Services
         </motion.h2>
         <motion.p 
-          className="text-sm md:text-base lg:text-lg text-center mb-10 max-w-3xl mx-auto text-futuristic-200"
+          className="text-base md:text-lg lg:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto text-futuristic-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,7 +54,7 @@ const Services = () => {
             {serviceCategories.map((category, index) => (
               <motion.div
                 key={index}
-                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2 md:p-4 ${isMobile ? 'mb-6' : ''}`}
+                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-3 md:p-5 ${isMobile ? 'mb-8' : ''}`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -66,16 +66,16 @@ const Services = () => {
           {!isMobile && (
             <>
               <Button 
-                className="absolute top-1/2 -left-2 md:left-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-1 md:p-2" 
+                className="absolute top-1/2 -left-4 md:left-2 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2 md:p-3" 
                 onClick={prevSlide}
               >
-                <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
+                <ChevronLeft className="h-5 w-5 md:h-7 md:w-7" />
               </Button>
               <Button 
-                className="absolute top-1/2 -right-2 md:right-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-1 md:p-2" 
+                className="absolute top-1/2 -right-4 md:right-2 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2 md:p-3" 
                 onClick={nextSlide}
               >
-                <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
+                <ChevronRight className="h-5 w-5 md:h-7 md:w-7" />
               </Button>
             </>
           )}

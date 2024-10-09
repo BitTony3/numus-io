@@ -11,17 +11,17 @@ const ProjectCard = ({ project, onSelect }) => (
     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
     whileTap={{ scale: 0.95 }}
     onClick={() => onSelect(project)}
-    className="cursor-pointer bg-futuristic-800 p-4 rounded-lg shadow-lg"
+    className="cursor-pointer bg-futuristic-800 p-5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
   >
     <motion.div
-      className="w-16 h-16 mx-auto mb-4"
+      className="w-20 h-20 mx-auto mb-4"
       initial={{ rotateY: 0 }}
       animate={{ rotateY: 360 }}
       transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
     >
       <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" />
     </motion.div>
-    <h3 className="text-lg font-bold text-futuristic-300 mb-2">{project.title}</h3>
+    <h3 className="text-xl font-bold text-futuristic-300 mb-3">{project.title}</h3>
     <p className="text-sm text-futuristic-100 mb-4">{project.description}</p>
     <div className="flex flex-wrap gap-2">
       {project.tags.map((tag, index) => (
@@ -36,7 +36,7 @@ const ProjectCard = ({ project, onSelect }) => (
 const ProjectDialog = ({ project, onClose }) => (
   <div className="text-futuristic-100 max-h-[80vh] overflow-y-auto">
     <h2 className="text-2xl font-bold text-futuristic-300 mb-4 flex items-center">
-      <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
+      <img src={project?.logo} alt={`${project?.title} logo`} className="w-10 h-10 mr-3" />
       {project?.title}
     </h2>
     <p className="text-futuristic-200 mb-4">{project?.highlight}</p>
@@ -52,25 +52,25 @@ const ProjectDialog = ({ project, onClose }) => (
         <p className="text-futuristic-200 mb-4">{project?.additionalInfo}</p>
       </>
     )}
-    <div className="flex flex-col space-y-2 mt-4">
+    <div className="flex flex-col space-y-3 mt-6">
       {project?.website && (
-        <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
-          <ExternalLink className="w-4 h-4 mr-2" /> Visit Website
+        <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center transition-colors duration-300">
+          <ExternalLink className="w-5 h-5 mr-2" /> Visit Website
         </a>
       )}
       {project?.imagineReplayWebsite && (
-        <a href={project.imagineReplayWebsite} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
-          <ExternalLink className="w-4 h-4 mr-2" /> Visit Imagine Replay
+        <a href={project.imagineReplayWebsite} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center transition-colors duration-300">
+          <ExternalLink className="w-5 h-5 mr-2" /> Visit Imagine Replay
         </a>
       )}
       {project?.telegramApp && (
-        <a href={project.telegramApp} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
-          <ExternalLink className="w-4 h-4 mr-2" /> Telegram Mini App
+        <a href={project.telegramApp} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center transition-colors duration-300">
+          <ExternalLink className="w-5 h-5 mr-2" /> Telegram Mini App
         </a>
       )}
       {project?.googlePlay && (
-        <a href={project.googlePlay} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
-          <ExternalLink className="w-4 h-4 mr-2" /> Google Play Store
+        <a href={project.googlePlay} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center transition-colors duration-300">
+          <ExternalLink className="w-5 h-5 mr-2" /> Google Play Store
         </a>
       )}
     </div>
@@ -90,10 +90,10 @@ const Portfolio = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <section className="py-16 text-futuristic-100">
+    <section className="py-16 md:py-24 text-futuristic-100">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl md:text-4xl font-bold text-center mb-8 text-futuristic-300"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 text-futuristic-300"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -101,25 +101,25 @@ const Portfolio = () => {
           Numus Project Portfolio
         </motion.h2>
         <motion.p
-          className="text-base md:text-lg text-center mb-12 max-w-2xl mx-auto text-futuristic-200"
+          className="text-base md:text-lg lg:text-xl text-center mb-12 md:mb-16 max-w-2xl mx-auto text-futuristic-200"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           Explore our diverse range of innovative blockchain projects, each designed to push the boundaries of Web3 technology and create new opportunities for growth and investment.
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           {currentProjects.map((project, index) => (
             <ProjectCard key={index} project={project} onSelect={setSelectedProject} />
           ))}
         </div>
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-10 md:mt-12">
           <Button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
             className="mr-2 bg-futuristic-800 hover:bg-futuristic-700 text-futuristic-300"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5" />
           </Button>
           {Array.from({ length: Math.ceil(projectData.length / projectsPerPage) }).map((_, index) => (
             <Button
@@ -139,7 +139,7 @@ const Portfolio = () => {
             disabled={currentPage === Math.ceil(projectData.length / projectsPerPage)}
             className="ml-2 bg-futuristic-800 hover:bg-futuristic-700 text-futuristic-300"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5" />
           </Button>
         </div>
       </div>

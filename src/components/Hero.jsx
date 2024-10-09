@@ -16,7 +16,7 @@ const Hero = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroContent.length);
-    }, 7000); // Increased interval by 30% (from 5000 to 7000)
+    }, 7000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -28,7 +28,7 @@ const Hero = () => {
           className="text-center flex flex-col h-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3 }} // Increased duration by 30%
+          transition={{ duration: 1.3 }}
         >
           <div className="mb-2 md:mb-6">
             <motion.div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mb-6">
@@ -36,9 +36,9 @@ const Hero = () => {
                 className="mb-2 md:mb-0 md:mr-4"
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }} // Increased duration by 30%
+                transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }}
               >
-                <Icon className="w-10 h-10 md:w-16 md:h-16 text-futuristic-300" />
+                <Icon className="w-12 h-12 md:w-20 md:h-20 text-futuristic-300" />
               </motion.div>
               <HeroTitle title={title} />
             </motion.div>
@@ -47,15 +47,15 @@ const Hero = () => {
           
           <div 
             ref={containerRef} 
-            className="flex-grow mb-2 md:mb-8 h-40 md:h-64 transform scale-85 -translate-y-[calc(74%+40px)] md:scale-100 md:-translate-y-[calc(60%+40px)]"
+            className="flex-grow mb-2 md:mb-8 h-48 md:h-72 transform scale-90 -translate-y-[calc(70%+40px)] md:scale-100 md:-translate-y-[calc(55%+40px)]"
           />
         </motion.div>
       </div>
       
-      <div className="container mx-auto px-4 pb-4 md:pb-8 relative z-10">
+      <div className="container mx-auto px-4 pb-6 md:pb-10 relative z-10">
         <HeroButtons />
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };

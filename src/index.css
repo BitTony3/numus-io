@@ -48,15 +48,15 @@
   }
 
   .futuristic-title {
-    @apply text-3xl font-bold mb-4 text-futuristic-300 font-title;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-futuristic-300 font-title;
   }
 
   .futuristic-subtitle {
-    @apply text-xl font-semibold mb-2 text-futuristic-400 font-title;
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold mb-2 text-futuristic-400 font-title;
   }
 
   .futuristic-text {
-    @apply text-futuristic-100 font-sans;
+    @apply text-futuristic-100 font-sans text-base md:text-lg;
   }
 
   .holographic-bg {
@@ -89,4 +89,16 @@
 
 .animate-pulse {
   animation: pulse 5.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (max-width: 640px) {
+  .futuristic-title {
+    @apply text-2xl;
+  }
+  .futuristic-subtitle {
+    @apply text-xl;
+  }
+  .futuristic-text {
+    @apply text-sm;
+  }
 }
