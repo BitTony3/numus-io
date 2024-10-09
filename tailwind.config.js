@@ -18,38 +18,38 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "#00A86B",
-        input: "#00D67F",
-        ring: "#00FF9D",
-        background: "#F0FFF4",
-        foreground: "#005C36",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#00D67F",
-          foreground: "#FFFFFF",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#005C36",
-          foreground: "#FFFFFF",
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "#FF3D00",
-          foreground: "#FFFFFF",
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "#00A86B",
-          foreground: "#FFFFFF",
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "#00FF9D",
-          foreground: "#005C36",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: "#E6FFF0",
-          foreground: "#005C36",
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "#E6FFF0",
-          foreground: "#005C36",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
       },
       borderRadius: {
@@ -66,15 +66,10 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "matrix-rain": {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "matrix-rain": "matrix-rain 10s linear infinite",
       },
     },
   },
