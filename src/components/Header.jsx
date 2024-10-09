@@ -25,7 +25,7 @@ const Header = () => {
             {navItems.map((item, index) => (
               <NavigationMenuItem key={index}>
                 <Link to={item.to}>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-sans text-numus-700 dark:text-numus-200`}>
                     {item.title}
                   </NavigationMenuLink>
                 </Link>
@@ -33,7 +33,7 @@ const Header = () => {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <Button variant="outline" className="border-numus-600 text-numus-600 hover:bg-numus-100 dark:border-numus-300 dark:text-numus-300 dark:hover:bg-numus-800">Contact Us</Button>
+        <Button variant="outline" className="border-numus-600 text-numus-600 hover:bg-numus-100 dark:border-numus-300 dark:text-numus-300 dark:hover:bg-numus-800 font-sans">Contact Us</Button>
       </div>
     </header>
   );

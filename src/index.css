@@ -49,15 +49,14 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
   }
-}
  
-@layer base {
-  * {
-    @apply border-border;
-  }
   body {
     @apply bg-background text-foreground;
     font-family: 'Montserrat', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
   }
 }
 
@@ -67,7 +66,7 @@
   }
 
   .numus-button {
-    @apply bg-numus-600 text-white hover:bg-numus-700 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2;
+    @apply bg-numus-600 text-white hover:bg-numus-700 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2 font-sans;
   }
 
   .numus-title {
@@ -75,10 +74,10 @@
   }
 
   .numus-subtitle {
-    @apply text-xl font-semibold mb-2 text-numus-600 dark:text-numus-300;
+    @apply text-xl font-semibold mb-2 text-numus-600 dark:text-numus-300 font-serif;
   }
 
   .numus-text {
-    @apply text-numus-700 dark:text-numus-200;
+    @apply text-numus-700 dark:text-numus-200 font-sans;
   }
 }

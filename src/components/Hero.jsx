@@ -17,7 +17,7 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         />
         <motion.h1 
-          className="numus-title text-4xl md:text-5xl lg:text-6xl mb-6"
+          className="numus-title text-4xl md:text-5xl lg:text-6xl mb-6 text-numus-800 dark:text-numus-100"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -45,7 +45,7 @@ const Hero = () => {
             </Button>
           </Link>
           <Link to="/portfolio">
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-numus-600 text-numus-600 hover:bg-numus-100 dark:border-numus-300 dark:text-numus-300 dark:hover:bg-numus-800">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-numus-600 text-numus-600 hover:bg-numus-100 dark:border-numus-300 dark:text-numus-300 dark:hover:bg-numus-800 font-sans">
               View Our Projects
             </Button>
           </Link>

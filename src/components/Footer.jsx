@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="mb-4 md:mb-0">
             <Link to="/" className="flex items-center space-x-2">
               <img src="/logo.svg" alt="Numus Logo" className="w-8 h-8" />
-              <span className="text-xl font-bold text-numus-800 dark:text-numus-100">Numus</span>
+              <span className="text-xl font-bold text-numus-800 dark:text-numus-100 font-serif">Numus</span>
             </Link>
           </div>
           <nav className="mb-4 md:mb-0">
@@ -26,7 +26,7 @@ const Footer = () => {
                 <li key={item}>
                   <Link
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-sm text-numus-600 hover:text-numus-800 dark:text-numus-300 dark:hover:text-numus-100"
+                    className="text-sm text-numus-600 hover:text-numus-800 dark:text-numus-300 dark:hover:text-numus-100 font-sans"
                   >
                     {item}
                   </Link>
@@ -48,7 +48,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="text-center text-sm mt-8 text-numus-600 dark:text-numus-400">
+        <div className="text-center text-sm mt-8 text-numus-600 dark:text-numus-400 font-sans">
           &copy; {new Date().getFullYear()} Numus. All rights reserved.
         </div>
       </div>
