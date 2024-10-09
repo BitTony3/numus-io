@@ -21,14 +21,12 @@ const Hero = () => {
     try {
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      
-      // Check for WebGL support
-      if (!THREE.WEBGL.isWebGLAvailable()) {
-        throw new Error('WebGL is not supported in your browser');
-      }
-
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       
+      if (!renderer.getContext()) {
+        throw new Error('WebGL not supported');
+      }
+
       renderer.setSize(window.innerWidth, window.innerHeight);
       containerRef.current.appendChild(renderer.domElement);
       rendererRef.current = renderer;
@@ -86,7 +84,7 @@ const Hero = () => {
       };
     } catch (err) {
       console.error('Error initializing WebGL:', err);
-      setError('Failed to initialize 3D animation. Displaying static version.');
+      setError('Failed to initialize 3D animation. Please try refreshing the page.');
     }
   }, [currentShape]);
 
