@@ -71,6 +71,14 @@ const Header = () => {
     }
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    isScrolled ? 'bg-futuristic-900/80 backdrop-blur-md' : 'bg-transparent'
+  }`;
+
   return (
     <header className={headerClass}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -85,8 +93,9 @@ const Header = () => {
           <span className="text-2xl font-bold text-futuristic-300 font-serif">Numus</span>
         </Link>
       
-      <div className="hidden md:flex items-center space-x-4">
-        <NavigationMenu>
+        <div className="hidden md:flex items-center space-x-4">
+          <NavigationMenu>
+            <NavigationMenuList>
               {navItems.map((item, index) => (
                 <NavigationMenuItem key={index}>
                   <Link to={item.to}>
@@ -99,24 +108,24 @@ const Header = () => {
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
-        </NavigationMenu>
-        
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </Button>
-        
-        <Button 
-          onClick={connectWallet} 
-          className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
-        >
-          LaunchPad
-        </Button>
-      </div>
+          </NavigationMenu>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
+          
+          <Button 
+            onClick={connectWallet} 
+            className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
+          >
+            LaunchPad
+          </Button>
+        </div>
       
         <div className="md:hidden">
           <Button
