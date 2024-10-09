@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const shapes = [
@@ -10,12 +10,16 @@ const shapes = [
 ];
 
 export const useThreeAnimation = (containerRef, currentIndex) => {
+  const rendererRef = useRef(null);
+
   useEffect(() => {
     if (!containerRef.current) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+    rendererRef.current = renderer;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
@@ -27,6 +31,7 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
     camera.position.z = 30;
 
     const animate = () => {
+      if (!rendererRef.current) return;
       requestAnimationFrame(animate);
       mesh.rotation.x += 0.01;
       mesh.rotation.y += 0.01;
@@ -35,6 +40,7 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
     animate();
 
     const handleResize = () => {
+      if (!rendererRef.current) return;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -43,10 +49,15 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      containerRef.current.removeChild(renderer.domElement);
+      if (containerRef.current && rendererRef.current) {
+        containerRef.current.removeChild(rendererRef.current.domElement);
+      }
       shapes.forEach(shape => shape.dispose());
       material.dispose();
-      renderer.dispose();
+      if (rendererRef.current) {
+        rendererRef.current.dispose();
+      }
+      rendererRef.current = null;
     };
   }, [containerRef, currentIndex]);
 };
