@@ -88,7 +88,7 @@ module.exports = {
         serif: ['Merriweather', 'serif'],
       },
       boxShadow: {
-        'numus': '0 4px 14px 0 rgba(0, 118, 255, 0.39)',
+        'numus': '0 4px 14px 0 rgba(0, 48, 135, 0.39)',
       },
     },
   },

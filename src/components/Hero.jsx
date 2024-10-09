@@ -17,7 +17,7 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         />
         <motion.h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-navy-800 dark:text-navy-100 font-serif"
+          className="numus-title text-4xl md:text-5xl lg:text-6xl mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -25,7 +25,7 @@ const Hero = () => {
           Redefining the Future of Web3 Investments
         </motion.h1>
         <motion.p 
-          className="text-xl mb-8 max-w-2xl mx-auto text-navy-600 dark:text-navy-300"
+          className="numus-text text-xl mb-8 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
@@ -39,7 +39,7 @@ const Hero = () => {
           transition={{ delay: 0.6, duration: 0.8 }}
         >
           <Link to="/about">
-            <Button size="lg" className="w-full sm:w-auto numus-button bg-navy-600 hover:bg-navy-700 text-white">
+            <Button size="lg" className="w-full sm:w-auto numus-button">
               Explore Our Ecosystem
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
