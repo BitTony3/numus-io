@@ -43,12 +43,12 @@ const Header = () => {
         const address = await signer.getAddress();
         
         // Sign authentication message
-        const message = "Welcome to Numus LaunchPad! Please sign this message to authenticate.";
+        const message = "Welcome to Numus! Please sign this message to authenticate.";
         const signature = await signer.signMessage(message);
         
         // Here you would typically send the address and signature to your backend for verification
-        // For now, we'll just navigate to the dashboard
-        navigate('/dashboard');
+        // For now, we'll just navigate to the user profile
+        navigate('/user-profile', { state: { address, signature } });
         
         toast({
           title: "Connected!",
@@ -65,7 +65,7 @@ const Header = () => {
     } else {
       toast({
         title: "MetaMask Not Found",
-        description: "Please install MetaMask to use the LaunchPad.",
+        description: "Please install MetaMask to connect your wallet.",
         variant: "destructive",
       });
     }
@@ -123,7 +123,7 @@ const Header = () => {
             onClick={connectWallet} 
             className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
           >
-            LaunchPad
+            Connect Wallet
           </Button>
         </div>
       
