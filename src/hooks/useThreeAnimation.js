@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 export const useThreeAnimation = (containerRef) => {
   const rendererRef = useRef(null);
@@ -22,13 +20,17 @@ export const useThreeAnimation = (containerRef) => {
 
     // Create central Numus sphere
     const numusSphereGeometry = new THREE.SphereGeometry(10, 32, 32);
-    const numusSphereMaterial = new THREE.MeshPhongMaterial({ color: 0x00D67F, emissive: 0x00D67F, emissiveIntensity: 0.5 });
+    const numusSphereMaterial = new THREE.MeshPhongMaterial({ 
+      color: 0x0099FF, // Futuristic-500
+      emissive: 0x0099FF,
+      emissiveIntensity: 0.5 
+    });
     const numusSphere = new THREE.Mesh(numusSphereGeometry, numusSphereMaterial);
     scene.add(numusSphere);
 
     // Create orbiting chains
     const chainGroup = new THREE.Group();
-    const chainColors = [0x4CAF50, 0x2196F3, 0xFFC107, 0x9C27B0, 0xFF5722];
+    const chainColors = [0x4DBFFF, 0x1AACFF, 0x007ACC, 0x005C99, 0x003D66]; // Futuristic-300 to 800
     const orbitRadii = [25, 35, 45, 55, 65];
 
     orbitRadii.forEach((radius, index) => {
@@ -58,7 +60,11 @@ export const useThreeAnimation = (containerRef) => {
     scene.add(chainGroup);
 
     // Create connection lines
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xFFFFFF, transparent: true, opacity: 0.3 });
+    const lineMaterial = new THREE.LineBasicMaterial({ 
+      color: 0xB3E5FF, // Futuristic-100
+      transparent: true, 
+      opacity: 0.3 
+    });
     const connectionLines = new THREE.Group();
     chainGroup.children.forEach(chain => {
       chain.children.forEach(node => {
@@ -73,14 +79,13 @@ export const useThreeAnimation = (containerRef) => {
     scene.add(connectionLines);
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xE6F7FF, 0.5); // Futuristic-50
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1);
+    const pointLight = new THREE.PointLight(0x0099FF, 1); // Futuristic-500
     pointLight.position.set(50, 50, 50);
     scene.add(pointLight);
 
-    // Animation loop
     const animate = () => {
       if (!rendererRef.current) return;
       requestAnimationFrame(animate);
@@ -125,5 +130,6 @@ export const useThreeAnimation = (containerRef) => {
       }
       rendererRef.current = null;
     };
+
   }, [containerRef]);
 };
