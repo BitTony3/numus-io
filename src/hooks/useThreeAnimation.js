@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 const shapes = [
   new THREE.TorusGeometry(10, 3, 16, 100),
@@ -29,6 +31,47 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
     scene.add(mesh);
 
     camera.position.z = 30;
+
+    // Add ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    // Add directional light
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(0, 1, 1);
+    scene.add(directionalLight);
+
+    // Load font and create text
+    const loader = new FontLoader();
+    loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
+      try {
+        if (!font) {
+          console.error('Font not loaded properly');
+          return;
+        }
+
+        const textGeometry = new TextGeometry('Numus', {
+          font: font,
+          size: 5,
+          height: 1,
+          curveSegments: 12,
+          bevelEnabled: true,
+          bevelThickness: 0.1,
+          bevelSize: 0.05,
+          bevelOffset: 0,
+          bevelSegments: 5
+        });
+
+        const textMaterial = new THREE.MeshPhongMaterial({ color: 0x00ffff });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textMesh.position.set(-10, 0, 0);
+        scene.add(textMesh);
+      } catch (error) {
+        console.error('Error creating text geometry:', error);
+      }
+    }, undefined, (error) => {
+      console.error('Error loading font:', error);
+    });
 
     const animate = () => {
       if (!rendererRef.current) return;
