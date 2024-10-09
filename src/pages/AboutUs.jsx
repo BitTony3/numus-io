@@ -18,7 +18,7 @@ const AboutUs = () => {
     { icon: Users, value: "150M+", label: "User Network" },
     { icon: Globe, value: "50+", label: "Blockchain Ecosystems" },
     { icon: Briefcase, value: "$300M+", label: "Portfolio Worth" },
-    { icon: Rocket, value: "100+", label: "Projects Launched" },
+    { icon: Rocket, value: "50+", label: "dApps Aggregated" },
   ];
 
   return (
@@ -28,7 +28,7 @@ const AboutUs = () => {
     >
       <div className="container mx-auto px-4 py-8 md:py-16">
         <motion.div
-          className="grid grid-cols-2 gap-4 mb-8 md:mb-16 mt-[10%] sm:mt-0" // Updated this line
+          className="grid grid-cols-2 gap-4 mb-8 md:mb-16 mt-[10%] sm:mt-0"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
