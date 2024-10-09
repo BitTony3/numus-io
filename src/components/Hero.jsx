@@ -8,13 +8,17 @@ import * as THREE from 'three';
 const Hero = () => {
   const containerRef = useRef(null);
   const controls = useAnimation();
+  const rendererRef = useRef(null);
 
   useEffect(() => {
+    if (!containerRef.current) return;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
+    rendererRef.current = renderer;
 
     const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
@@ -31,8 +35,22 @@ const Hero = () => {
     };
     animate();
 
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      containerRef.current.removeChild(renderer.domElement);
+      window.removeEventListener('resize', handleResize);
+      if (containerRef.current && rendererRef.current) {
+        containerRef.current.removeChild(rendererRef.current.domElement);
+      }
+      // Dispose of Three.js objects
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
     };
   }, []);
 
