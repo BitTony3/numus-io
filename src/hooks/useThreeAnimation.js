@@ -1,43 +1,9 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 
-const shapes = [
-  new THREE.TorusGeometry(10, 3, 16, 100),
-  new THREE.CylinderGeometry(5, 5, 20, 32),
-  new THREE.SphereGeometry(10, 32, 32),
-  new THREE.OctahedronGeometry(10),
-  new THREE.BoxGeometry(15, 15, 15),
-  createBlockchainShape() // Add the new blockchain shape
-];
-
-// Function to create a custom blockchain shape
-function createBlockchainShape() {
-  const group = new THREE.Group();
-  
-  // Create multiple cubes to represent blocks
-  for (let i = 0; i < 5; i++) {
-    const geometry = new THREE.BoxGeometry(5, 5, 5);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.set(i * 6 - 12, 0, 0); // Align cubes horizontally
-    group.add(cube);
-  }
-
-  // Add connecting lines between cubes
-  for (let i = 0; i < 4; i++) {
-    const points = [];
-    points.push(new THREE.Vector3(i * 6 - 9.5, 0, 0));
-    points.push(new THREE.Vector3((i + 1) * 6 - 14.5, 0, 0));
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({ color: 0x00ccff });
-    const line = new THREE.Line(geometry, material);
-    group.add(line);
-  }
-
-  return group;
-}
-
-export const useThreeAnimation = (containerRef, currentIndex) => {
+export const useThreeAnimation = (containerRef) => {
   const rendererRef = useRef(null);
 
   useEffect(() => {
@@ -52,27 +18,75 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    const shape = shapes[currentIndex];
-    let mesh;
+    camera.position.z = 50;
 
-    if (shape instanceof THREE.Group) {
-      // If it's the blockchain shape (Group), add it directly
-      mesh = shape;
-    } else {
-      // For other shapes, create a mesh
-      const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
-      mesh = new THREE.Mesh(shape, material);
-    }
+    // Create blockchain
+    const blockchain = new THREE.Group();
+    scene.add(blockchain);
 
-    scene.add(mesh);
+    const blockGeometry = new THREE.BoxGeometry(10, 10, 2);
+    const blockMaterial = new THREE.MeshPhongMaterial({ color: 0x00ccff, transparent: true, opacity: 0.8 });
 
-    camera.position.z = 30;
+    const fontLoader = new FontLoader();
+    fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+      const createBlock = (position, text) => {
+        const block = new THREE.Mesh(blockGeometry, blockMaterial);
+        block.position.copy(position);
+        blockchain.add(block);
+
+        const textGeometry = new TextGeometry(text, {
+          font: font,
+          size: 1,
+          height: 0.2,
+        });
+        const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textMesh.position.set(position.x - 4, position.y - 1, position.z + 1);
+        blockchain.add(textMesh);
+
+        return block;
+      };
+
+      const blocks = [
+        createBlock(new THREE.Vector3(-20, 0, 0), "Genesis"),
+        createBlock(new THREE.Vector3(-10, 0, 0), "Block 2"),
+        createBlock(new THREE.Vector3(0, 0, 0), "Block 3"),
+        createBlock(new THREE.Vector3(10, 0, 0), "Block 4"),
+        createBlock(new THREE.Vector3(20, 0, 0), "Block 5")
+      ];
+
+      // Create links between blocks
+      const linkMaterial = new THREE.LineBasicMaterial({ color: 0x00ccff });
+      for (let i = 1; i < blocks.length; i++) {
+        const points = [];
+        points.push(blocks[i-1].position);
+        points.push(blocks[i].position);
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const line = new THREE.Line(geometry, linkMaterial);
+        blockchain.add(line);
+      }
+    });
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(25, 50, 25);
+    scene.add(pointLight);
 
     const animate = () => {
       if (!rendererRef.current) return;
       requestAnimationFrame(animate);
-      mesh.rotation.x += 0.01;
-      mesh.rotation.y += 0.01;
+
+      blockchain.rotation.y += 0.005;
+      blockchain.children.forEach((child, index) => {
+        if (child instanceof THREE.Mesh) {
+          child.rotation.x = Math.sin(Date.now() * 0.001 + index) * 0.1;
+          child.rotation.z = Math.cos(Date.now() * 0.001 + index) * 0.1;
+        }
+      });
+
       renderer.render(scene, camera);
     };
     animate();
@@ -90,14 +104,10 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
       if (containerRef.current && rendererRef.current) {
         containerRef.current.removeChild(rendererRef.current.domElement);
       }
-      shapes.forEach(shape => {
-        if (shape instanceof THREE.BufferGeometry) {
-          shape.dispose();
-        } else if (shape instanceof THREE.Group) {
-          shape.children.forEach(child => {
-            if (child.geometry) child.geometry.dispose();
-            if (child.material) child.material.dispose();
-          });
+      scene.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+          object.geometry.dispose();
+          object.material.dispose();
         }
       });
       if (rendererRef.current) {
@@ -105,5 +115,5 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
       }
       rendererRef.current = null;
     };
-  }, [containerRef, currentIndex]);
+  }, [containerRef]);
 };
