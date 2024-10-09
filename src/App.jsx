@@ -6,7 +6,7 @@ import AboutUs from './pages/AboutUs';
 import Portfolio from './pages/Portfolio';
 import Partners from './pages/Partners';
 import Contact from './pages/Contact';
-import UserProfile from './pages/UserProfile';
+import UserDashboard from './components/UserDashboard';
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
         </Routes>
       </Router>
     </ThemeProvider>

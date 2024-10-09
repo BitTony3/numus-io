@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
     <div className="min-h-screen bg-futuristic-900 text-futuristic-100">
       <AnimatedBackground>
         <Header />
-        <main className="pt-20"> {/* Add padding-top here */}
+        <main>
           {children}
         </main>
         <Footer />

@@ -3,9 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
-  NavigationMenuList,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { navItems } from '../nav-items';
@@ -20,14 +22,17 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const location = useLocation();
-  const navigate = useNavigate();
-  const { toast } = useToast();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const connectWallet = async () => {
     if (typeof window.ethereum !== 'undefined') {
@@ -37,10 +42,13 @@ const Header = () => {
         const signer = provider.getSigner();
         const address = await signer.getAddress();
         
-        const message = "Welcome to Numus! Please sign this message to authenticate.";
+        // Sign authentication message
+        const message = "Welcome to Numus LaunchPad! Please sign this message to authenticate.";
         const signature = await signer.signMessage(message);
         
-        navigate('/user-profile', { state: { address, signature } });
+        // Here you would typically send the address and signature to your backend for verification
+        // For now, we'll just navigate to the dashboard
+        navigate('/dashboard');
         
         toast({
           title: "Connected!",
@@ -57,33 +65,19 @@ const Header = () => {
     } else {
       toast({
         title: "MetaMask Not Found",
-        description: "Please install MetaMask to connect your wallet.",
+        description: "Please install MetaMask to use the LaunchPad.",
         variant: "destructive",
       });
     }
   };
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    isScrolled ? 'bg-futuristic-900/80 backdrop-blur-md' : 'bg-futuristic-900'
+    isScrolled ? 'bg-futuristic-900/80 backdrop-blur-md' : 'bg-transparent'
   }`;
-
-  const renderNavItems = () => (
-    <>
-      {navItems.map((item, index) => (
-        <NavigationMenuItem key={index}>
-          <Link to={item.to}>
-            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-sans text-futuristic-100 hover:text-futuristic-300 ${
-              location.pathname === item.to ? 'bg-futuristic-800' : ''
-            }`}>
-              {item.title}
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-      ))}
-    </>
-  );
 
   return (
     <header className={headerClass}>
@@ -102,7 +96,17 @@ const Header = () => {
         <div className="hidden md:flex items-center space-x-4">
           <NavigationMenu>
             <NavigationMenuList>
-              {renderNavItems()}
+              {navItems.map((item, index) => (
+                <NavigationMenuItem key={index}>
+                  <Link to={item.to}>
+                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-sans text-futuristic-100 hover:text-futuristic-300 ${
+                      location.pathname === item.to ? 'bg-futuristic-800' : ''
+                    }`}>
+                      {item.title}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
           
@@ -119,17 +123,11 @@ const Header = () => {
             onClick={connectWallet} 
             className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
           >
-            Connect Wallet
+            LaunchPad
           </Button>
         </div>
       
-        <div className="md:hidden flex items-center space-x-2">
-          <Button 
-            onClick={connectWallet} 
-            className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
-          >
-            Connect
-          </Button>
+        <div className="md:hidden">
           <Button
             variant="ghost"
             size="icon"
@@ -161,6 +159,9 @@ const Header = () => {
                 {item.title}
               </Link>
             ))}
+            <Link to="/contact" onClick={toggleMobileMenu}>
+              <Button className="w-full futuristic-button">Contact Us</Button>
+            </Link>
           </nav>
         </motion.div>
       )}
