@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -14,6 +14,8 @@ import { navItems } from '../nav-items';
 import { motion } from 'framer-motion';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { ethers } from 'ethers';
+import { useToast } from "@/components/ui/use-toast";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,11 +31,45 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const headerClass = `sticky top-0 z-50 transition-all duration-300 ${
-    isScrolled ? 'bg-futuristic-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
-  }`;
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const connectWallet = async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        
+        // Sign authentication message
+        const message = "Welcome to Numus LaunchPad! Please sign this message to authenticate.";
+        const signature = await signer.signMessage(message);
+        
+        // Here you would typically send the address and signature to your backend for verification
+        // For now, we'll just navigate to the dashboard
+        navigate('/dashboard');
+        
+        toast({
+          title: "Connected!",
+          description: "You've successfully connected your wallet.",
+        });
+      } catch (error) {
+        console.error('Error connecting wallet:', error);
+        toast({
+          title: "Connection Failed",
+          description: "There was an error connecting your wallet. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } else {
+      toast({
+        title: "MetaMask Not Found",
+        description: "Please install MetaMask to use the LaunchPad.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <header className={headerClass}>
@@ -48,10 +84,9 @@ const Header = () => {
           />
           <span className="text-2xl font-bold text-futuristic-300 font-serif">Numus</span>
         </Link>
-        
-        <div className="hidden md:flex items-center space-x-4">
-          <NavigationMenu>
-            <NavigationMenuList>
+      
+      <div className="hidden md:flex items-center space-x-4">
+        <NavigationMenu>
               {navItems.map((item, index) => (
                 <NavigationMenuItem key={index}>
                   <Link to={item.to}>
@@ -64,24 +99,25 @@ const Header = () => {
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
-          </NavigationMenu>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
-          
-          <Link to="/contact">
-            <Button variant="outline" className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans">
-              Contact Us
-            </Button>
-          </Link>
-        </div>
+        </NavigationMenu>
         
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+        
+        <Button 
+          onClick={connectWallet} 
+          className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
+        >
+          LaunchPad
+        </Button>
+      </div>
+      
         <div className="md:hidden">
           <Button
             variant="ghost"
