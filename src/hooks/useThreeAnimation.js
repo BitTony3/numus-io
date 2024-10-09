@@ -18,24 +18,33 @@ export const useThreeAnimation = (containerRef) => {
     camera.position.set(0, 30, 100);
     camera.lookAt(0, 0, 0);
 
-    // Create central Numus sphere
-    const numusSphereGeometry = new THREE.SphereGeometry(10, 32, 32);
+    // Create Numus logo sphere
+    const numusLogoTexture = new THREE.TextureLoader().load('/logo.svg');
+    const numusSphereGeometry = new THREE.SphereGeometry(10, 64, 64);
     const numusSphereMaterial = new THREE.MeshPhongMaterial({ 
-      color: 0x0099FF, // Futuristic-500
+      map: numusLogoTexture,
       emissive: 0x0099FF,
-      emissiveIntensity: 0.5 
+      emissiveIntensity: 0.5,
+      specular: 0xFFFFFF,
+      shininess: 100
     });
     const numusSphere = new THREE.Mesh(numusSphereGeometry, numusSphereMaterial);
     scene.add(numusSphere);
 
     // Create orbiting chains
     const chainGroup = new THREE.Group();
-    const chainColors = [0x4DBFFF, 0x1AACFF, 0x007ACC, 0x005C99, 0x003D66]; // Futuristic-300 to 800
+    const chainColors = [0x4DBFFF, 0x1AACFF, 0x007ACC, 0x005C99, 0x003D66];
     const orbitRadii = [25, 35, 45, 55, 65];
 
     orbitRadii.forEach((radius, index) => {
       const chainGeometry = new THREE.TorusGeometry(radius, 0.5, 16, 100);
-      const chainMaterial = new THREE.MeshPhongMaterial({ color: chainColors[index] });
+      const chainMaterial = new THREE.MeshPhongMaterial({ 
+        color: chainColors[index],
+        specular: 0xFFFFFF,
+        shininess: 50,
+        transparent: true,
+        opacity: 0.7
+      });
       const chain = new THREE.Mesh(chainGeometry, chainMaterial);
       chain.rotation.x = Math.random() * Math.PI;
       chain.rotation.y = Math.random() * Math.PI;
@@ -45,8 +54,14 @@ export const useThreeAnimation = (containerRef) => {
       const nodeCount = 5 + index * 2;
       for (let i = 0; i < nodeCount; i++) {
         const angle = (i / nodeCount) * Math.PI * 2;
-        const nodeGeometry = new THREE.SphereGeometry(1, 16, 16);
-        const nodeMaterial = new THREE.MeshPhongMaterial({ color: chainColors[index] });
+        const nodeGeometry = new THREE.IcosahedronGeometry(1, 0);
+        const nodeMaterial = new THREE.MeshPhongMaterial({ 
+          color: chainColors[index],
+          specular: 0xFFFFFF,
+          shininess: 100,
+          transparent: true,
+          opacity: 0.9
+        });
         const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
         node.position.set(
           Math.cos(angle) * radius,
@@ -61,7 +76,7 @@ export const useThreeAnimation = (containerRef) => {
 
     // Create connection lines
     const lineMaterial = new THREE.LineBasicMaterial({ 
-      color: 0xB3E5FF, // Futuristic-100
+      color: 0xB3E5FF,
       transparent: true, 
       opacity: 0.3 
     });
@@ -79,12 +94,41 @@ export const useThreeAnimation = (containerRef) => {
     scene.add(connectionLines);
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xE6F7FF, 0.5); // Futuristic-50
+    const ambientLight = new THREE.AmbientLight(0xE6F7FF, 0.5);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x0099FF, 1); // Futuristic-500
+    const pointLight = new THREE.PointLight(0x0099FF, 1);
     pointLight.position.set(50, 50, 50);
     scene.add(pointLight);
+
+    // Add subtle glow effect
+    const glowMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        viewVector: { type: "v3", value: camera.position }
+      },
+      vertexShader: `
+        uniform vec3 viewVector;
+        varying float intensity;
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+          vec3 actual_normal = vec3(modelMatrix * vec4(normal, 0.0));
+          intensity = pow( dot(normalize(viewVector), actual_normal), 6.0 );
+        }
+      `,
+      fragmentShader: `
+        varying float intensity;
+        void main() {
+          vec3 glow = vec3(0.0, 0.6, 1.0) * intensity;
+          gl_FragColor = vec4( glow, 1.0 );
+        }
+      `,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true
+    });
+
+    const glowSphere = new THREE.Mesh(new THREE.SphereGeometry(11, 32, 32), glowMaterial);
+    scene.add(glowSphere);
 
     const animate = () => {
       if (!rendererRef.current) return;
