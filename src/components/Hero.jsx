@@ -34,10 +34,11 @@ const Hero = () => {
       const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
       
       const shapes = [
-        new THREE.TorusGeometry(10, 3, 16, 100),
-        new THREE.IcosahedronGeometry(10, 0),
-        new THREE.OctahedronGeometry(10, 0),
-        new THREE.TetrahedronGeometry(10, 0)
+        new THREE.TorusGeometry(10, 3, 16, 100), // Represents a blockchain
+        new THREE.CylinderGeometry(5, 5, 20, 32), // Represents a coin/token
+        new THREE.SphereGeometry(10, 32, 32), // Represents a global network
+        new THREE.OctahedronGeometry(10), // Represents a decentralized structure
+        new THREE.BoxGeometry(15, 15, 15) // Represents a block in blockchain
       ];
 
       mesh = new THREE.Mesh(shapes[currentShape], material);
