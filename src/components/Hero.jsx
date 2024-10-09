@@ -48,7 +48,7 @@ const Hero = () => {
           {/* Animation container */}
           <div 
             ref={containerRef} 
-            className="flex-grow mb-2 md:mb-8 h-40 md:h-64 transform scale-85 -translate-y-[34%] md:scale-100 md:-translate-y-[20%]"
+            className="flex-grow mb-2 md:mb-8 h-40 md:h-64 transform scale-85 -translate-y-[54%] md:scale-100 md:-translate-y-[40%]"
           />
         </motion.div>
       </div>
