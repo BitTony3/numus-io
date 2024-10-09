@@ -28,16 +28,16 @@ const AboutUs = () => {
     >
       <div className="container mx-auto px-4 py-8 md:py-16">
         <motion.div
-          className="grid grid-cols-2 gap-4 mb-8 md:mb-16"
+          className="grid grid-cols-2 gap-4 mb-8 md:mb-16 mt-4 md:mt-0" // Added mt-4 for mobile
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {stats.map((stat, index) => (
             <Card key={index} className="bg-futuristic-800 border-futuristic-600">
-              <CardContent className="p-4 md:p-6 flex flex-col items-center">
-                <stat.icon className="w-8 h-8 md:w-12 md:h-12 text-futuristic-400 mb-2 md:mb-4" />
-                <span className="text-xl md:text-3xl font-bold text-futuristic-300">{stat.value}</span>
+              <CardContent className="p-3 md:p-6 flex flex-col items-center">
+                <stat.icon className="w-6 h-6 md:w-12 md:h-12 text-futuristic-400 mb-1 md:mb-4" />
+                <span className="text-lg md:text-3xl font-bold text-futuristic-300">{stat.value}</span>
                 <span className="text-xs md:text-sm text-futuristic-200 text-center">{stat.label}</span>
               </CardContent>
             </Card>
@@ -55,7 +55,7 @@ const AboutUs = () => {
             >
               <Card className="bg-futuristic-800 border-futuristic-600 h-full hover:shadow-lg hover:shadow-futuristic-500/20 transition-all duration-300">
                 <CardContent className="p-4 md:p-6 flex flex-col items-center">
-                  <service.icon className="w-10 h-10 md:w-12 md:h-12 text-futuristic-400 mb-3 md:mb-4" />
+                  <service.icon className="w-8 h-8 md:w-12 md:h-12 text-futuristic-400 mb-2 md:mb-4" />
                   <h3 className="text-lg md:text-xl font-bold mb-2 text-futuristic-300 text-center">{service.title}</h3>
                   <p className="text-sm md:text-base text-futuristic-100 text-center">{service.description}</p>
                 </CardContent>
