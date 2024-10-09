@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <section className="bg-gradient-to-b from-navy-50 to-navy-100 dark:from-navy-900 dark:to-navy-800 py-20">
+    <section className="bg-gradient-to-b from-numus-50 to-numus-100 dark:from-numus-900 dark:to-numus-800 py-20">
       <div className="container mx-auto px-4 text-center">
         <motion.img
           src="/logo.svg"
@@ -45,7 +45,7 @@ const Hero = () => {
             </Button>
           </Link>
           <Link to="/portfolio">
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-navy-600 text-navy-600 hover:bg-navy-100 dark:border-navy-300 dark:text-navy-300 dark:hover:bg-navy-700">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-numus-600 text-numus-600 hover:bg-numus-100 dark:border-numus-300 dark:text-numus-300 dark:hover:bg-numus-800">
               View Our Projects
             </Button>
           </Link>

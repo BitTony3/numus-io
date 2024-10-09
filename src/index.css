@@ -6,7 +6,7 @@
  
 @layer base {
   :root {
-    --background: 220 33% 98%;
+    --background: 210 40% 98%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
@@ -63,22 +63,22 @@
 
 @layer components {
   .numus-card {
-    @apply bg-white dark:bg-navy-800 shadow-numus rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
+    @apply bg-white dark:bg-numus-800 shadow-numus rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
   }
 
   .numus-button {
-    @apply bg-navy-600 text-white hover:bg-navy-700 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2;
+    @apply bg-numus-600 text-white hover:bg-numus-700 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2;
   }
 
   .numus-title {
-    @apply text-3xl font-bold mb-4 text-navy-800 dark:text-navy-100 font-serif;
+    @apply text-3xl font-bold mb-4 text-numus-800 dark:text-numus-100 font-serif;
   }
 
   .numus-subtitle {
-    @apply text-xl font-semibold mb-2 text-navy-600 dark:text-navy-300;
+    @apply text-xl font-semibold mb-2 text-numus-600 dark:text-numus-300;
   }
 
   .numus-text {
-    @apply text-navy-700 dark:text-navy-200;
+    @apply text-numus-700 dark:text-numus-200;
   }
 }
