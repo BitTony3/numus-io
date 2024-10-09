@@ -59,17 +59,17 @@ const ProjectDialog = ({ project, onClose }) => (
         </a>
       )}
       {project?.imagineReplayWebsite && (
-        <a href={project.imagineReplayWebsite} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+        <a href={project.imagineReplayWebsite} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
           <ExternalLink className="w-4 h-4 mr-2" /> Visit Imagine Replay
         </a>
       )}
       {project?.telegramApp && (
-        <a href={project.telegramApp} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+        <a href={project.telegramApp} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
           <ExternalLink className="w-4 h-4 mr-2" /> Telegram Mini App
         </a>
       )}
       {project?.googlePlay && (
-        <a href={project.googlePlay} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+        <a href={project.googlePlay} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
           <ExternalLink className="w-4 h-4 mr-2" /> Google Play Store
         </a>
       )}

@@ -13,13 +13,13 @@ const Modal = ({ isOpen, onClose, children }) => {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-green-800 rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto"
+            className="bg-futuristic-800 rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto border border-futuristic-600 shadow-neon"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
           >
             <div className="flex justify-end mb-4">
-              <button onClick={onClose} className="text-green-300 hover:text-green-100">
+              <button onClick={onClose} className="text-futuristic-300 hover:text-futuristic-100">
                 <X size={24} />
               </button>
             </div>
