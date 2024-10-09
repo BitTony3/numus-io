@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -9,6 +9,7 @@ const Hero = () => {
   const containerRef = useRef(null);
   const controls = useAnimation();
   const rendererRef = useRef(null);
+  const [currentShape, setCurrentShape] = useState(0);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -20,20 +21,36 @@ const Hero = () => {
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
-    const torus = new THREE.Mesh(geometry, material);
-    scene.add(torus);
+    
+    const shapes = [
+      new THREE.TorusGeometry(10, 3, 16, 100),
+      new THREE.IcosahedronGeometry(10, 0),
+      new THREE.OctahedronGeometry(10, 0),
+      new THREE.TetrahedronGeometry(10, 0)
+    ];
+
+    let mesh = new THREE.Mesh(shapes[currentShape], material);
+    scene.add(mesh);
 
     camera.position.z = 30;
 
     const animate = () => {
       requestAnimationFrame(animate);
-      torus.rotation.x += 0.01;
-      torus.rotation.y += 0.01;
+      mesh.rotation.x += 0.01;
+      mesh.rotation.y += 0.01;
       renderer.render(scene, camera);
     };
     animate();
+
+    const changeShape = () => {
+      scene.remove(mesh);
+      setCurrentShape((prev) => (prev + 1) % shapes.length);
+      mesh = new THREE.Mesh(shapes[currentShape], material);
+      scene.add(mesh);
+    };
+
+    const intervalId = setInterval(changeShape, 5000); // Change shape every 5 seconds
 
     const handleResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -43,16 +60,16 @@ const Hero = () => {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      clearInterval(intervalId);
       window.removeEventListener('resize', handleResize);
       if (containerRef.current && rendererRef.current) {
         containerRef.current.removeChild(rendererRef.current.domElement);
       }
-      // Dispose of Three.js objects
-      geometry.dispose();
+      shapes.forEach(shape => shape.dispose());
       material.dispose();
       renderer.dispose();
     };
-  }, []);
+  }, [currentShape]);
 
   return (
     <section className="relative min-h-screen holographic-bg overflow-hidden">
