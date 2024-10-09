@@ -34,13 +34,14 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <motion.div className="flex items-center justify-center mb-6">
+          <motion.div className="flex flex-col md:flex-row items-center justify-center mb-6">
             <motion.div
+              className="mb-4 md:mb-0 md:mr-4"
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             >
-              <Icon className="w-16 h-16 text-futuristic-300 mr-4" />
+              <Icon className="w-12 h-12 md:w-16 md:h-16 text-futuristic-300" />
             </motion.div>
             <HeroTitle title={title} />
           </motion.div>

@@ -31,7 +31,7 @@ const Services = () => {
     <section className="py-16 bg-futuristic-900 text-futuristic-100 overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-futuristic-300"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4 text-futuristic-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -54,7 +54,7 @@ const Services = () => {
             {serviceCategories.map((category, index) => (
               <motion.div
                 key={index}
-                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-4 ${isMobile ? 'mb-6' : ''}`}
+                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2 md:p-4 ${isMobile ? 'mb-6' : ''}`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -66,13 +66,13 @@ const Services = () => {
           {!isMobile && (
             <>
               <Button 
-                className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2 md:p-3" 
+                className="absolute top-1/2 -left-2 md:left-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-1 md:p-2" 
                 onClick={prevSlide}
               >
                 <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
               </Button>
               <Button 
-                className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2 md:p-3" 
+                className="absolute top-1/2 -right-2 md:right-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-1 md:p-2" 
                 onClick={nextSlide}
               >
                 <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
