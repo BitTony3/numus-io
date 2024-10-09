@@ -8,7 +8,7 @@ import ServiceCard from './ServiceCard';
 import Modal from './Modal';
 
 const ServiceDialog = ({ service, onClose }) => (
-  <div>
+  <div className="bg-futuristic-800 p-6 rounded-lg">
     <h2 className="text-2xl font-bold text-futuristic-300 mb-4 flex items-center">
       {React.createElement(service.icon, { className: "w-8 h-8 mr-3 text-futuristic-400" })}
       {service.title}
@@ -86,13 +86,13 @@ const Services = () => {
           {!isMobile && (
             <>
               <Button 
-                className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+                className="absolute top-1/2 -left-4 md:left-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2 md:p-3" 
                 onClick={prevSlide}
               >
                 <ChevronLeft className="h-4 w-4 md:h-6 md:w-6" />
               </Button>
               <Button 
-                className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-green-600 hover:bg-green-700 text-white rounded-full p-2 md:p-3" 
+                className="absolute top-1/2 -right-4 md:right-4 transform -translate-y-1/2 bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2 md:p-3" 
                 onClick={nextSlide}
               >
                 <ChevronRight className="h-4 w-4 md:h-6 md:w-6" />
