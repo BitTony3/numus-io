@@ -28,7 +28,7 @@ const AboutUs = () => {
     >
       <div className="container mx-auto px-4 py-8 md:py-16">
         <motion.div
-          className="grid grid-cols-2 gap-4 mb-8 md:mb-16 mt-4 md:mt-0" // Added mt-4 for mobile
+          className="grid grid-cols-2 gap-4 mb-8 md:mb-16 mt-4 md:mt-0 sm:mt-[10px]" // Added sm:mt-[10px] for mobile
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
