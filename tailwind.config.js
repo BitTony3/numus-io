@@ -94,8 +94,9 @@ module.exports = {
         "pulse": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       fontFamily: {
-        sans: ['Orbitron', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
         serif: ['Exo', 'serif'],
+        title: ['Orbitron', 'sans-serif'],
       },
       boxShadow: {
         'neon': '0 0 5px theme(colors.futuristic.400), 0 0 20px theme(colors.futuristic.400)',
