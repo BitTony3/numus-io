@@ -65,6 +65,57 @@ export const useThreeAnimation = (containerRef) => {
         const line = new THREE.Line(geometry, linkMaterial);
         blockchain.add(line);
       }
+
+      // Create new block animation
+      const newBlockGeometry = new THREE.BoxGeometry(10, 10, 2);
+      const newBlockMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00, transparent: true, opacity: 0.8 });
+      const newBlock = new THREE.Mesh(newBlockGeometry, newBlockMaterial);
+      newBlock.position.set(30, 20, 0);
+      scene.add(newBlock);
+
+      // Create particles for mining simulation
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCnt = 5000;
+      const posArray = new Float32Array(particlesCnt * 3);
+      for (let i = 0; i < particlesCnt * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 100;
+      }
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      const particlesMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0xffff00 });
+      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particlesMesh);
+
+      // Animation loop
+      let step = 0;
+      const animate = () => {
+        if (!rendererRef.current) return;
+        requestAnimationFrame(animate);
+
+        step += 0.01;
+
+        // Rotate blockchain
+        blockchain.rotation.y += 0.005;
+
+        // Animate new block
+        newBlock.position.y = 20 + Math.sin(step) * 5;
+        newBlock.rotation.x += 0.01;
+        newBlock.rotation.y += 0.01;
+
+        // Animate particles
+        particlesMesh.rotation.y = step * 0.3;
+        particlesMesh.position.z = Math.sin(step * 0.5) * 10;
+
+        // Animate existing blocks
+        blockchain.children.forEach((child, index) => {
+          if (child instanceof THREE.Mesh) {
+            child.rotation.x = Math.sin(Date.now() * 0.001 + index) * 0.1;
+            child.rotation.z = Math.cos(Date.now() * 0.001 + index) * 0.1;
+          }
+        });
+
+        renderer.render(scene, camera);
+      };
+      animate();
     });
 
     // Lighting
@@ -74,22 +125,6 @@ export const useThreeAnimation = (containerRef) => {
     const pointLight = new THREE.PointLight(0xffffff, 1);
     pointLight.position.set(25, 50, 25);
     scene.add(pointLight);
-
-    const animate = () => {
-      if (!rendererRef.current) return;
-      requestAnimationFrame(animate);
-
-      blockchain.rotation.y += 0.005;
-      blockchain.children.forEach((child, index) => {
-        if (child instanceof THREE.Mesh) {
-          child.rotation.x = Math.sin(Date.now() * 0.001 + index) * 0.1;
-          child.rotation.z = Math.cos(Date.now() * 0.001 + index) * 0.1;
-        }
-      });
-
-      renderer.render(scene, camera);
-    };
-    animate();
 
     const handleResize = () => {
       if (!rendererRef.current) return;
