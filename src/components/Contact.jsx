@@ -24,7 +24,7 @@ const Contact = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Get in touch with our team to explore how Numus can accelerate your eco-friendly project or green investment strategy
+          Get in touch with our team to explore how Numus can accelerate your project or investment strategy
         </motion.p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div
@@ -36,8 +36,8 @@ const Contact = () => {
               <Input type="text" placeholder="Your Name" required className="bg-futuristic-800 border-futuristic-700 focus:border-futuristic-500 focus:ring-futuristic-500 text-futuristic-100" />
               <Input type="email" placeholder="Your Email" required className="bg-futuristic-800 border-futuristic-700 focus:border-futuristic-500 focus:ring-futuristic-500 text-futuristic-100" />
               <Input type="text" placeholder="Project/Company Name" required className="bg-futuristic-800 border-futuristic-700 focus:border-futuristic-500 focus:ring-futuristic-500 text-futuristic-100" />
-              <Textarea placeholder="Tell us about your eco-friendly project or green investment interests" rows={6} required className="bg-futuristic-800 border-futuristic-700 focus:border-futuristic-500 focus:ring-futuristic-500 text-futuristic-100" />
-              <Button type="submit" className="w-full bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100">Submit Green Inquiry</Button>
+              <Textarea placeholder="Tell us about your project or investment interests" rows={6} required className="bg-futuristic-800 border-futuristic-700 focus:border-futuristic-500 focus:ring-futuristic-500 text-futuristic-100" />
+              <Button type="submit" className="w-full futuristic-button">Submit Inquiry</Button>
             </form>
           </motion.div>
           <motion.div
@@ -49,11 +49,11 @@ const Contact = () => {
             <Card className="bg-futuristic-800 border-futuristic-700">
               <CardHeader>
                 <CardTitle className="flex items-center text-futuristic-300">
-                  <MapPin className="mr-2 text-futuristic-400" /> Our Eco-Friendly Location
+                  <MapPin className="mr-2 text-futuristic-400" /> Our Location
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-futuristic-200">123 Green Tech Avenue, EcoCity, EC 12345</p>
+                <p className="text-futuristic-200">123 Tech Avenue, FutureCity, FC 12345</p>
               </CardContent>
             </Card>
             <Card className="bg-futuristic-800 border-futuristic-700">
@@ -63,7 +63,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-futuristic-200">+1 (888) 123-GREEN</p>
+                <p className="text-futuristic-200">+1 (888) 123-4567</p>
               </CardContent>
             </Card>
             <Card className="bg-futuristic-800 border-futuristic-700">
@@ -73,7 +73,7 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-futuristic-200">greentech@numus.io</p>
+                <p className="text-futuristic-200">contact@numus.io</p>
               </CardContent>
             </Card>
           </motion.div>
