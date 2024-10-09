@@ -5,27 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { serviceCategories } from '@/data/serviceCategories';
 import ServiceCard from './ServiceCard';
-import Modal from './Modal';
-
-const ServiceDialog = ({ service, onClose }) => (
-  <div className="bg-futuristic-800 p-6 rounded-lg">
-    <h2 className="text-2xl font-bold text-futuristic-300 mb-4 flex items-center">
-      {React.createElement(service.icon, { className: "w-8 h-8 mr-3 text-futuristic-400" })}
-      {service.title}
-    </h2>
-    <ul className="space-y-4">
-      {service.services.map((item, index) => (
-        <li key={index} className="flex items-start">
-          <span className="w-2 h-2 bg-futuristic-400 rounded-full mr-3 mt-2"></span>
-          <div>
-            <h3 className="font-semibold text-futuristic-300">{item.title}</h3>
-            <p className="text-futuristic-200">{item.description}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+import ServiceDialog from './ServiceDialog';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -59,12 +39,12 @@ const Services = () => {
           Numus Venture Studio Services
         </motion.h2>
         <motion.p 
-          className="text-sm md:text-base lg:text-lg text-center mb-10 max-w-2xl mx-auto text-futuristic-200"
+          className="text-sm md:text-base lg:text-lg text-center mb-10 max-w-3xl mx-auto text-futuristic-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Empowering VCs, investors, and hedge funds with a full-cycle venture ecosystem. We accelerate growth, incubate innovation, and refine portfolios across the Web3 landscape.
+          Numus is a full-cycle venture capital and project incubation platform, integrating advanced aggregation technology and cross-chain capabilities to support and enhance blockchain-based projects. From incubation to scaling, we provide critical resources, technical infrastructure, and traffic activation to drive project success.
         </motion.p>
         <div className="relative">
           <motion.div
@@ -101,9 +81,7 @@ const Services = () => {
           )}
         </div>
       </div>
-      <Modal isOpen={!!selectedService} onClose={() => setSelectedService(null)}>
-        {selectedService && <ServiceDialog service={selectedService} onClose={() => setSelectedService(null)} />}
-      </Modal>
+      <ServiceDialog isOpen={!!selectedService} onClose={() => setSelectedService(null)} service={selectedService} />
     </section>
   );
 };
