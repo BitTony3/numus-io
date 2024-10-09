@@ -51,6 +51,18 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        navy: {
+          50: '#E7E9EF',
+          100: '#C2C9D6',
+          200: '#9AA5BB',
+          300: '#7281A0',
+          400: '#54658C',
+          500: '#364878',
+          600: '#304170',
+          700: '#283865',
+          800: '#21305B',
+          900: '#152247',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -72,7 +84,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
       },
       boxShadow: {
         'numus': '0 4px 14px 0 rgba(0, 118, 255, 0.39)',
