@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
 export const useThreeAnimation = (containerRef) => {
   const rendererRef = useRef(null);
@@ -129,6 +131,22 @@ export const useThreeAnimation = (containerRef) => {
 
     const glowSphere = new THREE.Mesh(new THREE.SphereGeometry(11, 32, 32), glowMaterial);
     scene.add(glowSphere);
+
+    // Load font and create text
+    const loader = new FontLoader();
+    loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
+      const textGeometry = new TextGeometry('Numus', {
+        font: font,
+        size: 5,
+        height: 1,
+        curveSegments: 12,
+        bevelEnabled: false,
+      });
+      const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.set(-10, 20, 0);
+      scene.add(textMesh);
+    });
 
     const animate = () => {
       if (!rendererRef.current) return;
