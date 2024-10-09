@@ -32,8 +32,8 @@ const AnimatedBackground = ({ children }) => {
 
     const animate = () => {
       requestAnimationFrame(animate);
-      particles.rotation.x += 0.0001;
-      particles.rotation.y += 0.0001;
+      particles.rotation.x += 0.00007; // Reduced rotation speed by 30%
+      particles.rotation.y += 0.00007; // Reduced rotation speed by 30%
       renderer.render(scene, camera);
     };
     animate();

@@ -16,7 +16,7 @@ const Hero = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroContent.length);
-    }, 5000);
+    }, 7000); // Increased interval by 30% (from 5000 to 7000)
 
     return () => clearInterval(intervalId);
   }, []);
@@ -28,7 +28,7 @@ const Hero = () => {
           className="text-center flex flex-col h-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.3 }} // Increased duration by 30%
         >
           <div className="mb-2 md:mb-6">
             <motion.div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mb-6">
@@ -36,7 +36,7 @@ const Hero = () => {
                 className="mb-2 md:mb-0 md:mr-4"
                 initial={{ rotate: 0 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 2.6, repeat: Infinity, ease: "linear" }} // Increased duration by 30%
               >
                 <Icon className="w-10 h-10 md:w-16 md:h-16 text-futuristic-300" />
               </motion.div>
@@ -45,15 +45,13 @@ const Hero = () => {
             <HeroDescription description={description} />
           </div>
           
-          {/* Animation container */}
           <div 
             ref={containerRef} 
-            className="flex-grow mb-2 md:mb-8 h-40 md:h-64 transform scale-85 -translate-y-[calc(64%+40px)] md:scale-100 md:-translate-y-[calc(50%+40px)]"
+            className="flex-grow mb-2 md:mb-8 h-40 md:h-64 transform scale-85 -translate-y-[calc(74%+40px)] md:scale-100 md:-translate-y-[calc(60%+40px)]"
           />
         </motion.div>
       </div>
       
-      {/* Buttons at the bottom */}
       <div className="container mx-auto px-4 pb-4 md:pb-8 relative z-10">
         <HeroButtons />
       </div>

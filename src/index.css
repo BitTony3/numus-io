@@ -61,6 +61,7 @@
 
   .holographic-bg {
     @apply bg-gradient-to-r from-futuristic-900 via-futuristic-700 to-futuristic-900 animate-pulse;
+    animation-duration: 5.2s; // Increased duration by 30%
   }
 }
 
@@ -70,4 +71,22 @@
 
 .neon-border {
   @apply border border-futuristic-400 shadow-neon;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-float {
+  animation: float 7.8s ease-in-out infinite; // Increased duration by 30%
+}
+
+.animate-pulse {
+  animation: pulse 5.2s cubic-bezier(0.4, 0, 0.6, 1) infinite; // Increased duration by 30%
 }
