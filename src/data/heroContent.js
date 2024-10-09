@@ -2,7 +2,7 @@ import { Rocket, Layers, Lightbulb, TrendingUp, Users } from 'lucide-react';
 
 export const heroContent = [
   {
-    title: 'Full-Cycle Venture Studio',
+    title: 'Venture Studio',
     description: 'Accelerating blockchain innovation from concept to market success',
     icon: Rocket,
   },
@@ -12,7 +12,7 @@ export const heroContent = [
     icon: Layers,
   },
   {
-    title: 'Project Incubation',
+    title: 'Full-Cycle Project Incubation',
     description: 'Nurturing early-stage projects with expert guidance and resources',
     icon: Lightbulb,
   },
