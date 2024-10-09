@@ -8,7 +8,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-futuristic-900 text-futuristic-100">
       <AnimatedBackground>
         <Header />
         <main>

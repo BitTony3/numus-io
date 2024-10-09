@@ -6,7 +6,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-futuristic-900 text-futuristic-100">
       <AnimatedBackground>
         <Header />
         <main>

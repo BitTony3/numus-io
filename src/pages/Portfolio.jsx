@@ -6,11 +6,11 @@ import AnimatedBackground from '../components/AnimatedBackground';
 
 const PortfolioPage = () => {
   return (
-    <div className="min-h-screen bg-green-900">
+    <div className="min-h-screen bg-futuristic-900 text-futuristic-100">
       <AnimatedBackground>
         <Header />
         <main>
-          <h1 className="text-4xl font-bold text-center mb-8 title-text">Our Portfolio</h1>
+          <h1 className="text-4xl font-bold text-center mb-8 text-futuristic-300">Our Portfolio</h1>
           <Portfolio />
         </main>
         <Footer />
