@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
 export const useThreeAnimation = (containerRef) => {
   const rendererRef = useRef(null);
@@ -80,9 +78,9 @@ export const useThreeAnimation = (containerRef) => {
       }
 
       // Add project label
-      const loader = new FontLoader();
+      const loader = new THREE.FontLoader();
       loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
-        const textGeometry = new TextGeometry(project.name, {
+        const textGeometry = new THREE.TextGeometry(project.name, {
           font: font,
           size: 3,
           height: 0.2,
