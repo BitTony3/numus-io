@@ -5,6 +5,8 @@ const AnimatedBackground = ({ children }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
+    if (!containerRef.current) return;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -45,7 +47,9 @@ const AnimatedBackground = ({ children }) => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      containerRef.current.removeChild(renderer.domElement);
+      if (containerRef.current) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
