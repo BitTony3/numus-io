@@ -10,66 +10,87 @@ const Hero = () => {
   const controls = useAnimation();
   const rendererRef = useRef(null);
   const [currentShape, setCurrentShape] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    containerRef.current.appendChild(renderer.domElement);
-    rendererRef.current = renderer;
+    let scene, camera, renderer, mesh;
+    let animationFrameId;
 
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
-    
-    const shapes = [
-      new THREE.TorusGeometry(10, 3, 16, 100),
-      new THREE.IcosahedronGeometry(10, 0),
-      new THREE.OctahedronGeometry(10, 0),
-      new THREE.TetrahedronGeometry(10, 0)
-    ];
+    try {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      
+      if (!renderer.getContext()) {
+        throw new Error('WebGL not supported');
+      }
 
-    let mesh = new THREE.Mesh(shapes[currentShape], material);
-    scene.add(mesh);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      containerRef.current.appendChild(renderer.domElement);
+      rendererRef.current = renderer;
 
-    camera.position.z = 30;
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
+      
+      const shapes = [
+        new THREE.TorusGeometry(10, 3, 16, 100),
+        new THREE.IcosahedronGeometry(10, 0),
+        new THREE.OctahedronGeometry(10, 0),
+        new THREE.TetrahedronGeometry(10, 0)
+      ];
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-      mesh.rotation.x += 0.01;
-      mesh.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    const changeShape = () => {
-      scene.remove(mesh);
-      setCurrentShape((prev) => (prev + 1) % shapes.length);
       mesh = new THREE.Mesh(shapes[currentShape], material);
       scene.add(mesh);
-    };
 
-    const intervalId = setInterval(changeShape, 5000); // Change shape every 5 seconds
+      camera.position.z = 30;
 
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener('resize', handleResize);
+      const animate = () => {
+        animationFrameId = requestAnimationFrame(animate);
+        if (mesh) {
+          mesh.rotation.x += 0.01;
+          mesh.rotation.y += 0.01;
+        }
+        renderer.render(scene, camera);
+      };
+      animate();
 
-    return () => {
-      clearInterval(intervalId);
-      window.removeEventListener('resize', handleResize);
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
-      }
-      shapes.forEach(shape => shape.dispose());
-      material.dispose();
-      renderer.dispose();
-    };
+      const changeShape = () => {
+        scene.remove(mesh);
+        setCurrentShape((prev) => (prev + 1) % shapes.length);
+        mesh = new THREE.Mesh(shapes[currentShape], material);
+        scene.add(mesh);
+      };
+
+      const intervalId = setInterval(changeShape, 5000);
+
+      const handleResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        clearInterval(intervalId);
+        window.removeEventListener('resize', handleResize);
+        if (containerRef.current && rendererRef.current) {
+          containerRef.current.removeChild(rendererRef.current.domElement);
+        }
+        cancelAnimationFrame(animationFrameId);
+        shapes.forEach(shape => shape.dispose());
+        material.dispose();
+        renderer.dispose();
+      };
+    } catch (err) {
+      console.error('Error initializing WebGL:', err);
+      setError('Failed to initialize 3D animation. Please try refreshing the page.');
+    }
   }, [currentShape]);
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
 
   return (
     <section className="relative min-h-screen holographic-bg overflow-hidden">
