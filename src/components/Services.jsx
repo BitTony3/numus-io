@@ -35,6 +35,18 @@ const Services = () => {
 
   const visibleServices = isMobile ? 1 : isTablet ? 2 : 3;
 
+  const prevSlide = () => {
+    setStartIndex((prevIndex) => 
+      prevIndex > 0 ? prevIndex - 1 : serviceCategories.length - visibleServices
+    );
+  };
+
+  const nextSlide = () => {
+    setStartIndex((prevIndex) => 
+      prevIndex < serviceCategories.length - visibleServices ? prevIndex + 1 : 0
+    );
+  };
+
   return (
     <section className="py-16 bg-futuristic-900 text-futuristic-100 overflow-hidden">
       <div className="container mx-auto px-4 relative">
