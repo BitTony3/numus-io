@@ -6,8 +6,36 @@ const shapes = [
   new THREE.CylinderGeometry(5, 5, 20, 32),
   new THREE.SphereGeometry(10, 32, 32),
   new THREE.OctahedronGeometry(10),
-  new THREE.BoxGeometry(15, 15, 15)
+  new THREE.BoxGeometry(15, 15, 15),
+  createBlockchainShape() // Add the new blockchain shape
 ];
+
+// Function to create a custom blockchain shape
+function createBlockchainShape() {
+  const group = new THREE.Group();
+  
+  // Create multiple cubes to represent blocks
+  for (let i = 0; i < 5; i++) {
+    const geometry = new THREE.BoxGeometry(5, 5, 5);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
+    const cube = new THREE.Mesh(geometry, material);
+    cube.position.set(i * 6 - 12, 0, 0); // Align cubes horizontally
+    group.add(cube);
+  }
+
+  // Add connecting lines between cubes
+  for (let i = 0; i < 4; i++) {
+    const points = [];
+    points.push(new THREE.Vector3(i * 6 - 9.5, 0, 0));
+    points.push(new THREE.Vector3((i + 1) * 6 - 14.5, 0, 0));
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({ color: 0x00ccff });
+    const line = new THREE.Line(geometry, material);
+    group.add(line);
+  }
+
+  return group;
+}
 
 export const useThreeAnimation = (containerRef, currentIndex) => {
   const rendererRef = useRef(null);
@@ -24,8 +52,18 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
-    const mesh = new THREE.Mesh(shapes[currentIndex], material);
+    const shape = shapes[currentIndex];
+    let mesh;
+
+    if (shape instanceof THREE.Group) {
+      // If it's the blockchain shape (Group), add it directly
+      mesh = shape;
+    } else {
+      // For other shapes, create a mesh
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
+      mesh = new THREE.Mesh(shape, material);
+    }
+
     scene.add(mesh);
 
     camera.position.z = 30;
@@ -52,8 +90,16 @@ export const useThreeAnimation = (containerRef, currentIndex) => {
       if (containerRef.current && rendererRef.current) {
         containerRef.current.removeChild(rendererRef.current.domElement);
       }
-      shapes.forEach(shape => shape.dispose());
-      material.dispose();
+      shapes.forEach(shape => {
+        if (shape instanceof THREE.BufferGeometry) {
+          shape.dispose();
+        } else if (shape instanceof THREE.Group) {
+          shape.children.forEach(child => {
+            if (child.geometry) child.geometry.dispose();
+            if (child.material) child.material.dispose();
+          });
+        }
+      });
       if (rendererRef.current) {
         rendererRef.current.dispose();
       }
