@@ -11,6 +11,15 @@ const Hero = () => {
   const rendererRef = useRef(null);
   const [currentShape, setCurrentShape] = useState(0);
   const [error, setError] = useState(null);
+  const [currentTitle, setCurrentTitle] = useState('Abstracting Access');
+
+  const titles = [
+    'Abstracting Access',
+    'Omni-Chain',
+    'Cross-Environment',
+    'All-in-one Terminal',
+    'Redefining Web3'
+  ];
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -34,11 +43,11 @@ const Hero = () => {
       const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
       
       const shapes = [
-        new THREE.TorusGeometry(10, 3, 16, 100), // Represents a blockchain
-        new THREE.CylinderGeometry(5, 5, 20, 32), // Represents a coin/token
-        new THREE.SphereGeometry(10, 32, 32), // Represents a global network
-        new THREE.OctahedronGeometry(10), // Represents a decentralized structure
-        new THREE.BoxGeometry(15, 15, 15) // Represents a block in blockchain
+        new THREE.TorusGeometry(10, 3, 16, 100),
+        new THREE.CylinderGeometry(5, 5, 20, 32),
+        new THREE.SphereGeometry(10, 32, 32),
+        new THREE.OctahedronGeometry(10),
+        new THREE.BoxGeometry(15, 15, 15)
       ];
 
       mesh = new THREE.Mesh(shapes[currentShape], material);
@@ -56,14 +65,15 @@ const Hero = () => {
       };
       animate();
 
-      const changeShape = () => {
+      const changeShapeAndTitle = () => {
         scene.remove(mesh);
         setCurrentShape((prev) => (prev + 1) % shapes.length);
+        setCurrentTitle(titles[(currentShape + 1) % titles.length]);
         mesh = new THREE.Mesh(shapes[currentShape], material);
         scene.add(mesh);
       };
 
-      const intervalId = setInterval(changeShape, 5000);
+      const intervalId = setInterval(changeShapeAndTitle, 5000);
 
       const handleResize = () => {
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -107,7 +117,7 @@ const Hero = () => {
             className="futuristic-title text-5xl md:text-7xl mb-6"
             animate={controls}
           >
-            Redefining the Future of Web3 Investments
+            {currentTitle}
           </motion.h1>
           <motion.p 
             className="futuristic-text text-xl mb-8 max-w-2xl mx-auto"
