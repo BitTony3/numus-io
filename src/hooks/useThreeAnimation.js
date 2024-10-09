@@ -1,9 +1,43 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-export const useThreeAnimation = (containerRef) => {
+const shapes = [
+  new THREE.TorusGeometry(10, 3, 16, 100),
+  new THREE.CylinderGeometry(5, 5, 20, 32),
+  new THREE.SphereGeometry(10, 32, 32),
+  new THREE.OctahedronGeometry(10),
+  new THREE.BoxGeometry(15, 15, 15),
+  createBlockchainShape() // Add the new blockchain shape
+];
+
+// Function to create a custom blockchain shape
+function createBlockchainShape() {
+  const group = new THREE.Group();
+  
+  // Create multiple cubes to represent blocks
+  for (let i = 0; i < 5; i++) {
+    const geometry = new THREE.BoxGeometry(5, 5, 5);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
+    const cube = new THREE.Mesh(geometry, material);
+    cube.position.set(i * 6 - 12, 0, 0); // Align cubes horizontally
+    group.add(cube);
+  }
+
+  // Add connecting lines between cubes
+  for (let i = 0; i < 4; i++) {
+    const points = [];
+    points.push(new THREE.Vector3(i * 6 - 9.5, 0, 0));
+    points.push(new THREE.Vector3((i + 1) * 6 - 14.5, 0, 0));
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({ color: 0x00ccff });
+    const line = new THREE.Line(geometry, material);
+    group.add(line);
+  }
+
+  return group;
+}
+
+export const useThreeAnimation = (containerRef, currentIndex) => {
   const rendererRef = useRef(null);
 
   useEffect(() => {
@@ -14,156 +48,31 @@ export const useThreeAnimation = (containerRef) => {
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
     rendererRef.current = renderer;
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    camera.position.set(0, 30, 100);
-    camera.lookAt(0, 0, 0);
+    const shape = shapes[currentIndex];
+    let mesh;
 
-    // Create Numus logo sphere
-    const numusLogoTexture = new THREE.TextureLoader().load('/logo.svg');
-    const numusSphereGeometry = new THREE.SphereGeometry(10, 64, 64);
-    const numusSphereMaterial = new THREE.MeshPhongMaterial({ 
-      map: numusLogoTexture,
-      emissive: 0x0099FF,
-      emissiveIntensity: 0.5,
-      specular: 0xFFFFFF,
-      shininess: 100
-    });
-    const numusSphere = new THREE.Mesh(numusSphereGeometry, numusSphereMaterial);
-    scene.add(numusSphere);
+    if (shape instanceof THREE.Group) {
+      // If it's the blockchain shape (Group), add it directly
+      mesh = shape;
+    } else {
+      // For other shapes, create a mesh
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ccff, wireframe: true });
+      mesh = new THREE.Mesh(shape, material);
+    }
 
-    // Create orbiting chains
-    const chainGroup = new THREE.Group();
-    const chainColors = [0x4DBFFF, 0x1AACFF, 0x007ACC, 0x005C99, 0x003D66];
-    const orbitRadii = [25, 35, 45, 55, 65];
+    scene.add(mesh);
 
-    orbitRadii.forEach((radius, index) => {
-      const chainGeometry = new THREE.TorusGeometry(radius, 0.5, 16, 100);
-      const chainMaterial = new THREE.MeshPhongMaterial({ 
-        color: chainColors[index],
-        specular: 0xFFFFFF,
-        shininess: 50,
-        transparent: true,
-        opacity: 0.7
-      });
-      const chain = new THREE.Mesh(chainGeometry, chainMaterial);
-      chain.rotation.x = Math.random() * Math.PI;
-      chain.rotation.y = Math.random() * Math.PI;
-      chainGroup.add(chain);
-
-      // Add nodes to each chain
-      const nodeCount = 5 + index * 2;
-      for (let i = 0; i < nodeCount; i++) {
-        const angle = (i / nodeCount) * Math.PI * 2;
-        const nodeGeometry = new THREE.IcosahedronGeometry(1, 0);
-        const nodeMaterial = new THREE.MeshPhongMaterial({ 
-          color: chainColors[index],
-          specular: 0xFFFFFF,
-          shininess: 100,
-          transparent: true,
-          opacity: 0.9
-        });
-        const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
-        node.position.set(
-          Math.cos(angle) * radius,
-          Math.sin(angle) * radius,
-          0
-        );
-        chain.add(node);
-      }
-    });
-
-    scene.add(chainGroup);
-
-    // Create connection lines
-    const lineMaterial = new THREE.LineBasicMaterial({ 
-      color: 0xB3E5FF,
-      transparent: true, 
-      opacity: 0.3 
-    });
-    const connectionLines = new THREE.Group();
-    chainGroup.children.forEach(chain => {
-      chain.children.forEach(node => {
-        const lineGeometry = new THREE.BufferGeometry().setFromPoints([
-          node.position,
-          new THREE.Vector3(0, 0, 0)
-        ]);
-        const line = new THREE.Line(lineGeometry, lineMaterial);
-        connectionLines.add(line);
-      });
-    });
-    scene.add(connectionLines);
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xE6F7FF, 0.5);
-    scene.add(ambientLight);
-
-    const pointLight = new THREE.PointLight(0x0099FF, 1);
-    pointLight.position.set(50, 50, 50);
-    scene.add(pointLight);
-
-    // Add subtle glow effect
-    const glowMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        viewVector: { type: "v3", value: camera.position }
-      },
-      vertexShader: `
-        uniform vec3 viewVector;
-        varying float intensity;
-        void main() {
-          gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-          vec3 actual_normal = vec3(modelMatrix * vec4(normal, 0.0));
-          intensity = pow( dot(normalize(viewVector), actual_normal), 6.0 );
-        }
-      `,
-      fragmentShader: `
-        varying float intensity;
-        void main() {
-          vec3 glow = vec3(0.0, 0.6, 1.0) * intensity;
-          gl_FragColor = vec4( glow, 1.0 );
-        }
-      `,
-      side: THREE.BackSide,
-      blending: THREE.AdditiveBlending,
-      transparent: true
-    });
-
-    const glowSphere = new THREE.Mesh(new THREE.SphereGeometry(11, 32, 32), glowMaterial);
-    scene.add(glowSphere);
-
-    // Load font and create text
-    const loader = new FontLoader();
-    loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
-      const textGeometry = new TextGeometry('Numus', {
-        font: font,
-        size: 5,
-        height: 1,
-        curveSegments: 12,
-        bevelEnabled: false,
-      });
-      const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
-      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-      textMesh.position.set(-10, 20, 0);
-      scene.add(textMesh);
-    });
+    camera.position.z = 30;
 
     const animate = () => {
       if (!rendererRef.current) return;
       requestAnimationFrame(animate);
-
-      numusSphere.rotation.y += 0.005;
-      chainGroup.rotation.y += 0.001;
-      chainGroup.rotation.x += 0.0005;
-
-      connectionLines.children.forEach(line => {
-        line.geometry.setFromPoints([
-          line.geometry.attributes.position.array.slice(3, 6),
-          new THREE.Vector3(0, 0, 0)
-        ]);
-        line.geometry.attributes.position.needsUpdate = true;
-      });
-
+      mesh.rotation.x += 0.01;
+      mesh.rotation.y += 0.01;
       renderer.render(scene, camera);
     };
     animate();
@@ -181,10 +90,14 @@ export const useThreeAnimation = (containerRef) => {
       if (containerRef.current && rendererRef.current) {
         containerRef.current.removeChild(rendererRef.current.domElement);
       }
-      scene.traverse((object) => {
-        if (object instanceof THREE.Mesh) {
-          object.geometry.dispose();
-          object.material.dispose();
+      shapes.forEach(shape => {
+        if (shape instanceof THREE.BufferGeometry) {
+          shape.dispose();
+        } else if (shape instanceof THREE.Group) {
+          shape.children.forEach(child => {
+            if (child.geometry) child.geometry.dispose();
+            if (child.material) child.material.dispose();
+          });
         }
       });
       if (rendererRef.current) {
@@ -192,6 +105,5 @@ export const useThreeAnimation = (containerRef) => {
       }
       rendererRef.current = null;
     };
-
-  }, [containerRef]);
+  }, [containerRef, currentIndex]);
 };
