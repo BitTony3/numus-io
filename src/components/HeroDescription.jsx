@@ -25,7 +25,7 @@ const descriptionVariants = {
 const HeroDescription = ({ description }) => (
   <motion.p 
     key={description}
-    className="futuristic-text text-xl mb-8 max-w-2xl mx-auto"
+    className="futuristic-text text-base md:text-xl mb-4 md:mb-8 max-w-2xl mx-auto"
     variants={descriptionVariants}
     initial="hidden"
     animate="visible"
