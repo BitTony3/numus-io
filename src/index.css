@@ -61,7 +61,7 @@
 
   .holographic-bg {
     @apply bg-gradient-to-r from-futuristic-900 via-futuristic-700 to-futuristic-900 animate-pulse;
-    animation-duration: 5.2s; // Increased duration by 30%
+    animation-duration: 5.2s;
   }
 }
 
@@ -84,9 +84,9 @@
 }
 
 .animate-float {
-  animation: float 7.8s ease-in-out infinite; // Increased duration by 30%
+  animation: float 7.8s ease-in-out infinite;
 }
 
 .animate-pulse {
-  animation: pulse 5.2s cubic-bezier(0.4, 0, 0.6, 1) infinite; // Increased duration by 30%
+  animation: pulse 5.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
