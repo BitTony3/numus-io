@@ -27,6 +27,13 @@ const Services = () => {
     );
   };
 
+  const stats = [
+    { value: "150M+", label: "User Network" },
+    { value: "50+", label: "Blockchain Ecosystems" },
+    { value: "$300M+", label: "Portfolio Worth" },
+    { value: "100+", label: "Projects Launched" },
+  ];
+
   return (
     <section className="py-16 md:py-24 bg-futuristic-900 text-futuristic-100 overflow-hidden">
       <div className="container mx-auto px-4 relative">
@@ -46,6 +53,22 @@ const Services = () => {
         >
           Numus is a full-cycle venture capital and project incubation platform, integrating advanced aggregation technology and cross-chain capabilities to support and enhance blockchain-based projects. From incubation to scaling, we provide critical resources, technical infrastructure, and traffic activation to drive project success.
         </motion.p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="text-3xl md:text-4xl font-bold text-futuristic-300 mb-2">{stat.value}</div>
+              <div className="text-sm text-futuristic-200">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="relative">
           <motion.div
             className="flex flex-col md:flex-row transition-all duration-500 ease-in-out"
