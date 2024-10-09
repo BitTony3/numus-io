@@ -117,7 +117,7 @@ const Portfolio = () => {
           <Button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
-            className="mr-2"
+            className="mr-2 bg-futuristic-800 hover:bg-futuristic-700 text-futuristic-300"
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -125,7 +125,11 @@ const Portfolio = () => {
             <Button
               key={index}
               onClick={() => paginate(index + 1)}
-              className={`mx-1 ${currentPage === index + 1 ? 'bg-green-600' : 'bg-green-800'}`}
+              className={`mx-1 ${
+                currentPage === index + 1
+                  ? 'bg-futuristic-500 text-futuristic-900'
+                  : 'bg-futuristic-800 text-futuristic-300 hover:bg-futuristic-700'
+              }`}
             >
               {index + 1}
             </Button>
@@ -133,7 +137,7 @@ const Portfolio = () => {
           <Button
             onClick={() => paginate(currentPage + 1)}
             disabled={currentPage === Math.ceil(projectData.length / projectsPerPage)}
-            className="ml-2"
+            className="ml-2 bg-futuristic-800 hover:bg-futuristic-700 text-futuristic-300"
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
