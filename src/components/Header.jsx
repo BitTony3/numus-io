@@ -14,7 +14,6 @@ import { navItems } from '../nav-items';
 import { motion } from 'framer-motion';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { ethers } from 'ethers';
 import { useToast } from "@/components/ui/use-toast";
 
 const Header = () => {
@@ -34,41 +33,12 @@ const Header = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
-      try {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
-        
-        // Sign authentication message
-        const message = "Welcome to Numus LaunchPad! Please sign this message to authenticate.";
-        const signature = await signer.signMessage(message);
-        
-        // Here you would typically send the address and signature to your backend for verification
-        // For now, we'll just navigate to the dashboard
-        navigate('/dashboard');
-        
-        toast({
-          title: "Connected!",
-          description: "You've successfully connected your wallet.",
-        });
-      } catch (error) {
-        console.error('Error connecting wallet:', error);
-        toast({
-          title: "Connection Failed",
-          description: "There was an error connecting your wallet. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } else {
-      toast({
-        title: "MetaMask Not Found",
-        description: "Please install MetaMask to use the LaunchPad.",
-        variant: "destructive",
-      });
-    }
+  const showComingSoonToast = () => {
+    toast({
+      title: "LaunchPad Coming Soon!",
+      description: "We're working hard to bring you our LaunchPad. Stay tuned for updates!",
+      duration: 3000,
+    });
   };
 
   const toggleMobileMenu = () => {
@@ -120,10 +90,10 @@ const Header = () => {
           </Button>
           
           <Button 
-            onClick={connectWallet} 
+            onClick={showComingSoonToast} 
             className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
           >
-            LaunchPad
+            LaunchPad (Coming Soon)
           </Button>
         </div>
       
@@ -168,10 +138,10 @@ const Header = () => {
               </Link>
             ))}
             <Button 
-              onClick={connectWallet} 
+              onClick={showComingSoonToast} 
               className="w-full neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans"
             >
-              LaunchPad
+              LaunchPad (Coming Soon)
             </Button>
           </nav>
         </motion.div>
