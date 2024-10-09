@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 py-20">
+    <section className="bg-white dark:bg-gray-900 py-20">
       <div className="container mx-auto px-4 text-center">
         <img
           src="/logo.svg"
@@ -20,13 +20,13 @@ const Hero = () => {
         </p>
         <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <Link to="/about">
-            <Button size="lg" className="business-button">
+            <Button size="lg" className="w-full sm:w-auto">
               Explore Our Ecosystem
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
           <Link to="/portfolio">
-            <Button size="lg" variant="outline" className="business-button bg-white dark:bg-gray-800">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto">
               View Our Projects
             </Button>
           </Link>
