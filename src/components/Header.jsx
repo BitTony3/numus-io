@@ -11,21 +11,28 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { navItems } from '../nav-items';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
-    <header className="bg-white dark:bg-numus-900 border-b sticky top-0 z-50">
+    <header className="glassmorphism sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
-          <img src="/logo.svg" alt="Numus Logo" className="w-10 h-10" />
-          <span className="text-2xl font-bold text-numus-800 dark:text-numus-100 font-serif">Numus</span>
+          <motion.img 
+            src="/logo.svg" 
+            alt="Numus Logo" 
+            className="w-10 h-10"
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.5 }}
+          />
+          <span className="text-2xl font-bold text-futuristic-300 font-serif">Numus</span>
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
             {navItems.map((item, index) => (
               <NavigationMenuItem key={index}>
                 <Link to={item.to}>
-                  <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-sans text-numus-700 dark:text-numus-200`}>
+                  <NavigationMenuLink className={`${navigationMenuTriggerStyle()} font-sans text-futuristic-100 hover:text-futuristic-300`}>
                     {item.title}
                   </NavigationMenuLink>
                 </Link>
@@ -33,7 +40,7 @@ const Header = () => {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-        <Button variant="outline" className="border-numus-600 text-numus-600 hover:bg-numus-100 dark:border-numus-300 dark:text-numus-300 dark:hover:bg-numus-800 font-sans">Contact Us</Button>
+        <Button variant="outline" className="neon-border text-futuristic-300 hover:bg-futuristic-800 hover:text-futuristic-100 font-sans">Contact Us</Button>
       </div>
     </header>
   );

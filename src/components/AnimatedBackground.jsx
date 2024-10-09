@@ -1,75 +1,60 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 const AnimatedBackground = ({ children }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    containerRef.current.appendChild(renderer.domElement);
+
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i = 0; i < 10000; i++) {
+      vertices.push(THREE.MathUtils.randFloatSpread(2000));
+      vertices.push(THREE.MathUtils.randFloatSpread(2000));
+      vertices.push(THREE.MathUtils.randFloatSpread(2000));
+    }
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+    const particles = new THREE.Points(
+      geometry,
+      new THREE.PointsMaterial({ color: 0x00ccff, size: 2 })
+    );
+    scene.add(particles);
+
+    camera.position.z = 1000;
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+      particles.rotation.x += 0.0001;
+      particles.rotation.y += 0.0001;
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      containerRef.current.removeChild(renderer.domElement);
+    };
+  }, []);
+
   return (
-    <div className="relative overflow-hidden bg-green-900 min-h-screen">
-      {[...Array(50)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute bg-green-500 opacity-30"
-          style={{
-            width: Math.random() * 100 + 50,
-            height: 2,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            x: ['-100%', '100%'],
-            opacity: [0.3, 0.7, 0.3],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: Math.random() * 10 + 10,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={`circle-${i}`}
-          className="absolute rounded-full bg-green-400"
-          style={{
-            width: Math.random() * 20 + 5,
-            height: Math.random() * 20 + 5,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.1, 0.5, 0.1],
-          }}
-          transition={{
-            duration: Math.random() * 5 + 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-      {[...Array(10)].map((_, i) => (
-        <motion.div
-          key={`hexagon-${i}`}
-          className="absolute bg-green-600 opacity-20"
-          style={{
-            width: 40,
-            height: 40,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-          }}
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: Math.random() * 20 + 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-      {children}
+    <div className="relative min-h-screen overflow-hidden bg-background">
+      <div ref={containerRef} className="absolute inset-0 z-0" />
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   );
 };

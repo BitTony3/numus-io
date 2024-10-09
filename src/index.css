@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo:wght@300;400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,78 +6,68 @@
  
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 200 30% 10%;
+    --foreground: 200 20% 96%;
+    --card: 200 30% 15%;
+    --card-foreground: 200 20% 96%;
+    --popover: 200 30% 15%;
+    --popover-foreground: 200 20% 96%;
+    --primary: 199 100% 50%;
+    --primary-foreground: 200 20% 96%;
+    --secondary: 200 30% 20%;
+    --secondary-foreground: 200 20% 96%;
+    --muted: 200 30% 20%;
+    --muted-foreground: 200 20% 70%;
+    --accent: 199 100% 50%;
+    --accent-foreground: 200 20% 96%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --destructive-foreground: 200 20% 96%;
+    --border: 200 30% 20%;
+    --input: 200 30% 20%;
+    --ring: 199 100% 50%;
+    --radius: 0.5rem;
   }
  
   body {
     @apply bg-background text-foreground;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Orbitron', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather', serif;
+    font-family: 'Exo', serif;
   }
 }
 
 @layer components {
-  .numus-card {
-    @apply bg-white dark:bg-numus-800 shadow-numus rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
+  .futuristic-card {
+    @apply bg-card text-card-foreground shadow-neon rounded-lg p-6 transition-all duration-300 hover:shadow-lg backdrop-blur-sm bg-opacity-30;
   }
 
-  .numus-button {
-    @apply bg-numus-600 text-white hover:bg-numus-700 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2 font-sans;
+  .futuristic-button {
+    @apply bg-futuristic-600 text-white hover:bg-futuristic-700 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2 shadow-neon;
   }
 
-  .numus-title {
-    @apply text-3xl font-bold mb-4 text-numus-800 dark:text-numus-100 font-serif;
+  .futuristic-title {
+    @apply text-3xl font-bold mb-4 text-futuristic-300 font-serif;
   }
 
-  .numus-subtitle {
-    @apply text-xl font-semibold mb-2 text-numus-600 dark:text-numus-300 font-serif;
+  .futuristic-subtitle {
+    @apply text-xl font-semibold mb-2 text-futuristic-400 font-serif;
   }
 
-  .numus-text {
-    @apply text-numus-700 dark:text-numus-200 font-sans;
+  .futuristic-text {
+    @apply text-futuristic-100 font-sans;
   }
+
+  .holographic-bg {
+    @apply bg-gradient-to-r from-futuristic-900 via-futuristic-700 to-futuristic-900 animate-pulse;
+  }
+}
+
+.glassmorphism {
+  @apply bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg;
+}
+
+.neon-border {
+  @apply border border-futuristic-400 shadow-neon;
 }
