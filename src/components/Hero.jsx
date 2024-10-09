@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Rocket, Layers, Lightbulb, TrendingUp, Users } from 'lucide-react';
 import { motion, useAnimation } from 'framer-motion';
 import * as THREE from 'three';
 
@@ -11,25 +11,35 @@ const Hero = () => {
   const rendererRef = useRef(null);
   const [currentShape, setCurrentShape] = useState(0);
   const [error, setError] = useState(null);
-  const [currentTitle, setCurrentTitle] = useState('Full-Cycle Venture Studio');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const titles = [
-    'Full-Cycle Venture Studio',
-    'Cross-Chain Solutions',
-    'Project Incubation',
-    'Portfolio Optimization',
-    'Traffic Activation'
+  const heroContent = [
+    {
+      title: 'Full-Cycle Venture Studio',
+      description: 'Accelerating blockchain innovation from concept to market success',
+      icon: Rocket,
+    },
+    {
+      title: 'Cross-Chain Solutions',
+      description: 'Seamless integration across 50+ chains and bridges',
+      icon: Layers,
+    },
+    {
+      title: 'Project Incubation',
+      description: 'Nurturing early-stage projects with expert guidance and resources',
+      icon: Lightbulb,
+    },
+    {
+      title: 'Portfolio Optimization',
+      description: 'Refining and enhancing existing projects for maximum potential',
+      icon: TrendingUp,
+    },
+    {
+      title: 'Traffic Activation',
+      description: 'Leveraging a network of 150M+ users for rapid growth',
+      icon: Users,
+    }
   ];
-
-  const descriptions = [
-    'Accelerating blockchain innovation from concept to market success',
-    'Seamless integration across 50+ chains and bridges',
-    'Nurturing early-stage projects with expert guidance and resources',
-    'Refining and enhancing existing projects for maximum potential',
-    'Leveraging a network of 150M+ users for rapid growth'
-  ];
-
-  const [currentDescription, setCurrentDescription] = useState(descriptions[0]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -77,9 +87,7 @@ const Hero = () => {
 
       const changeContent = () => {
         setCurrentShape((prev) => (prev + 1) % shapes.length);
-        const nextIndex = (currentShape + 1) % titles.length;
-        setCurrentTitle(titles[nextIndex]);
-        setCurrentDescription(descriptions[nextIndex]);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % heroContent.length);
       };
 
       const intervalId = setInterval(changeContent, 5000);
@@ -112,6 +120,8 @@ const Hero = () => {
     return <div className="text-red-500">{error}</div>;
   }
 
+  const { title, description, icon: Icon } = heroContent[currentIndex];
+
   return (
     <section className="relative min-h-screen holographic-bg overflow-hidden">
       <div ref={containerRef} className="absolute inset-0 z-0" />
@@ -122,30 +132,31 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <motion.h1 
-            className="futuristic-title text-5xl md:text-7xl mb-6"
+          <motion.div 
+            className="flex items-center justify-center mb-6"
             animate={controls}
           >
-            {currentTitle}
-          </motion.h1>
+            <Icon className="w-16 h-16 text-futuristic-300 mr-4" />
+            <h1 className="futuristic-title text-5xl md:text-7xl">{title}</h1>
+          </motion.div>
           <motion.p 
             className="futuristic-text text-xl mb-8 max-w-2xl mx-auto"
             animate={controls}
           >
-            {currentDescription}
+            {description}
           </motion.p>
           <motion.div 
             className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
             animate={controls}
           >
             <Link to="/services">
-              <Button size="lg" className="w-full sm:w-auto futuristic-button">
+              <Button size="lg" className="w-full sm:w-auto futuristic-button group">
                 Explore Our Services
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link to="/portfolio">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-futuristic-400 text-futuristic-400 hover:bg-futuristic-800 hover:text-futuristic-100">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-futuristic-400 text-futuristic-400 hover:bg-futuristic-800 hover:text-futuristic-100 transition-colors">
                 View Our Projects
               </Button>
             </Link>
