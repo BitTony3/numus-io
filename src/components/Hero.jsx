@@ -23,15 +23,15 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen holographic-bg overflow-hidden flex flex-col justify-between">
-      <div className="container mx-auto px-4 py-10 md:py-20 relative z-10 flex-grow flex flex-col">
+      <div className="container mx-auto px-4 py-6 md:py-20 relative z-10 flex-grow flex flex-col">
         <motion.div
           className="text-center flex flex-col h-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <div className="mb-4 md:mb-6">
-            <motion.div className="flex flex-col md:flex-row items-center justify-center mb-4 md:mb-6">
+          <div className="mb-2 md:mb-6">
+            <motion.div className="flex flex-col md:flex-row items-center justify-center mb-2 md:mb-6">
               <motion.div
                 className="mb-2 md:mb-0 md:mr-4"
                 initial={{ rotate: 0 }}
@@ -46,7 +46,10 @@ const Hero = () => {
           </div>
           
           {/* Animation container */}
-          <div ref={containerRef} className="flex-grow mb-4 md:mb-8 h-40 md:h-64" />
+          <div 
+            ref={containerRef} 
+            className="flex-grow mb-2 md:mb-8 h-40 md:h-64 transform scale-85 -translate-y-14 md:scale-100 md:translate-y-0"
+          />
         </motion.div>
       </div>
       
