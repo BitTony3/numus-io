@@ -31,7 +31,7 @@ const Services = () => {
     { value: "150M+", label: "User Network" },
     { value: "50+", label: "Blockchain Ecosystems" },
     { value: "$300M+", label: "Portfolio Worth" },
-    { value: "100+", label: "Projects Launched" },
+    { value: "50+", label: "dApps Aggregated" },
   ];
 
   return (
