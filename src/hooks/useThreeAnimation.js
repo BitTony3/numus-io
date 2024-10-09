@@ -31,68 +31,48 @@ export const useThreeAnimation = (containerRef) => {
     const numusSphere = new THREE.Mesh(numusSphereGeometry, numusSphereMaterial);
     scene.add(numusSphere);
 
-    // Create project rings
-    const projects = [
-      { name: 'CeDeFiAi', color: 0x4DBFFF, radius: 25 },
-      { name: 'Asterizm', color: 0x1AACFF, radius: 35 },
-      { name: 'Claimr', color: 0x007ACC, radius: 45 },
-      { name: 'ChainSpot', color: 0x005C99, radius: 55 },
-      { name: 'TADS', color: 0x003D66, radius: 65 }
-    ];
+    // Create orbiting chains
+    const chainGroup = new THREE.Group();
+    const chainColors = [0x4DBFFF, 0x1AACFF, 0x007ACC, 0x005C99, 0x003D66];
+    const orbitRadii = [25, 35, 45, 55, 65];
 
-    const projectGroup = new THREE.Group();
-
-    projects.forEach((project, index) => {
-      const ringGeometry = new THREE.TorusGeometry(project.radius, 0.5, 16, 100);
-      const ringMaterial = new THREE.MeshPhongMaterial({ 
-        color: project.color,
+    orbitRadii.forEach((radius, index) => {
+      const chainGeometry = new THREE.TorusGeometry(radius, 0.5, 16, 100);
+      const chainMaterial = new THREE.MeshPhongMaterial({ 
+        color: chainColors[index],
         specular: 0xFFFFFF,
         shininess: 50,
         transparent: true,
         opacity: 0.7
       });
-      const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-      ring.rotation.x = Math.random() * Math.PI;
-      ring.rotation.y = Math.random() * Math.PI;
-      projectGroup.add(ring);
+      const chain = new THREE.Mesh(chainGeometry, chainMaterial);
+      chain.rotation.x = Math.random() * Math.PI;
+      chain.rotation.y = Math.random() * Math.PI;
+      chainGroup.add(chain);
 
-      // Add project components
-      const componentCount = 5 + index * 2;
-      for (let i = 0; i < componentCount; i++) {
-        const angle = (i / componentCount) * Math.PI * 2;
-        const componentGeometry = new THREE.SphereGeometry(1, 16, 16);
-        const componentMaterial = new THREE.MeshPhongMaterial({ 
-          color: project.color,
+      // Add nodes to each chain
+      const nodeCount = 5 + index * 2;
+      for (let i = 0; i < nodeCount; i++) {
+        const angle = (i / nodeCount) * Math.PI * 2;
+        const nodeGeometry = new THREE.IcosahedronGeometry(1, 0);
+        const nodeMaterial = new THREE.MeshPhongMaterial({ 
+          color: chainColors[index],
           specular: 0xFFFFFF,
           shininess: 100,
           transparent: true,
           opacity: 0.9
         });
-        const component = new THREE.Mesh(componentGeometry, componentMaterial);
-        component.position.set(
-          Math.cos(angle) * project.radius,
-          Math.sin(angle) * project.radius,
+        const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+        node.position.set(
+          Math.cos(angle) * radius,
+          Math.sin(angle) * radius,
           0
         );
-        ring.add(component);
+        chain.add(node);
       }
-
-      // Add project label
-      const loader = new THREE.FontLoader();
-      loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
-        const textGeometry = new THREE.TextGeometry(project.name, {
-          font: font,
-          size: 3,
-          height: 0.2,
-        });
-        const textMaterial = new THREE.MeshPhongMaterial({ color: 0xFFFFFF });
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-        textMesh.position.set(project.radius + 5, 0, 0);
-        ring.add(textMesh);
-      });
     });
 
-    scene.add(projectGroup);
+    scene.add(chainGroup);
 
     // Create connection lines
     const lineMaterial = new THREE.LineBasicMaterial({ 
@@ -101,30 +81,17 @@ export const useThreeAnimation = (containerRef) => {
       opacity: 0.3 
     });
     const connectionLines = new THREE.Group();
-    projectGroup.children.forEach(ring => {
-      const lineGeometry = new THREE.BufferGeometry().setFromPoints([
-        new THREE.Vector3(ring.position.x, ring.position.y, ring.position.z),
-        new THREE.Vector3(0, 0, 0)
-      ]);
-      const line = new THREE.Line(lineGeometry, lineMaterial);
-      connectionLines.add(line);
+    chainGroup.children.forEach(chain => {
+      chain.children.forEach(node => {
+        const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+          node.position,
+          new THREE.Vector3(0, 0, 0)
+        ]);
+        const line = new THREE.Line(lineGeometry, lineMaterial);
+        connectionLines.add(line);
+      });
     });
     scene.add(connectionLines);
-
-    // Add particle system for background
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCnt = 5000;
-    const posArray = new Float32Array(particlesCnt * 3);
-    for(let i = 0; i < particlesCnt * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 200;
-    }
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.005,
-      color: 0x0099FF
-    });
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xE6F7FF, 0.5);
@@ -134,19 +101,49 @@ export const useThreeAnimation = (containerRef) => {
     pointLight.position.set(50, 50, 50);
     scene.add(pointLight);
 
-    // Animation
+    // Add subtle glow effect
+    const glowMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        viewVector: { type: "v3", value: camera.position }
+      },
+      vertexShader: `
+        uniform vec3 viewVector;
+        varying float intensity;
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+          vec3 actual_normal = vec3(modelMatrix * vec4(normal, 0.0));
+          intensity = pow( dot(normalize(viewVector), actual_normal), 6.0 );
+        }
+      `,
+      fragmentShader: `
+        varying float intensity;
+        void main() {
+          vec3 glow = vec3(0.0, 0.6, 1.0) * intensity;
+          gl_FragColor = vec4( glow, 1.0 );
+        }
+      `,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true
+    });
+
+    const glowSphere = new THREE.Mesh(new THREE.SphereGeometry(11, 32, 32), glowMaterial);
+    scene.add(glowSphere);
+
     const animate = () => {
       if (!rendererRef.current) return;
       requestAnimationFrame(animate);
 
       numusSphere.rotation.y += 0.005;
-      projectGroup.rotation.y += 0.001;
-      projectGroup.rotation.x += 0.0005;
-      particlesMesh.rotation.y += 0.0002;
+      chainGroup.rotation.y += 0.001;
+      chainGroup.rotation.x += 0.0005;
 
-      projectGroup.children.forEach((ring, index) => {
-        ring.rotation.x += 0.001 * (index + 1);
-        ring.rotation.y += 0.001 * (index + 1);
+      connectionLines.children.forEach(line => {
+        line.geometry.setFromPoints([
+          line.geometry.attributes.position.array.slice(3, 6),
+          new THREE.Vector3(0, 0, 0)
+        ]);
+        line.geometry.attributes.position.needsUpdate = true;
       });
 
       renderer.render(scene, camera);
@@ -177,5 +174,6 @@ export const useThreeAnimation = (containerRef) => {
       }
       rendererRef.current = null;
     };
+
   }, [containerRef]);
 };
