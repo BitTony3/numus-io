@@ -11,7 +11,7 @@ const ProjectCard = ({ project, onSelect }) => (
     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
     whileTap={{ scale: 0.95 }}
     onClick={() => onSelect(project)}
-    className="cursor-pointer bg-green-800 p-4 rounded-lg shadow-lg"
+    className="cursor-pointer bg-futuristic-800 p-4 rounded-lg shadow-lg"
   >
     <motion.div
       className="w-16 h-16 mx-auto mb-4"
@@ -21,11 +21,11 @@ const ProjectCard = ({ project, onSelect }) => (
     >
       <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" />
     </motion.div>
-    <h3 className="text-lg font-bold text-green-300 mb-2">{project.title}</h3>
-    <p className="text-sm text-green-100 mb-4">{project.description}</p>
+    <h3 className="text-lg font-bold text-futuristic-300 mb-2">{project.title}</h3>
+    <p className="text-sm text-futuristic-100 mb-4">{project.description}</p>
     <div className="flex flex-wrap gap-2">
       {project.tags.map((tag, index) => (
-        <span key={index} className="bg-green-700 text-green-200 px-2 py-1 rounded text-xs">
+        <span key={index} className="bg-futuristic-700 text-futuristic-200 px-2 py-1 rounded text-xs">
           {tag}
         </span>
       ))}
@@ -34,27 +34,27 @@ const ProjectCard = ({ project, onSelect }) => (
 );
 
 const ProjectDialog = ({ project, onClose }) => (
-  <div className="text-green-100 max-h-[80vh] overflow-y-auto">
-    <h2 className="text-2xl font-bold text-green-300 mb-4 flex items-center">
+  <div className="text-futuristic-100 max-h-[80vh] overflow-y-auto">
+    <h2 className="text-2xl font-bold text-futuristic-300 mb-4 flex items-center">
       <img src={project?.logo} alt={`${project?.title} logo`} className="w-8 h-8 mr-3" />
       {project?.title}
     </h2>
-    <p className="text-green-200 mb-4">{project?.highlight}</p>
-    <h3 className="text-lg font-semibold text-green-300 mb-2">Valuation:</h3>
-    <p className="text-green-200 mb-4">{project?.valuation}</p>
-    <h3 className="text-lg font-semibold text-green-300 mb-2">Raise Status:</h3>
-    <p className="text-green-200 mb-4">{project?.raiseStatus}</p>
-    <h3 className="text-lg font-semibold text-green-300 mb-2">Strategic Advantage:</h3>
-    <p className="text-green-200 mb-4">{project?.strategicAdvantage}</p>
+    <p className="text-futuristic-200 mb-4">{project?.highlight}</p>
+    <h3 className="text-lg font-semibold text-futuristic-300 mb-2">Valuation:</h3>
+    <p className="text-futuristic-200 mb-4">{project?.valuation}</p>
+    <h3 className="text-lg font-semibold text-futuristic-300 mb-2">Raise Status:</h3>
+    <p className="text-futuristic-200 mb-4">{project?.raiseStatus}</p>
+    <h3 className="text-lg font-semibold text-futuristic-300 mb-2">Strategic Advantage:</h3>
+    <p className="text-futuristic-200 mb-4">{project?.strategicAdvantage}</p>
     {project?.additionalInfo && (
       <>
-        <h3 className="text-lg font-semibold text-green-300 mb-2">Additional Info:</h3>
-        <p className="text-green-200 mb-4">{project?.additionalInfo}</p>
+        <h3 className="text-lg font-semibold text-futuristic-300 mb-2">Additional Info:</h3>
+        <p className="text-futuristic-200 mb-4">{project?.additionalInfo}</p>
       </>
     )}
     <div className="flex flex-col space-y-2 mt-4">
       {project?.website && (
-        <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-100 flex items-center">
+        <a href={project.website} target="_blank" rel="noopener noreferrer" className="text-futuristic-300 hover:text-futuristic-100 flex items-center">
           <ExternalLink className="w-4 h-4 mr-2" /> Visit Website
         </a>
       )}
@@ -90,10 +90,10 @@ const Portfolio = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <section className="py-16 bg-green-900 text-white">
+    <section className="py-16 bg-futuristic-900 text-futuristic-100">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl md:text-4xl font-bold text-center mb-8 text-green-300"
+          className="text-3xl md:text-4xl font-bold text-center mb-8 text-futuristic-300"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -101,7 +101,7 @@ const Portfolio = () => {
           Numus Project Portfolio
         </motion.h2>
         <motion.p
-          className="text-base md:text-lg text-center mb-12 max-w-2xl mx-auto text-green-200"
+          className="text-base md:text-lg text-center mb-12 max-w-2xl mx-auto text-futuristic-200"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

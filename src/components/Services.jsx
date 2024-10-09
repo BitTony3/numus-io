@@ -9,17 +9,17 @@ import Modal from './Modal';
 
 const ServiceDialog = ({ service, onClose }) => (
   <div>
-    <h2 className="text-2xl font-bold text-green-300 mb-4 flex items-center">
-      {React.createElement(service.icon, { className: "w-8 h-8 mr-3 text-green-400" })}
+    <h2 className="text-2xl font-bold text-futuristic-300 mb-4 flex items-center">
+      {React.createElement(service.icon, { className: "w-8 h-8 mr-3 text-futuristic-400" })}
       {service.title}
     </h2>
     <ul className="space-y-4">
       {service.services.map((item, index) => (
         <li key={index} className="flex items-start">
-          <span className="w-2 h-2 bg-green-400 rounded-full mr-3 mt-2"></span>
+          <span className="w-2 h-2 bg-futuristic-400 rounded-full mr-3 mt-2"></span>
           <div>
-            <h3 className="font-semibold text-green-300">{item.title}</h3>
-            <p className="text-green-200">{item.description}</p>
+            <h3 className="font-semibold text-futuristic-300">{item.title}</h3>
+            <p className="text-futuristic-200">{item.description}</p>
           </div>
         </li>
       ))}
@@ -35,19 +35,11 @@ const Services = () => {
 
   const visibleServices = isMobile ? 1 : isTablet ? 2 : 3;
 
-  const nextSlide = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % serviceCategories.length);
-  };
-
-  const prevSlide = () => {
-    setStartIndex((prevIndex) => (prevIndex - 1 + serviceCategories.length) % serviceCategories.length);
-  };
-
   return (
-    <section className="py-16 bg-green-900 text-white overflow-hidden">
+    <section className="py-16 bg-futuristic-900 text-futuristic-100 overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-green-300"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-futuristic-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -55,7 +47,7 @@ const Services = () => {
           Numus Venture Studio Services
         </motion.h2>
         <motion.p 
-          className="text-sm md:text-base lg:text-lg text-center mb-10 max-w-2xl mx-auto text-green-200"
+          className="text-sm md:text-base lg:text-lg text-center mb-10 max-w-2xl mx-auto text-futuristic-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
