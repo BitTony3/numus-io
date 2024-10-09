@@ -14,7 +14,7 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { title, description, icon: Icon } = heroContent[currentIndex];
 
-  useThreeAnimation(containerRef, currentIndex);
+  useThreeAnimation(containerRef);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -25,9 +25,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen holographic-bg overflow-hidden">
+    <section className="min-h-screen relative overflow-hidden">
       <div ref={containerRef} className="absolute inset-0 z-0" />
-      <div className="container mx-auto px-4 py-20 z-10">
+      <div className="container mx-auto px-4 py-20 relative z-10">
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,6 @@ const Hero = () => {
           <HeroButtons />
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
 };
