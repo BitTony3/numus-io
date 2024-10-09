@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedBackground from '../components/AnimatedBackground';
 import { Card, CardContent } from "@/components/ui/card";
-import { Rocket, Briefcase, TrendingUp, Shield, Zap, DollarSign } from 'lucide-react';
+import { Rocket, Briefcase, TrendingUp, Shield, Zap, DollarSign, Users, Globe } from 'lucide-react';
 
 const AboutUs = () => {
   const services = [
@@ -14,6 +14,13 @@ const AboutUs = () => {
     { icon: Zap, title: "Strategic Partnerships", description: "Facilitating synergies between investors, projects, and industry leaders." },
     { icon: Shield, title: "Traffic Activation", description: "Leveraging our network of 150M+ users for rapid user acquisition and engagement." },
     { icon: DollarSign, title: "Investment Opportunities", description: "Curated access to high-potential blockchain projects and strategic co-investments." },
+  ];
+
+  const stats = [
+    { icon: Users, value: "150M+", label: "User Network" },
+    { icon: Globe, value: "50+", label: "Blockchain Ecosystems" },
+    { icon: Briefcase, value: "$500M+", label: "Assets Under Management" },
+    { icon: Rocket, value: "100+", label: "Projects Launched" },
   ];
 
   return (
@@ -38,6 +45,24 @@ const AboutUs = () => {
             >
               Numus positions itself as an outsourced action arm for VCs, investors, hedge funds, and product owners in the blockchain space. We provide comprehensive solutions to accelerate growth, incubate innovation, and refine portfolios across the Web3 landscape.
             </motion.p>
+
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              {stats.map((stat, index) => (
+                <Card key={index} className="bg-futuristic-800 border-futuristic-600">
+                  <CardContent className="p-6 flex flex-col items-center">
+                    <stat.icon className="w-12 h-12 text-futuristic-400 mb-4" />
+                    <span className="text-3xl font-bold text-futuristic-300">{stat.value}</span>
+                    <span className="text-sm text-futuristic-200">{stat.label}</span>
+                  </CardContent>
+                </Card>
+              ))}
+            </motion.div>
+
             <h2 className="text-3xl font-bold text-center mb-8 text-futuristic-300">Our Services</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
@@ -47,7 +72,7 @@ const AboutUs = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-futuristic-800 border-futuristic-600 h-full">
+                  <Card className="bg-futuristic-800 border-futuristic-600 h-full hover:shadow-lg hover:shadow-futuristic-500/20 transition-all duration-300">
                     <CardContent className="p-6 flex flex-col items-center">
                       <service.icon className="w-12 h-12 text-futuristic-400 mb-4" />
                       <h3 className="text-xl font-bold mb-2 text-futuristic-300">{service.title}</h3>
