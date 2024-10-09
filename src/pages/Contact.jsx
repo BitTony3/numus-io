@@ -22,11 +22,11 @@ const socialIcons = [
   { Icon: Mail, link: "mailto:contact@numus.io" },
 ];
 
-const inputClass = "bg-green-700 text-green-100 placeholder-green-300 border-green-500 focus:border-green-400 focus:ring-green-400";
+const inputClass = "bg-futuristic-800 text-futuristic-100 placeholder-futuristic-300 border-futuristic-600 focus:border-futuristic-400 focus:ring-futuristic-400";
 
 const FormField = ({ label, name, type = "text", placeholder, required = true, value, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-    <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
+    <Label htmlFor={name} className="block text-futuristic-200 mb-2">{label}</Label>
     <Input
       type={type}
       id={name}
@@ -42,7 +42,7 @@ const FormField = ({ label, name, type = "text", placeholder, required = true, v
 
 const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, value, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-    <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
+    <Label htmlFor={name} className="block text-futuristic-200 mb-2">{label}</Label>
     <Textarea
       id={name}
       name={name}
@@ -58,7 +58,7 @@ const TextAreaField = ({ label, name, placeholder, rows = 4, required = true, va
 
 const FileUploadField = ({ label, name, accept, multiple = false, onChange }) => (
   <motion.div className="mb-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-    <Label htmlFor={name} className="block text-green-200 mb-2">{label}</Label>
+    <Label htmlFor={name} className="block text-futuristic-200 mb-2">{label}</Label>
     <div className="relative">
       <Input
         type="file"
@@ -69,7 +69,7 @@ const FileUploadField = ({ label, name, accept, multiple = false, onChange }) =>
         onChange={onChange}
         className="hidden"
       />
-      <Label htmlFor={name} className="cursor-pointer flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+      <Label htmlFor={name} className="cursor-pointer flex items-center justify-center px-4 py-2 bg-futuristic-600 text-futuristic-100 rounded-md hover:bg-futuristic-700 transition-colors">
         <Upload className="mr-2" size={20} />
         Choose Files
       </Label>
@@ -90,7 +90,7 @@ const SocialIcons = ({ icons }) => (
         href={item.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-green-300 hover:text-green-100 transition-colors duration-300"
+        className="text-futuristic-300 hover:text-futuristic-100 transition-colors duration-300"
         whileHover={{ scale: 1.2, rotate: 360 }}
         transition={{ duration: 0.3 }}
       >
@@ -203,7 +203,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-green-900">
+    <div className="min-h-screen bg-futuristic-900">
       <AnimatedBackground>
         <Header />
         <main className="relative py-20">
@@ -213,13 +213,13 @@ const ContactPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl font-bold text-center mb-8 text-green-100">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-center mb-8 text-futuristic-100">Contact Us</h1>
             <Card className="max-w-2xl mx-auto futuristic-card">
               <CardContent className="p-6">
                 <Tabs defaultValue="partner" className="w-full">
                   <TabsList className="grid w-full grid-cols-2 mb-6">
-                    <TabsTrigger value="partner" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Partner</TabsTrigger>
-                    <TabsTrigger value="project" className="text-green-200 data-[state=active]:bg-green-700 text-lg font-semibold">Project</TabsTrigger>
+                    <TabsTrigger value="partner" className="text-futuristic-200 data-[state=active]:bg-futuristic-700 text-lg font-semibold">Partner</TabsTrigger>
+                    <TabsTrigger value="project" className="text-futuristic-200 data-[state=active]:bg-futuristic-700 text-lg font-semibold">Project</TabsTrigger>
                   </TabsList>
                   <TabsContent value="partner">
                     <ContactForm type="partner" onSubmit={handleSubmit} />
@@ -236,7 +236,7 @@ const ContactPage = () => {
         <Footer />
       </AnimatedBackground>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="text-green-100 text-center">
+        <div className="text-futuristic-100 text-center">
           <h2 className="text-2xl font-bold mb-4">Submission Received</h2>
           <p>{modalContent}</p>
         </div>
