@@ -25,9 +25,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen holographic-bg overflow-hidden">
+    <section className="min-h-screen holographic-bg overflow-hidden">
       <div ref={containerRef} className="absolute inset-0 z-0" />
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      <div className="container mx-auto px-4 py-20 z-10">
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 20 }}

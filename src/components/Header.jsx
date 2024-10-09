@@ -76,7 +76,7 @@ const Header = () => {
   };
 
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    isScrolled ? 'bg-futuristic-900/80 backdrop-blur-md' : 'bg-transparent'
+    isScrolled ? 'bg-futuristic-900/80 backdrop-blur-md' : 'bg-futuristic-900'
   }`;
 
   return (
