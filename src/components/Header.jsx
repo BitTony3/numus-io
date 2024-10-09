@@ -14,11 +14,11 @@ import { navItems } from '../nav-items';
 
 const Header = () => {
   return (
-    <header className="bg-white dark:bg-gray-800 border-b">
+    <header className="bg-white dark:bg-gray-800 border-b sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
-          <img src="/logo.svg" alt="Numus Logo" className="w-8 h-8" />
-          <span className="text-xl font-bold text-gray-800 dark:text-white">Numus</span>
+          <img src="/logo.svg" alt="Numus Logo" className="w-10 h-10" />
+          <span className="text-2xl font-bold text-primary">Numus</span>
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
@@ -33,6 +33,7 @@ const Header = () => {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
+        <Button variant="outline">Contact Us</Button>
       </div>
     </header>
   );

@@ -71,6 +71,12 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      boxShadow: {
+        'numus': '0 4px 14px 0 rgba(0, 118, 255, 0.39)',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

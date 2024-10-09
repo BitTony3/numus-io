@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -61,14 +61,24 @@
   }
 }
 
-.business-card {
-  @apply bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
-}
+@layer components {
+  .numus-card {
+    @apply bg-white dark:bg-gray-800 shadow-numus rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
+  }
 
-.business-button {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
-}
+  .numus-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none px-4 py-2;
+  }
 
-.section-title {
-  @apply text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200;
+  .numus-title {
+    @apply text-3xl font-bold mb-4 text-gray-800 dark:text-gray-200;
+  }
+
+  .numus-subtitle {
+    @apply text-xl font-semibold mb-2 text-gray-700 dark:text-gray-300;
+  }
+
+  .numus-text {
+    @apply text-gray-600 dark:text-gray-400;
+  }
 }
