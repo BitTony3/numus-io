@@ -70,7 +70,8 @@
 }
 
 .neon-border {
-  @apply border border-futuristic-400 shadow-neon;
+  @apply border border-futuristic-400;
+  box-shadow: 0 0 4px theme('colors.futuristic.400'), 0 0 16px theme('colors.futuristic.400');
 }
 
 @keyframes float {
