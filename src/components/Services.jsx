@@ -35,10 +35,10 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-futuristic-900 text-futuristic-100 overflow-hidden">
+    <section className="py-12 md:py-24 bg-futuristic-900 text-futuristic-100 overflow-hidden">
       <div className="container mx-auto px-4 relative">
         <motion.h2 
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 md:mb-8 text-futuristic-300"
+          className="text-2xl md:text-4xl lg:text-5xl font-bold text-center mb-4 md:mb-8 text-futuristic-300"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -46,7 +46,7 @@ const Services = () => {
           Numus Venture Studio Services
         </motion.h2>
         <motion.p 
-          className="text-base md:text-lg lg:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto text-futuristic-200"
+          className="text-sm md:text-lg lg:text-xl text-center mb-8 md:mb-16 max-w-3xl mx-auto text-futuristic-200"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -54,17 +54,17 @@ const Services = () => {
           Numus is a full-cycle venture capital and project incubation platform, integrating advanced aggregation technology and cross-chain capabilities to support and enhance blockchain-based projects. From incubation to scaling, we provide critical resources, technical infrastructure, and traffic activation to drive project success.
         </motion.p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8 mb-12 md:mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center"
+              className="text-center p-2 md:p-4 bg-futuristic-800 rounded-lg shadow-md"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="text-3xl md:text-4xl font-bold text-futuristic-300 mb-2">{stat.value}</div>
-              <div className="text-sm text-futuristic-200">{stat.label}</div>
+              <div className="text-xl md:text-3xl font-bold text-futuristic-300 mb-1 md:mb-2">{stat.value}</div>
+              <div className="text-xs md:text-sm text-futuristic-200">{stat.label}</div>
             </motion.div>
           ))}
         </div>
@@ -77,7 +77,7 @@ const Services = () => {
             {serviceCategories.map((category, index) => (
               <motion.div
                 key={index}
-                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-3 md:p-5 ${isMobile ? 'mb-8' : ''}`}
+                className={`w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2 md:p-5 ${isMobile ? 'mb-6' : ''}`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -103,6 +103,22 @@ const Services = () => {
             </>
           )}
         </div>
+        {isMobile && (
+          <div className="flex justify-center mt-6 space-x-4">
+            <Button 
+              className="bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2" 
+              onClick={prevSlide}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <Button 
+              className="bg-futuristic-600 hover:bg-futuristic-700 text-futuristic-100 rounded-full p-2" 
+              onClick={nextSlide}
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+          </div>
+        )}
       </div>
       <ServiceDialog isOpen={!!selectedService} onClose={() => setSelectedService(null)} service={selectedService} />
     </section>
