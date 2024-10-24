@@ -15,7 +15,7 @@ import Modal from '../components/Modal';
 
 const socialIcons = [
   { Icon: Facebook, link: "https://facebook.com/numusio" },
-  { Icon: Twitter, link: "https://twitter.com/NumusApp" },
+  { Icon: Twitter, link: "https://x.com/numusAG" },
   { Icon: Linkedin, link: "https://linkedin.com/company/numusio" },
   { Icon: Instagram, link: "https://instagram.com/numusio" },
   { Icon: Youtube, link: "https://youtube.com/@numusIo" },
