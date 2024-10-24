@@ -5,7 +5,7 @@ import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 const Footer = () => {
   const socialLinks = [
     { icon: Facebook, url: 'https://facebook.com/numusio' },
-    { icon: Twitter, url: 'https://twitter.com/NumusApp' },
+    { icon: Twitter, url: 'https://x.com/numusag' },
     { icon: Linkedin, url: 'https://linkedin.com/company/numusio' },
     { icon: Instagram, url: 'https://instagram.com/numusio' },
   ];
